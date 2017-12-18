@@ -1,12 +1,8 @@
 #ifndef INTERO_H
 #define INTERO_H
 
-#include <QMainWindow>
-
 class Intero
 {
-	Q_OBJECT
-
 private:
 	int val;
 
@@ -15,7 +11,7 @@ public:
 	~Intero();
 
 	int getVal();
-	Intero operator+(const Intero& toAdd);
+    Intero operator+(const Intero&);
 };
 
 #endif // INTERO_H
