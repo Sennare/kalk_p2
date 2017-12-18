@@ -13,8 +13,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        progetto.cpp
+    model.cpp \
+    color.cpp
 
-HEADERS  += progetto.h
+HEADERS  += \
+    model.h \
+    color.h
 
 FORMS    += progetto.ui
