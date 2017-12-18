@@ -10,8 +10,10 @@ public:
 	Intero(int intVal = 0);
 	~Intero();
 
-	int getVal();
     Intero operator+(const Intero&);
+    Intero operator-(const Intero&);
+    Intero operator*(const Intero&);
+    Intero operator/(const Intero&);
 };
 
 #endif // INTERO_H
