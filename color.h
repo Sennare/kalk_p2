@@ -6,6 +6,7 @@ class Color
 {
 private:
     int r, g, b;
+    int colore;
 public:
     /**
      * Costruttori per la classe Color
