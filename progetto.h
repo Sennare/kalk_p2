@@ -17,6 +17,9 @@ public:
 
 private:
     Ui::Progetto *ui;
+
+private slots:
+    void slotButtonClicked();
 };
 
 #endif // PROGETTO_H
