@@ -5,8 +5,7 @@
 class Color
 {
 private:
-    int r, g, b;
-    int colore;
+    unsigned int r, g, b;
 public:
     /**
      * Costruttori per la classe Color
@@ -14,10 +13,10 @@ public:
      */
     Color();
     Color(string c);
-    Color(int r, int g, int b); //0<=r,g,b<=255
+    Color(unsigned int, unsigned int, unsigned int); //0<=r,g,b<=255
 
     /**
-     * Sezione parametri esadecimali per la creazione colore
+     * Sezione parametri esadecimali per la modifica colore
      */
     void setRhex(string);
     void setGhex(string);
@@ -29,12 +28,12 @@ public:
     /**
      * Sezione parametri decimali per la creazione colore
      */
-    void setRdec(int);
-    void setGdec(int);
-    void setBdec(int);
-    int getRdec() const;
-    int getGdec() const;
-    int getBdec() const;
+    void setRdec(unsigned int);
+    void setGdec(unsigned int);
+    void setBdec(unsigned int);
+    unsigned int getRdec() const;
+    unsigned int getGdec() const;
+    unsigned int getBdec() const;
 
     /**
      * Overloading di operatori
@@ -43,6 +42,8 @@ public:
     Color operator-(const Color&);
     Color operator*(const Color&);
     Color operator/(const Color&);
+    bool operator==(const Colore &)const;
+    bool operator!=(const Colore &)const;
 
 
 };
