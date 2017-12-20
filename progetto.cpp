@@ -1,7 +1,9 @@
 #include "progetto.h"
 #include "ui_progetto.h"
+#include "complex.h"
 #include <QApplication>
 #include <QPushButton>
+#include <QString>
 
 Progetto::Progetto(QWidget *parent) :
     QMainWindow(parent),
@@ -18,5 +20,8 @@ Progetto::~Progetto()
 }
 
 void Progetto::slotButtonClicked() {
-    ui->label->setText("clicked");
+    Complex a(4, 3);
+    Complex b(3, -2);
+    Complex c = a/b;
+    ui->label->setText(c.getStr());
 }

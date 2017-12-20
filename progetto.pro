@@ -12,10 +12,10 @@ TARGET = progetto
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        progetto.cpp \
-    intero.cpp \
-    complex.cpp
+SOURCES +=  intero.cpp \
+    complex.cpp \
+    main.cpp\
+    progetto.cpp
 
 HEADERS  += progetto.h \
     intero.h \
