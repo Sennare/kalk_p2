@@ -41,7 +41,11 @@ unsigned int Color::getBdec() const{
     return b;
 }
 
-string ConvertRGBtoHex(const Color& x) const {
-    std::string HEX = "#";
-    return HEX+caratteriHex[(x.getRdec()/16)%16]+caratteriHex[x.getRdec()%16]+caratteriHex[(x.getGdec()/16)%16]+caratteriHex[x.getGdec()%16]+caratteriHex[(x.getBdec()/16)%16]+caratteriHex[x.getBdec()%16];
+QString ConvertRGBtoHex(const Color& RGB) {
+    Helper aux;
+    QString result="#";
+    result.append(aux.decToHex(RGB.getRdec()));
+    result.append(aux.decToHex(RGB.getGdec()));
+    result.append(aux.decToHex(RGB.getBdec()));
+    return result;
 }

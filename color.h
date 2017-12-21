@@ -3,8 +3,10 @@
 
 #include <string>
 #include <math.h>
-#include <QObject>
+#include "QString"
 #include <iostream>
+
+#include "helper.h"
 
 using std::string;
 
@@ -12,7 +14,7 @@ class Color
 {
 private:
     unsigned int r, g, b;
-    static char caratteriHex[16] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"};
+
 public:
     /**
      * Costruttori per la classe Color
@@ -33,7 +35,7 @@ public:
     unsigned int getGdec() const;
     unsigned int getBdec() const;
 
-    string ConvertRGBtoHex(const Color&) const;
+    QString ConvertRGBtoHex(const Color&);
 
     /**
      * Overloading di operatori
