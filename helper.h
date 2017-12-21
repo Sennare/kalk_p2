@@ -12,7 +12,7 @@ public:
 
     QList<QString> hexList;
 
-    QString decToHex (int);
+    QString decToHex (int, int = 1);
 };
 
 #endif // HELPER_H
