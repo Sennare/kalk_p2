@@ -12,13 +12,15 @@ TARGET = progetto
 TEMPLATE = app
 
 
-SOURCES +=  intero.cpp \
+SOURCES +=  real.cpp \
     complex.cpp \
     main.cpp\
-    progetto.cpp
+    progetto.cpp \
+    quaternion.cpp
 
-HEADERS  += progetto.h \
-    intero.h \
-    complex.h
+HEADERS  += real.h \
+    progetto.h \
+    complex.h \
+    quaternion.h
 
 FORMS    += progetto.ui

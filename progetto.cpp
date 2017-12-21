@@ -1,5 +1,6 @@
 #include "progetto.h"
 #include "ui_progetto.h"
+#include "real.h"
 #include "complex.h"
 #include <QApplication>
 #include <QPushButton>
@@ -20,8 +21,11 @@ Progetto::~Progetto()
 }
 
 void Progetto::slotButtonClicked() {
-    Complex a(4, 3);
+    /*Complex a(4, 3);
     Complex b(3, -2);
-    Complex c = a/b;
-    ui->label->setText(c.getStr());
+    Complex c = a/b;*/
+    Real r1(2.8);
+    Real r2(7.3);
+    Real rf = r1+r2;
+    ui->label->setText(rf.getString());
 }
