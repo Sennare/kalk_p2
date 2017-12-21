@@ -12,10 +12,13 @@ public:
     Real(float = 0);
     //~Real();
 
-    Real operator+(const Real&);
-    Real operator-(const Real&);
-    Real operator*(const Real&);
-    Real operator/(const Real&);
+    void setReal(float);
+    float getReal() const;
+
+    Real operator+(const Real&) const;
+    Real operator-(const Real&) const;
+    Real operator*(const Real&) const;
+    Real operator/(const Real&) const;
 
     virtual QString getString(unsigned int = 2);
 };

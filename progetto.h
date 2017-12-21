@@ -19,7 +19,14 @@ private:
     Ui::Progetto *ui;
 
 private slots:
-    void slotButtonClicked();
+    void slotRealSum();
+    void slotRealSottr();
+    void slotRealMult();
+    void slotRealDiv();
+    void slotComplexSum();
+    void slotComplexSottr();
+    void slotComplexPer();
+    void slotComplexDiv();
 };
 
 #endif // PROGETTO_H
