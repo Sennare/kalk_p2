@@ -1,58 +1,57 @@
 #include "complex.h"
 
 
-Complex::Complex(float realVal, float imgVal)
+Complex::Complex(float rVal, float iVal)
 {
-    this->setReal(realVal);
-    this->setImg(imgVal);
+    this->setR(rVal);
+    this->setI(iVal);
 }
 
-void Complex::setImg(float newImg)  {
-    this->imgVal = newImg;
+void Complex::setI(float iVal)  {
+    this->iVal = iVal;
 }
 
-float Complex::getImg() const {
-    return this->imgVal;
+float Complex::getI() const {
+    return this->iVal;
 }
 
-void Complex::inverseImaginary() {
-    this->imgVal *= -1;
+void Complex::inverseI() {
+    this->iVal *= -1;
 }
 
 Complex Complex::operator+(const Complex& b) const {
     Complex res;
-    float aa = this->getReal() + b.getReal();
-    res.setReal(this->getReal() + b.getReal());
-    res.setImg(this->getImg() + b.getImg());
+    res.setR(this->getR() + b.getR());
+    res.setI(this->getI() + b.getI());
     return res;
 }
 Complex Complex::operator-(const Complex& b) const {
     Complex res;
-    res.setReal(this->getReal() - b.getReal());
-    res.setImg(this->getImg() - b.getImg());
+    res.setR(this->getR() - b.getR());
+    res.setI(this->getI() - b.getI());
     return res;
 }
 Complex Complex::operator*(const Complex& b) const {
     Complex res;
-    res.setReal((this->getReal() * b.getReal()) -
-                  (this->getImg() * b.getImg()));
-    res.setImg((this->getReal() * b.getImg()) +
-                 (this->getImg() * b.getReal()));
+    res.setR((this->getR() * b.getR()) -
+                  (this->getI() * b.getI()));
+    res.setI((this->getR() * b.getI()) +
+                 (this->getI() * b.getR()));
     return res;
 }
 Complex Complex::operator/(const Complex& b) const {
     Complex inverse, denominatoreComplex;
     inverse = b;
-    inverse.inverseImaginary();
+    inverse.inverseI();
     denominatoreComplex = inverse * b;
-    float denominatore = denominatoreComplex.getReal();
+    float denominatore = denominatoreComplex.getR();
     inverse = *this * inverse;
-    float realPart = inverse.getReal() / denominatore;
-    float imgPart = inverse.getImg() / denominatore;
-    Complex res(realPart, imgPart);
+    float rPart = inverse.getR() / denominatore;
+    float iPart = inverse.getI() / denominatore;
+    Complex res(rPart, iPart);
     return res;
 }
 
 QString Complex::getString(unsigned int realPrec, unsigned int imgPrec) {
-    return QString::number(this->getReal(), 'f', realPrec) + " + " + QString::number(this->getImg(), 'f', imgPrec) + "i";
+    return QString::number(this->getR(), 'f', realPrec) + " + " + QString::number(this->getI(), 'f', imgPrec) + "i";
 }

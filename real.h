@@ -6,14 +6,14 @@
 class Real
 {
 private:
-    float realVal;
+    float rVal;
 
 public:
     Real(float = 0);
     //~Real();
 
-    void setReal(float);
-    float getReal() const;
+    void setR(float);
+    float getR() const;
 
     Real operator+(const Real&) const;
     Real operator-(const Real&) const;

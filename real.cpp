@@ -1,38 +1,38 @@
 #include "real.h"
 
 Real::Real(float initVal) {
-    this->setReal(initVal);
+    this->setR(initVal);
 }
 
-void Real::setReal(float valToSet) {
-    this->realVal = valToSet;
+void Real::setR(float valToSet) {
+    this->rVal = valToSet;
 }
 
-float Real::getReal() const {
-    return this->realVal;
+float Real::getR() const {
+    return this->rVal;
 }
 
 Real Real::operator+(const Real& b) const {
     Real res;
-    res.realVal = this->realVal + b.realVal;
+    res.rVal = this->rVal + b.rVal;
     return res;
 }
 Real Real::operator-(const Real& b) const {
     Real res;
-    res.realVal = this->realVal - b.realVal;
+    res.rVal = this->rVal - b.rVal;
     return res;
 }
 Real Real::operator*(const Real& b) const {
     Real res;
-    res.realVal = this->realVal * b.realVal;
+    res.rVal = this->rVal * b.rVal;
     return res;
 }
 Real Real::operator/(const Real& b) const {
     Real res;
-    res.realVal = this->realVal / b.realVal;
+    res.rVal = this->rVal / b.rVal;
     return res;
 }
 
 QString Real::getString(unsigned int precision) {
-    return QString::number(this->realVal, 'f', precision);
+    return QString::number(this->rVal, 'f', precision);
 }

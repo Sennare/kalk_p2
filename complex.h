@@ -7,15 +7,15 @@
 class Complex : public Real
 {
 private:
-    float imgVal;
+    float iVal;
 
 public:
     Complex(float = 0, float = 0);
     //~Complex();
 
-    void setImg(float);
-    float getImg() const;
-    void inverseImaginary();
+    void setI(float);
+    float getI() const;
+    void inverseI();
 
     Complex operator+(const Complex&) const;
     Complex operator-(const Complex&) const;
