@@ -2,6 +2,7 @@
 #define QUATERNION_H
 
 #include <complex.h>
+#include <cmath>
 
 class Quaternion : public Complex
 {
@@ -19,6 +20,10 @@ public:
     float getK() const;
     void inverseJ();
     void inverseK();
+
+    Quaternion conjugate() const;
+    float norm() const;
+    Quaternion inverse() const;
 
     Quaternion operator+(const Quaternion&) const;
     Quaternion operator-(const Quaternion&) const;

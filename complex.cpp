@@ -52,6 +52,6 @@ Complex Complex::operator/(const Complex& b) const {
     return res;
 }
 
-QString Complex::getString(unsigned int realPrec, unsigned int imgPrec) {
-    return QString::number(this->getR(), 'f', realPrec) + " + " + QString::number(this->getI(), 'f', imgPrec) + "i";
+QString Complex::getString(unsigned int rPrec, unsigned int iPrec) {
+    return QString::number(this->getR(), 'f', rPrec) + " + " + QString::number(this->getI(), 'f', iPrec) + "i";
 }

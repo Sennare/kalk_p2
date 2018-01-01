@@ -17,6 +17,13 @@ public:
     float getI() const;
     void inverseI();
 
+    /*
+     * TODO -> da fare queste funzioni
+            Complex conjugate() const;
+            float norm() const;
+            Complex inverse() const;
+    */
+
     Complex operator+(const Complex&) const;
     Complex operator-(const Complex&) const;
     Complex operator*(const Complex&) const;

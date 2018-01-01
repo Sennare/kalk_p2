@@ -27,6 +27,10 @@ private slots:
     void slotComplexSottr();
     void slotComplexPer();
     void slotComplexDiv();
+    void slotQuaternionSum();
+    void slotQuaternionSottr();
+    void slotQuaternionPer();
+    void slotQuaternionDiv();
 };
 
 #endif // PROGETTO_H

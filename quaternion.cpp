@@ -8,31 +8,59 @@ Quaternion::Quaternion(float rVal, float iVal, float jVal, float kVal)
     this->setK(kVal);
 }
 
-Quaternion::setJ(float jVal) {
+void Quaternion::setJ(float jVal) {
     this->jVal = jVal;
 }
 
-Quaternion::getJ() {
+float Quaternion::getJ() const {
     return this->jVal;
 }
 
-Quaternion::setK(float kVal) {
+void Quaternion::setK(float kVal) {
     this->kVal = kVal;
 }
 
-Quaternion::getK() {
+float Quaternion::getK() const {
     return this->kVal;
 }
 
-Quaternion::inverseJ() {
+void Quaternion::inverseJ() {
     this->jVal *= -1;
 }
 
-Quaternion::inverseK() {
+void Quaternion::inverseK() {
     this->kVal *= -1;
 }
 
-Quaternion::operator+(const Quaternion& b) {
+// TODO -> Da testare in GUI
+Quaternion Quaternion::conjugate() const {
+    Quaternion res;
+    res.setR(this->getR());
+    res.setI(-this->getI());
+    res.setJ(-this->getJ());
+    res.setK(-this->getK());
+    return res;
+}
+
+// TODO -> Da testare in GUI
+float Quaternion::norm() const {
+    return sqrt(exp2(this->getR()) +
+                exp2(this->getI()) +
+                exp2(this->getJ()) +
+                exp2(this->getK()));
+}
+
+
+// TODO -> Da testare in GUI
+Quaternion Quaternion::inverse() const {
+    const Quaternion norma(exp2(this->norm()));
+    Quaternion ret = *this;
+    ret = ret / norma;
+    return ret;
+}
+
+
+Quaternion Quaternion::operator+(const Quaternion& b) const {
     Quaternion ret;
     ret.setR(this->getR() + b.getR());
     ret.setI(this->getI() + b.getI());
@@ -41,7 +69,7 @@ Quaternion::operator+(const Quaternion& b) {
     return ret;
 }
 
-Quaternion::operator-(const Quaternion& b) {
+Quaternion Quaternion::operator-(const Quaternion& b) const {
     Quaternion ret;
     ret.setR(this->getR() - b.getR());
     ret.setI(this->getI() - b.getI());
@@ -50,7 +78,7 @@ Quaternion::operator-(const Quaternion& b) {
     return ret;
 }
 
-Quaternion::operator*(const Quaternion& b) {
+Quaternion Quaternion::operator*(const Quaternion& b) const {
     Quaternion ret;
     // prodotti normali
     ret.setR((this->getR() * b.getR()) -
@@ -63,14 +91,43 @@ Quaternion::operator*(const Quaternion& b) {
              (this->getJ() * b.getK()) -
              (this->getK() * b.getJ()));
     // prodotti tra R<>J e I<>K
-    ret.setR((this->getR() * b.getJ()) -
+    ret.setJ((this->getR() * b.getJ()) -
              (this->getI() * b.getK()) +
              (this->getJ() * b.getR()) +
              (this->getK() * b.getI()));
     // prodotti tra R<>K e I<>J
-    ret.setR((this->getR() * b.getK()) +
+    ret.setK((this->getR() * b.getK()) +
              (this->getI() * b.getJ()) -
              (this->getJ() * b.getI()) +
              (this->getK() * b.getR()));
     return ret;
+}
+
+Quaternion Quaternion::operator/(const Quaternion& b) const {
+    Quaternion ret;
+    float a1 = this->getR();
+    float b1 = this->getI();
+    float c1 = this->getJ();
+    float d1 = this->getK();
+    float a2 = b.getR();
+    float b2 = b.getI();
+    float c2 = b.getJ();
+    float d2 = b.getK();
+
+    float denominatore = a2*a2 + b2*b2 + c2*c2 + d2*d2;
+    // Parte reale -- prodotti normali
+    ret.setR( ((a1*a2)+(b1*b2)+(c1*c2)+(d1*d2)) / denominatore);
+    // Parte immaginaria I -- prodotti tra R<>I e J<>K
+    ret.setI( ((a1*-b2)+(b1*a2)+(c1*d2)+(d1*-c2)) / denominatore);
+    // Parte immaginaria J -- prodotti tra R<>J e I<>K
+    ret.setJ( ((a1*-c2)+(b1*-d2)+(c1*a2)+(d1*b2)) / denominatore);
+    // Parte immaginaria K -- prodotti tra R<>K e I<>J
+    ret.setK( ((a1*-d2)+(b1*c2)+(c1*-b2)+(d1*a2)) / denominatore);
+
+    return ret;
+}
+
+QString Quaternion::getString(unsigned int rPrec, unsigned int iPrec, unsigned int jPrec, unsigned int kPrec) {
+    return QString::number(this->getR(), 'f', rPrec) + " + " + QString::number(this->getI(), 'f', iPrec) + "i + " + QString::number(this->getJ(), 'f', jPrec) + "j + " + QString::number(this->getK(), 'f', kPrec) + "k";
+
 }
