@@ -36,18 +36,10 @@ public:
     unsigned int getBdec() const;
 
     QString ConvertRGBtoHex(const Color&);
-
-    /**
-     * Overloading di operatori
-     */
-    Color operator+(const Color&);
-    Color operator-(const Color&);
-    Color operator*(const Color&);
-    Color operator/(const Color&);
-    bool operator==(const Color &)const;
-    bool operator!=(const Color &)const;
-
-
 };
 
+Color operator+(const Color& x, const Color& y);
+Color operator-(const Color& x, const Color& y);
+Color operator*(const Color& x, const Color& y);
+Color operator/(const Color& x, const Color& y);
 #endif // COLOR_H

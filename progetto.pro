@@ -14,7 +14,7 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         progetto.cpp \
-    helper.cpp
+    helper.cpp\
     color.cpp
 
 HEADERS  += progetto.h \

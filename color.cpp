@@ -49,3 +49,16 @@ QString ConvertRGBtoHex(const Color& RGB) {
     result.append(aux.decToHex(RGB.getBdec()));
     return result;
 }
+
+Color* operator+ (const Color& x, const Color& y){
+    return new Color ((x.getRdec()+y.getRdec())%255, (x.getGdec()+y.getGdec())%255, (x.getBdec()+y.getBdec())%255);
+}
+Color* operator- (const Color& x, const Color& y){
+    return new Color ((x.getRdec()-y.getRdec())%255, (x.getGdec()-y.getGdec())%255, (x.getBdec()-y.getBdec())%255);
+}
+Color* operator* (const Color& x, const Color& y){
+    return new Color ((x.getRdec()*y.getRdec())%255, (x.getGdec()*y.getGdec())%255, (x.getBdec()*y.getBdec())%255);
+}
+Color* operator/ (const Color& x, const Color& y){
+    return new Color ((x.getRdec()/y.getRdec())%255, (x.getGdec()/y.getGdec())%255, (x.getBdec()/y.getBdec())%255);
+}
