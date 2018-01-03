@@ -19,6 +19,23 @@ void Complex::inverseI() {
     this->iVal *= -1;
 }
 
+Complex Complex::conjugate() const {
+    Complex res = *this;
+    res.inverseI();
+    return res;
+}
+
+float Complex::norm() const {
+    return sqrt(exp2(this->getR()) + exp2(this->getI()));
+}
+
+Complex Complex::inverse() const {
+    const Complex norma(exp2(this->norm()));
+    Complex ret = *this;
+    ret = ret / norma;
+    return ret;
+}
+
 Complex Complex::operator+(const Complex& b) const {
     Complex res;
     res.setR(this->getR() + b.getR());

@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <real.h>
+#include <cmath>
 
 class Complex : public Real
 {
@@ -17,12 +18,9 @@ public:
     float getI() const;
     void inverseI();
 
-    /*
-     * TODO -> da fare queste funzioni
-            Complex conjugate() const;
-            float norm() const;
-            Complex inverse() const;
-    */
+    Complex conjugate() const;
+    float norm() const;
+    Complex inverse() const;
 
     Complex operator+(const Complex&) const;
     Complex operator-(const Complex&) const;
