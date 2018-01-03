@@ -16,11 +16,14 @@ SOURCES +=  real.cpp \
     complex.cpp \
     main.cpp\
     progetto.cpp \
-    quaternion.cpp
+    quaternion.cpp \
+    numberscalculator.cpp
 
 HEADERS  += real.h \
     progetto.h \
     complex.h \
-    quaternion.h
+    quaternion.h \
+    numberscalculator.h
 
-FORMS    += progetto.ui
+FORMS    += progetto.ui \
+    numberscalculator.ui
