@@ -17,14 +17,15 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
+     <y>40</y>
      <width>321</width>
      <height>21</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Laksaman</family>
+     <family>Microsoft JhengHei Light</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
@@ -35,14 +36,15 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>30</y>
+     <y>60</y>
      <width>321</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Laksaman</family>
+     <family>Microsoft JhengHei Light</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="placeholderText">
@@ -58,6 +60,12 @@
      <height>401</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>Microsoft JhengHei Light</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>
    </property>
@@ -66,14 +74,15 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>100</y>
+     <y>130</y>
      <width>321</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Laksaman</family>
+     <family>Microsoft JhengHei Light</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="placeholderText">
@@ -84,14 +93,15 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>80</y>
+     <y>110</y>
      <width>321</width>
      <height>21</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Laksaman</family>
+     <family>Microsoft JhengHei Light</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
@@ -105,14 +115,15 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>190</y>
+     <y>220</y>
      <width>321</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Laksaman</family>
+     <family>Microsoft JhengHei Light</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="readOnly">
@@ -126,14 +137,15 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>170</y>
+     <y>200</y>
      <width>321</width>
      <height>21</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Laksaman</family>
+     <family>Microsoft JhengHei Light</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
@@ -151,8 +163,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Laksaman</family>
-     <pointsize>18</pointsize>
+     <family>Microsoft JhengHei Light</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
@@ -163,10 +175,16 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>140</y>
+     <y>170</y>
      <width>321</width>
      <height>16</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft JhengHei Light</family>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
@@ -176,10 +194,16 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>150</y>
+     <y>180</y>
      <width>321</width>
      <height>16</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Microsoft JhengHei Light</family>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
@@ -196,8 +220,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Laksaman</family>
-     <pointsize>18</pointsize>
+     <family>Microsoft JhengHei Light</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
@@ -215,8 +239,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Laksaman</family>
-     <pointsize>18</pointsize>
+     <family>Microsoft JhengHei Light</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
@@ -234,8 +258,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Laksaman</family>
-     <pointsize>18</pointsize>
+     <family>Microsoft JhengHei Light</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
@@ -253,7 +277,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Laksaman</family>
+     <family>Microsoft JhengHei Light</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
@@ -271,7 +296,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Laksaman</family>
+     <family>Microsoft JhengHei Light</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
@@ -289,7 +315,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Laksaman</family>
+     <family>Microsoft JhengHei Light</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
@@ -300,14 +327,15 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>230</y>
+     <y>260</y>
      <width>141</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Laksaman</family>
+     <family>Microsoft JhengHei Light</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
@@ -318,18 +346,51 @@
    <property name="geometry">
     <rect>
      <x>180</x>
-     <y>230</y>
+     <y>260</y>
      <width>141</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Laksaman</family>
+     <family>Microsoft JhengHei Light</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="text">
     <string>Sposta in B</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="rbtnComplex">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>84</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Complessi</string>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="rbtnQuaternion">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>10</y>
+     <width>84</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Quaternioni</string>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
    </property>
   </widget>
  </widget>

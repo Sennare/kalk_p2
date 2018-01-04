@@ -3,6 +3,7 @@
 #include "real.h"
 #include "complex.h"
 #include "quaternion.h"
+#include "numberscalculator.h"
 #include <QApplication>
 #include <QPushButton>
 #include <QString>
@@ -25,6 +26,9 @@ Progetto::Progetto(QWidget *parent) :
     connect(ui->quaternionSottr, SIGNAL(clicked(bool)), this, SLOT (slotQuaternionSottr()));
     connect(ui->quaternionPer, SIGNAL(clicked(bool)), this, SLOT (slotQuaternionPer()));
     connect(ui->quaternionDiv, SIGNAL(clicked(bool)), this, SLOT (slotQuaternionDiv()));
+
+    NumbersCalculator* numbersCalculator = new NumbersCalculator();
+    numbersCalculator->show();
 }
 
 Progetto::~Progetto()

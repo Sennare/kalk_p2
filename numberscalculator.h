@@ -17,6 +17,17 @@ public:
 
 private:
     Ui::NumbersCalculator *ui;
+
+private slots:
+    void slotSum();
+    void slotDiff();
+    void slotMult();
+    void slotDiv();
+    void slotInverse();
+    void slotConjugate();
+    void slotNorm();
+    void slotMoveToA();
+    void slotMoveToB();
 };
 
 #endif // NUMBERSCALCULATOR_H
