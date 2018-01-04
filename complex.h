@@ -2,6 +2,7 @@
 #define COMPLEX_H
 
 #include <QString>
+#include <QStringList>
 #include <real.h>
 #include <cmath>
 
@@ -11,6 +12,7 @@ private:
     float iVal;
 
 public:
+    Complex(QString);
     Complex(float = 0, float = 0);
     //~Complex();
 

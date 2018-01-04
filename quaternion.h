@@ -3,6 +3,8 @@
 
 #include <complex.h>
 #include <cmath>
+#include <QString>
+#include <QStringList>
 
 class Quaternion : public Complex
 {
@@ -11,6 +13,7 @@ private:
     float kVal;
 
 public:
+    Quaternion(QString);
     Quaternion(float = 0, float = 0, float = 0, float = 0);
     //~Quaternion();
 
