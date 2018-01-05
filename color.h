@@ -38,8 +38,8 @@ public:
     QString ConvertRGBtoHex(const Color&);
 };
 
-Color operator+(const Color& x, const Color& y);
-Color operator-(const Color& x, const Color& y);
-Color operator*(const Color& x, const Color& y);
-Color operator/(const Color& x, const Color& y);
+Color* operator+(const Color& x, const Color& y);
+Color* operator-(const Color& x, const Color& y);
+Color* operator*(const Color& x, const Color& y);
+Color* operator/(const Color& x, const Color& y);
 #endif // COLOR_H
