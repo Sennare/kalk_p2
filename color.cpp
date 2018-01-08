@@ -16,7 +16,11 @@ Color::Color(unsigned int red, unsigned int green, unsigned int blue): r(red), g
     if(g>255) g=255;
     if(b>255) b=255;
 }
-
+Color::Color(const Color& x) {
+    r=x.r;
+    g=x.g;
+    b=x.b;
+}
 /**
  * Per le modifiche dei colori attraverso interi:
  *      primi tre metodi per inserire i valori interi di un colore

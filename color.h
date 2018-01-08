@@ -23,6 +23,7 @@ public:
     Color();
     Color(string );
     Color(unsigned int, unsigned int, unsigned int); //0<=r,g,b<=255
+    Color(const Color&);
     ~Color();
 
     /**
