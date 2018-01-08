@@ -15,7 +15,7 @@ private:
 public:
     Quaternion(QString);
     Quaternion(float = 0, float = 0, float = 0, float = 0);
-    //~Quaternion();
+    ~Quaternion() = default;
 
     void setJ(float);
     float getJ() const;

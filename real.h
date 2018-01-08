@@ -10,7 +10,7 @@ private:
 
 public:
     Real(float = 0);
-    //~Real();
+    virtual ~Real() = default;
 
     void setR(float);
     float getR() const;
