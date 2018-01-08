@@ -15,10 +15,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
         progetto.cpp \
     helper.cpp\
-    color.cpp
+    color.cpp \
+    wave.cpp
 
 HEADERS  += progetto.h \
-    helper.h
+    helper.h \
+    wave.h
 HEADERS  += \
     color.h
 
