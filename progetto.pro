@@ -18,11 +18,13 @@ SOURCES += main.cpp\
         progetto.cpp \
     helper.cpp\
     color.cpp \
-    wave.cpp
+    wave.cpp \
+    audio.cpp
 
 HEADERS  += progetto.h \
     helper.h \
-    wave.h
+    wave.h \
+    audio.h
 HEADERS  += \
     color.h
 
