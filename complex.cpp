@@ -1,5 +1,14 @@
 #include "complex.h"
 
+Complex::Complex(QString string) {
+    QStringList list = string.split(',');
+    if (list.size() == 2) {
+        this->setR(list[0].toInt());
+        this->setI(list[1].toInt());
+    }else{
+        // TODO : Throw error
+    }
+}
 
 Complex::Complex(float rVal, float iVal)
 {

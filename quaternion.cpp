@@ -1,5 +1,17 @@
 #include "quaternion.h"
 
+Quaternion::Quaternion(QString string) {
+    QStringList list = string.split(',');
+    if (list.size() == 4) {
+        this->setR(list[0].toInt());
+        this->setI(list[1].toInt());
+        this->setJ(list[2].toInt());
+        this->setK(list[3].toInt());
+    }else{
+        // TODO : Throw error
+    }
+}
+
 Quaternion::Quaternion(float rVal, float iVal, float jVal, float kVal)
 {
     this->setR(rVal);
