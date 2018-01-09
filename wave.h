@@ -13,14 +13,14 @@ public:
     Wave();
     virtual ~Wave() = default;
 
-    virtual void pushAmpVal(const double);
-    virtual void removeAmpVal(const unsigned int);
-    virtual unsigned int waveLenght() const;
+    virtual void pushAmpVal(const double);  //aggiunge un valore all'onda
+    virtual void removeAmpVal(const int);  //rimuove valore che corrisponde a una determinata posizione
+    virtual unsigned int waveLenght() const;    //ritorna la lunghezza della lista dei valori
 
-    virtual void setAmpVal(const unsigned int, const double);
-    virtual double getAmpVal(const unsigned int) const;
+    virtual void setAmpVal(const int, const double);   //modifica un valore della lista
+    virtual double getAmpVal(const int) const;     //ritorna il valore di un determinato punto della lista
 
-    virtual QString getString() ;
+    virtual QString getString();    //ritorna la successione di punti in formato stringa
 
     Wave operator+(const Wave&);
     Wave operator-(const Wave&);
