@@ -24,8 +24,7 @@ SOURCES += main.cpp\
 HEADERS  += progetto.h \
     helper.h \
     wave.h \
-    audio.h
-HEADERS  += \
+    audio.h \
     color.h
 
 FORMS    += progetto.ui

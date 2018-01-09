@@ -16,6 +16,10 @@ protected:
 public:
     Wave();
     Wave(QString);
+
+    double getVAmp(int);
+    void setVAmp(double, int=-1, bool = false);
+
     virtual ~Wave() = default;
 
     virtual void pushAmpVal(double);  //aggiunge un valore all'onda

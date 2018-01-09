@@ -8,13 +8,32 @@ Wave::Wave(QString x) {
         this->pushAmpVal(aux[i].toDouble());
     }
 }
+
+double Wave::getVAmp(int i) {
+    return v[i];
+}
+
+void Wave::setVAmp(double x, int i, bool insert){
+    if (i<0) {
+        v.push_back(x);
+    }
+    else{
+        if(insert) {
+            v.insert(i, x);
+        }
+        else{
+            v.replace(i, x);
+        }
+    }
+}
+
 void Wave::pushAmpVal(double x) {
     v.push_back(x);
 }
 
 void Wave::removeAmpVal(const int x){
     //TODO: eccezione da aggiungere
-    if(x<=v.size()) v.remove(x);
+    if(x<v.size()) v.remove(x);
 }
 
 unsigned int Wave::waveLenght() const{
