@@ -19,10 +19,6 @@ SOURCES += main.cpp\
 	helper.cpp \
     application.cpp \
     controllers/controller.cpp \
-    application.cpp \
-    helper.cpp \
-    main.cpp \
-    progetto.cpp \
     models/model.cpp \
     views/exampleview.cpp
 
@@ -30,9 +26,6 @@ HEADERS  += progetto.h\
 	helper.h \
     application.h \
     controllers/controller.h \
-    application.h \
-    helper.h \
-    progetto.h \
     models/model.h \
     views/exampleview.h
 
