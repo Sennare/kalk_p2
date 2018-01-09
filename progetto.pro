@@ -20,13 +20,18 @@ SOURCES += main.cpp\
     application.cpp \
     controllers/controller.cpp \
     models/model.cpp \
-    views/exampleview.cpp
+    views/exampleview.cpp \
+    controllers/kalkselectorcontroller.cpp \
+    views/kalkselectorview.cpp
 
 HEADERS  += progetto.h\
 	helper.h \
     application.h \
     controllers/controller.h \
     models/model.h \
-    views/exampleview.h
+    views/exampleview.h \
+    controllers/kalkselectorcontroller.h \
+    views/kalkselectorview.h
 
-FORMS    += progetto.ui
+FORMS    += progetto.ui \
+    kalkselectorview.ui

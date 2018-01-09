@@ -3,6 +3,9 @@
 
 #include <QObject>
 #include <QApplication>
+#include "controllers/controller.h"
+#include "controllers/kalkselectorcontroller.h"
+
 
 class Application : public QObject
 {
@@ -10,6 +13,7 @@ class Application : public QObject
 private:
     static Application* istanza;
     QApplication qAppl;
+    Controller* currentController;
 public:
     explicit Application(int* argc, char** argv[]);
     ~Application();

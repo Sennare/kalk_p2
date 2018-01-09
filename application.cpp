@@ -20,6 +20,9 @@ Application *Application::getIstanza() {
 
 void Application::initialize() {
     // do something   0_0
+    currentController = new KalkSelectorController();
+
+    currentController->handle();
 }
 
 int Application::exec() {
