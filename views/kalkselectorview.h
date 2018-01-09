@@ -2,10 +2,6 @@
 #define KALKSELECTORVIEW_H
 
 #include <QMainWindow>
-#include <QMdiArea>
-
-// to remove
-#include <QWidget>
 
 namespace Ui {
 class KalkSelectorView;
@@ -14,14 +10,13 @@ class KalkSelectorView;
 class KalkSelectorView : public QMainWindow
 {
     Q_OBJECT
-private:
-    Ui::KalkSelectorView *ui;
-    QMdiArea* mdi;
+
 public:
-    KalkSelectorView();
+    explicit KalkSelectorView(QWidget *parent = 0);
     ~KalkSelectorView();
 
-    void startApp();
+private:
+    Ui::KalkSelectorView *ui;
 };
 
 #endif // KALKSELECTORVIEW_H

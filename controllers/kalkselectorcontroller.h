@@ -10,6 +10,7 @@ private:
     KalkSelectorView* view;
 public:
     KalkSelectorController();
+    ~KalkSelectorController();
 
     void handle() override;
 };

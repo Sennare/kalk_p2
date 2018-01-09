@@ -34,4 +34,4 @@ HEADERS  += progetto.h\
     views/kalkselectorview.h
 
 FORMS    += progetto.ui \
-    kalkselectorview.ui
+    views/kalkselectorview.ui
