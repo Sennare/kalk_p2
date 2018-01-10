@@ -24,11 +24,24 @@ void ComplexController::slotBack() {
 }
 
 void ComplexController::slotCalculate(int calcType, QString valA, QString valB) {
-    Complex vA(valA), vB(valB);
+    try{
+        Complex vA(valA);
+    }catch(Complex::errorType err){
+        view->errorManager(err);
+    }
+    try{
+        Complex vB(valB);
+    }catch(Complex::errorType err){
+        view->errorManager(err, true);
+    }
     Complex vC;
     switch (calcType) {
     case Complex::possibleKalk::calcSum:
-        vC = vA + vB;
+        try{
+            vC = vA + vB;
+        }catch(Complex::errorType err){
+            view->errorManager(err);
+        }
         break;
     case Complex::possibleKalk::calcSub:
         vC = vA - vB;

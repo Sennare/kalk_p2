@@ -9,6 +9,11 @@ private:
     float rVal;
 
 public:
+    enum errorType {
+        errorOutOfRange,
+        errorDivisionByZero
+    };
+
     Real(float = 0);
     virtual ~Real() = default;
 

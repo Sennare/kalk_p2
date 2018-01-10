@@ -1,12 +1,21 @@
 #include "complex.h"
 
 Complex::Complex(QString string) {
+    string = string.simplified();
+    // Controllo il formato "2,2"
     QStringList list = string.split(',');
     if (list.size() == 2) {
-        this->setR(list[0].toInt());
-        this->setI(list[1].toInt());
+        this->setR(list[0].toDouble());
+        this->setI(list[1].toDouble());
     }else{
-        // TODO : Throw error
+        // Controllo il formato "2 + 2i"
+        list = string.split("+");
+        if (list.size() == 2 && list[1].indexOf("i") != -1 ) {
+            this->setR(list[0].toDouble());
+            list[1] = list[1].replace("i", "");
+            this->setI(list[1].toDouble());
+        }
+        throw Complex::errorType::errorStringNotValid;
     }
 }
 
@@ -35,13 +44,21 @@ Complex Complex::conjugate() const {
 }
 
 float Complex::norm() const {
-    return sqrt(exp2(this->getR()) + exp2(this->getI()));
+    float ret;
+    if (exp2(this->getR()) + exp2(this->getI()) < 0)
+        throw Complex::errorType::errorRootNegative;
+    else
+        ret = sqrt(exp2(this->getR()) + exp2(this->getI()));
+    return ret;
 }
 
 Complex Complex::inverse() const {
     const Complex norma(exp2(this->norm()));
     Complex ret = *this;
-    ret = ret / norma;
+    if (norma.getI() < 0)
+        throw Complex::errorType::errorNormaNegative;
+    else
+        ret = ret / norma;
     return ret;
 }
 
@@ -71,9 +88,15 @@ Complex Complex::operator/(const Complex& b) const {
     inverse.inverseI();
     denominatoreComplex = inverse * b;
     float denominatore = denominatoreComplex.getR();
-    inverse = *this * inverse;
-    float rPart = inverse.getR() / denominatore;
-    float iPart = inverse.getI() / denominatore;
+    float rPart;
+    float iPart;
+    if (denominatore < 0)
+        throw Complex::errorType::errorDivisionByZero;
+    else {
+        inverse = *this * inverse;
+        rPart = inverse.getR() / denominatore;
+        iPart = inverse.getI() / denominatore;
+    }
     Complex res(rPart, iPart);
     return res;
 }

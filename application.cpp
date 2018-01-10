@@ -1,6 +1,6 @@
 #include "application.h"
 #include "controllers/kalkselectorcontroller.h"
-#include "controllers/complexcontroller.h".h"
+#include "controllers/complexcontroller.h"
 
 Application* Application::istanza = 0;
 

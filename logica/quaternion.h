@@ -13,6 +13,11 @@ private:
     float kVal;
 
 public:
+    enum errorType {
+        errorOutOfRange,
+        errorDivisionByZero
+    };
+
     Quaternion(QString);
     Quaternion(float = 0, float = 0, float = 0, float = 0);
     ~Quaternion() = default;

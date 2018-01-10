@@ -17,22 +17,14 @@ public:
     explicit ComplexView(QWidget *parent = 0);
     ~ComplexView();
 
+    void errorManager(int, bool = false);
+
 private:
     Ui::ComplexView *ui;
 
 public slots:
     void slotCalculate();
     void slotCalcComplete(Complex);
-
-    /*void slotSum();
-    void slotDiff();
-    void slotMult();
-    void slotDiv();
-    void slotInverse();
-    void slotConjugate();
-    void slotNorm();
-    void slotMoveToA();
-    void slotMoveToB();*/
 
 signals:
     void signalBack();
