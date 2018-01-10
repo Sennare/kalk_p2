@@ -38,3 +38,6 @@ HEADERS  += progetto.h\
 FORMS    += progetto.ui \
     views/kalkselectorview.ui \
     views/testview.ui
+
+RESOURCES += \
+    resources.qrc
