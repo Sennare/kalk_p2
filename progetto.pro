@@ -14,13 +14,13 @@ TEMPLATE = app
 # Uncomment to enable C++11 support
 CONFIG += c++11
 
-SOURCES +=  real.cpp \
-    complex.cpp \
-    quaternion.cpp \
-    numberscalculator.cpp
-    main.cpp\
-        progetto.cpp\
-	helper.cpp \
+SOURCES +=  logica/real.cpp \
+    logica/complex.cpp \
+    logica/quaternion.cpp \
+    numberscalculator.cpp \
+    main.cpp \
+    progetto.cpp \
+    helper.cpp \
     application.cpp \
     controllers/controller.cpp \
     models/model.cpp \
@@ -29,11 +29,11 @@ SOURCES +=  real.cpp \
     views/testview.cpp \
     controllers/testcontroller.cpp
 
-HEADERS  += real.h \
-    complex.h \
-    quaternion.h \
-    numberscalculator.h
-	helper.h \
+HEADERS  += logica/real.h \
+    logica/complex.h \
+    logica/quaternion.h \
+    numberscalculator.h \
+    helper.h \
     application.h \
     controllers/controller.h \
     models/model.h \
