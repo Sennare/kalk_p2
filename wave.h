@@ -17,14 +17,15 @@ public:
     Wave();
     Wave(QString);
 
-    double getVAmp(int);
+    double getVAmp(int) const;
     void setVAmp(double, int=-1, bool = false);
+    void removeVAmp(int);
 
     virtual ~Wave() = default;
 
     virtual void pushAmpVal(double);  //aggiunge un valore all'onda
     virtual void removeAmpVal(const int);  //rimuove valore che corrisponde a una determinata posizione
-    virtual unsigned int waveLenght() const;    //ritorna la lunghezza della lista dei valori
+    virtual int waveLenght() const;    //ritorna la lunghezza della lista dei valori
 
     virtual void setAmpVal(const int, const double);   //modifica un valore della lista
     virtual double getAmpVal(const int) const;     //ritorna il valore di un determinato punto della lista

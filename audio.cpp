@@ -2,20 +2,26 @@
 
 Audio::Audio(){}
 
-double Audio::getWAmp(int i) {
-    return w[i];
+double Audio::getWAmp(int index) const {
+    if(index < w.size()) {
+        return w[index];
+    }else return 0;
 }
 
-void Audio::setWAmp(double x, int i, bool insert) {
-    if(i<0) {
+void Audio::setWAmp(double x, int index, bool insert) {
+    if(index<0) {
         w.push_back(x);
-    } else {
+    } else if (index<waveLenght()){
         if(insert) {
-            w.insert(i, x);
+            w.insert(index, x);
         } else {
-            w.replace(i, x);
+            w.replace(index, x);
         }
     }
+}
+void Audio::removeWAmp(int index) {
+    if (index < w.size())
+        w.remove(index);
 }
 
 void Audio::pushAmpVal(double x, double y) {
@@ -23,29 +29,34 @@ void Audio::pushAmpVal(double x, double y) {
     this->setWAmp(y);
 }
 
-void Audio::removeAmpVal(const int i){
-    if(i<w.size()){
-        w.remove(i);
-        v.remove(i);
-    }
+void Audio::removeAmpVal(const int index){
+    removeWAmp(index);
+    removeVAmp(index);
 }
 
-unsigned int Audio::waveLenght() const {
+int Audio::waveLenght() const {
     return w.size();
 }
 
-void Audio::setAmpVal(const int i, const double x, const double y) {
-    if (i<w.size()) {
-        w.replace(i, x);
-        v.replace(i, y);
-    }
+void Audio::setAmpVal(const int index, const double wval, const double vval) {
+    setWAmp(wval,index);
+    setVAmp(vval,index);
     //TODO: eccezione da aggiungere
 }
 
-double Audio::getAmpVal(const int x) const{
-    if (x<w.size())
-        return w.at(x), v.at(x);
-    else return 0;
+double Audio::getAmpVal(const int index, int ondaRichiesta) const{
+    if(ondaRichiesta==Audio::ondeDisponibili::ondaSx) {
+        return getVAmp(index);
+    }else{
+        return getWAmp(index);
+    }
+}
+
+QPair<double,double> Audio::getBothAmpVal(const int index) {
+    QPair<double, double> values;
+    values.first = getVAmp(index);
+    values.second = getWAmp(index);
+    return values;
 }
 
 QString Audio::getString() {
