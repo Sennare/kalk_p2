@@ -24,24 +24,18 @@ void Audio::removeWAmp(int index) {
         w.remove(index);
 }
 
-void Audio::pushAmpVal(double x, double y) {
-    this->setVAmp(x);
-    this->setWAmp(y);
+void Audio::pushPoint(double x, double y, int index, bool insert) {
+    this->setVAmp(x, index, insert);
+    this->setWAmp(y, index, insert);
 }
 
-void Audio::removeAmpVal(const int index){
+void Audio::removePoint(const int index){
     removeWAmp(index);
     removeVAmp(index);
 }
 
 int Audio::waveLenght() const {
     return w.size();
-}
-
-void Audio::setAmpVal(const int index, const double wval, const double vval) {
-    setWAmp(wval,index);
-    setVAmp(vval,index);
-    //TODO: eccezione da aggiungere
 }
 
 double Audio::getAmpVal(const int index, int ondaRichiesta) const{
@@ -59,6 +53,68 @@ QPair<double,double> Audio::getBothAmpVal(const int index) {
     return values;
 }
 
-QString Audio::getString() {
+QString Audio::getString(int ondaRichiesta) {
+    QVector<double> aux;
+    if (ondaRichiesta == Audio::ondeDisponibili::ondaSx) {
+        aux=v;
+    } else {
+        aux=w;
+    }
+    QString ret("("), comma;
+    QVector<double>::const_iterator end=aux.end();
+    for(QVector<double>::const_iterator now = aux.begin(); now != end; ++now){
+        ret.append(comma);
+        ret.append(QString::number(*now));
+        comma=",";
+    }
+    ret.append(")");
+    return ret;
+}
 
+QPair<QString, QString> Audio::getBothWaves(){
+    QPair<QString, QString> waves;
+    waves.first = getString(ondaSx);
+    waves.second = getString(ondaDx);
+    return waves;
+}
+
+Audio Audio::operator+ (const Audio& x) {
+    Audio* aux = new Audio();
+    int maxLenght = qMax(this->waveLenght(), x.waveLenght());
+
+    for(int i=0; i<maxLenght; ++i) {
+         aux->pushPoint(this->getAmpVal(i) + x.getAmpVal(i),
+                         this->getAmpVal(i, Audio::ondeDisponibili::ondaDx) + x.getAmpVal(i, Audio::ondeDisponibili::ondaDx));
+    }
+    return *aux;
+}
+Audio Audio::operator- (const Audio& x) {
+    Audio* aux = new Audio();
+    int maxLenght = qMax(this->waveLenght(), x.waveLenght());
+
+    for(int i=0; i<maxLenght; ++i) {
+         aux->pushPoint(this->getAmpVal(i) - x.getAmpVal(i),
+                         this->getAmpVal(i, Audio::ondeDisponibili::ondaDx) - x.getAmpVal(i, Audio::ondeDisponibili::ondaDx));
+    }
+    return *aux;
+}
+Audio Audio::operator/ (const Audio& x) {
+    Audio* aux = new Audio();
+    int maxLenght = qMax(this->waveLenght(), x.waveLenght());
+
+    for(int i=0; i<maxLenght; ++i) {
+         aux->pushPoint(this->getAmpVal(i) / x.getAmpVal(i),
+                         this->getAmpVal(i, Audio::ondeDisponibili::ondaDx) / x.getAmpVal(i, Audio::ondeDisponibili::ondaDx));
+    }
+    return *aux;
+}
+Audio Audio::operator* (const Audio& x) {
+    Audio* aux = new Audio();
+    int maxLenght = qMax(this->waveLenght(), x.waveLenght());
+
+    for(int i=0; i<maxLenght; ++i) {
+         aux->pushPoint(this->getAmpVal(i) * x.getAmpVal(i),
+                         this->getAmpVal(i, Audio::ondeDisponibili::ondaDx) * x.getAmpVal(i, Audio::ondeDisponibili::ondaDx));
+    }
+    return *aux;
 }

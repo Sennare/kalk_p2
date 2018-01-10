@@ -24,7 +24,7 @@ public:
     Color(string );
     Color(unsigned int, unsigned int, unsigned int); //0<=r,g,b<=255
     Color(const Color&);
-    ~Color();
+    ~Color() = default;
 
     /**
      * Sezione parametri decimali per la creazione colore

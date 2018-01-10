@@ -17,14 +17,16 @@ CONFIG += c++11
 SOURCES += main.cpp\
         progetto.cpp \
     helper.cpp\
-    color.cpp \
     wave.cpp \
-    audio.cpp
+    color.cpp \
+    audio.cpp \
+    coloredwave.cpp
 
 HEADERS  += progetto.h \
     helper.h \
     wave.h \
+    color.h \
     audio.h \
-    color.h
+    coloredwave.h
 
 FORMS    += progetto.ui

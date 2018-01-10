@@ -7,11 +7,10 @@
 
 class Audio : public Wave {
 private:
-    unsigned int BitRate;
     QVector<double> w;
 public:
     Audio();
-    ~Audio();
+    ~Audio() = default;
 
     enum ondeDisponibili{
         ondaSx,
@@ -22,15 +21,15 @@ public:
     void setWAmp(double, int=-1, bool=false);   //per settare altezza desiderata o con indice di default
     void removeWAmp(int);   //rimuove valori delle due onde del file audio da un determinato indice
 
-    void pushAmpVal(double, double);  //aggiunge un valore all'onda
-    void removeAmpVal(const int);  //rimuove valore che corrisponde a una determinata posizione
+    void pushPoint(double, double, int=-1, bool=false);  //aggiunge un valore all'onda
+    void removePoint(const int);  //rimuove valore che corrisponde a una determinata posizione
     int waveLenght() const;    //ritorna la lunghezza della lista dei valori
 
-    void setAmpVal(const int, const double, const double);   //modifica un valore della lista
-    double getAmpVal(const int, int=Audio::ondeDisponibili::ondaSx) const;     //ritorna il valore destro e sinistro di un determinato punto della lista
-    QPair<double, double> getBothAmpVal(const int);    //
+    double getAmpVal(const int, int=Audio::ondeDisponibili::ondaSx) const;     //ritorna il valore destro o sinistro di un determinato punto della lista
 
-    QString getString();    //ritorna la successione di punti in formato stringa
+    QPair<double, double> getBothAmpVal(const int);    //ritorna valore destro e sinistro in un determinato punto
+    QString getString(int=Audio::ondeDisponibili::ondaSx);  //ritorna la successione di punti in formato stringa
+    QPair<QString, QString> getBothWaves();
 
     Audio operator+(const Audio&);
     Audio operator-(const Audio&);
