@@ -1,6 +1,6 @@
 #include "application.h"
 #include "controllers/kalkselectorcontroller.h"
-#include "controllers/testcontroller.h"
+#include "controllers/complexcontroller.h".h"
 
 Application* Application::istanza = 0;
 
@@ -53,8 +53,8 @@ int Application::exec() {
 void Application::slotOpenKalkType(int tipo) {
     switch (tipo) {
     case Application::KalkType::Complessi:
-        TestController* aux = new TestController();
-        connect(aux, &TestController::signalBack, this, &Application::slotBack);
+        ComplexController* aux = new ComplexController();
+        connect(aux, &ComplexController::signalBack, this, &Application::slotBack);
         initializeKalk(aux);
         break;
     }

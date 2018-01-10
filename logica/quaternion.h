@@ -1,10 +1,10 @@
 #ifndef QUATERNION_H
 #define QUATERNION_H
 
-#include <complex.h>
 #include <cmath>
 #include <QString>
 #include <QStringList>
+#include "complex.h"
 
 class Quaternion : public Complex
 {
