@@ -17,6 +17,11 @@ public:
 
 private:
     Ui::TestView *ui;
+
+private slots:
+    void slotBackPressed();
+signals:
+    void signalBack();
 };
 
 #endif // TESTVIEW_H

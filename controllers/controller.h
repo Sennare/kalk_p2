@@ -2,6 +2,7 @@
 #define CONTROLLER_H
 
 #include <QObject>
+#include <QWidget>
 
 class Controller : public QObject
 {

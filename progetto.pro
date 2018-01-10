@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     models/model.cpp \
     views/kalkselectorview.cpp \
     controllers/kalkselectorcontroller.cpp \
-    views/testview.cpp
+    views/testview.cpp \
+    controllers/testcontroller.cpp
 
 HEADERS  += progetto.h\
 	helper.h \
@@ -31,7 +32,8 @@ HEADERS  += progetto.h\
     models/model.h \
     views/kalkselectorview.h \
     controllers/kalkselectorcontroller.h \
-    views/testview.h
+    views/testview.h \
+    controllers/testcontroller.h
 
 FORMS    += progetto.ui \
     views/kalkselectorview.ui \

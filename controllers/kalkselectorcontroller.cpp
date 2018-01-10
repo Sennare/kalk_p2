@@ -7,11 +7,17 @@ KalkSelectorController::KalkSelectorController()
 
 KalkSelectorController::~KalkSelectorController() {
     // do nothing
+    view->close();
 }
 
 void KalkSelectorController::handle() {
     // Something to do here
     view = new KalkSelectorView();
-    //view->startApp();
     view->show();
+
+    connect(view, &KalkSelectorView::signalOpenKalk, this, &KalkSelectorController::slotOpenKalk);
+}
+
+void KalkSelectorController::slotOpenKalk(int x) {
+    emit signalOpenKalk(x);
 }

@@ -6,6 +6,8 @@ KalkSelectorView::KalkSelectorView(QWidget *parent) :
     ui(new Ui::KalkSelectorView)
 {
     ui->setupUi(this);
+
+    connect(ui->openComplex, SIGNAL(clicked(bool)), this, SLOT(slotOpenComplex()));
 }
 
 KalkSelectorView::~KalkSelectorView()

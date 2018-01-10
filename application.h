@@ -4,7 +4,6 @@
 #include <QObject>
 #include <QApplication>
 #include "controllers/controller.h"
-#include "controllers/kalkselectorcontroller.h"
 
 
 class Application : public QObject
@@ -28,10 +27,15 @@ public:
 
     static Application* getIstanza();
     void initialize();
+    void initializeKalk(Controller*);
+    void destroyController();
+    void exitKalk();
     int exec();
 signals:
 
 public slots:
+    void slotOpenKalkType(int);
+    void slotBack();
 };
 
 #endif // APPLICATION_H

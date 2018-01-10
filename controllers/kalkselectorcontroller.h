@@ -6,6 +6,7 @@
 
 class KalkSelectorController : public Controller
 {
+    Q_OBJECT
 private:
     KalkSelectorView* view;
 public:
@@ -13,6 +14,12 @@ public:
     ~KalkSelectorController();
 
     void handle() override;
+
+private slots:
+    void slotOpenKalk(int);
+
+signals:
+    void signalOpenKalk(int);
 };
 
 #endif // KALKSELECTORCONTROLLER_H
