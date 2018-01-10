@@ -1,11 +1,11 @@
-#include "progetto.h"
+#include "application.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    Progetto w;
-    w.show();
+    Application a(&argc, &argv);
+
+    a.initialize();
 
     return a.exec();
 }
