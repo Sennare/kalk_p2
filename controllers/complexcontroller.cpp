@@ -1,5 +1,4 @@
 #include "complexcontroller.h"
-#include <QDebug>
 
 ComplexController::ComplexController()
 {
@@ -25,14 +24,30 @@ void ComplexController::slotBack() {
 }
 
 void ComplexController::slotCalculate(int calcType, QString valA, QString valB) {
+    Complex vA(valA), vB(valB);
+    Complex vC;
     switch (calcType) {
     case Complex::possibleKalk::calcSum:
-        Complex vA(valA), vB(valB);
-        Complex vC = vA + vB;
-        emit signalCalcComplete(vC);
-        qDebug() << vA.getString();
-        qDebug() << vB.getString();
-        qDebug() << vC.getString();
+        vC = vA + vB;
+        break;
+    case Complex::possibleKalk::calcSub:
+        vC = vA - vB;
+        break;
+    case Complex::possibleKalk::calcMult:
+        vC = vA * vB;
+        break;
+    case Complex::possibleKalk::calcDiv:
+        vC = vA / vB;
+        break;
+    case Complex::possibleKalk::calcInverse:
+        vC = vA.inverse();
+        break;
+    case Complex::possibleKalk::calcNorm:
+        vC = vA.norm();
+        break;
+    case Complex::possibleKalk::calcConj:
+        vC = vA.conjugate();
         break;
     }
+    emit signalCalcComplete(vC);
 }

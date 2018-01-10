@@ -67,7 +67,7 @@
     </font>
    </property>
    <property name="placeholderText">
-    <string>Formato: &quot;a, b&quot; oppure &quot;a, b, c, d&quot;</string>
+    <string>Formato: &quot;a, b&quot;</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEditElementB">
@@ -86,7 +86,7 @@
     </font>
    </property>
    <property name="placeholderText">
-    <string>Formato: &quot;a, b&quot; oppure &quot;a, b, c, d&quot;</string>
+    <string>Formato: &quot;a, b&quot;</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btnSomma">
@@ -372,8 +372,8 @@
    </property>
    <property name="font">
     <font>
-     <family>DejaVu Sans</family>
-     <pointsize>24</pointsize>
+     <family>MS Shell Dlg 2</family>
+     <pointsize>20</pointsize>
     </font>
    </property>
    <property name="text">

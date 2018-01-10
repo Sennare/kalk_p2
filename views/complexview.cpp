@@ -11,12 +11,15 @@ ComplexView::ComplexView(QWidget *parent) :
     connect(ui->btnBack, SIGNAL(clicked()),             this, SIGNAL(signalBack()));
 
     connect(ui->btnSomma, SIGNAL(clicked()),            this, SLOT(slotCalculate()));
-    /*connect(ui->btnSottrazione, SIGNAL(clicked(bool)),      this, SLOT(slotCalculate(Complex::possibleKalk::calcSub)));
-    connect(ui->btnMoltiplicazione, SIGNAL(clicked(bool)),  this, SLOT(slotCalculate(Complex::possibleKalk::calcMult)));
-    connect(ui->btnDivisione, SIGNAL(clicked(bool)),        this, SLOT(slotCalculate(Complex::possibleKalk::calcDiv)));
-    connect(ui->btnConiugato, SIGNAL(clicked(bool)),        this, SLOT(slotCalculate(Complex::possibleKalk::calcConj)));
-    connect(ui->btnNorma, SIGNAL(clicked(bool)),            this, SLOT(slotCalculate(Complex::possibleKalk::calcNorm)));
-    /*connect(ui->btnInverso, SIGNAL(clicked(bool)),          this, SLOT(slot---()));
+    connect(ui->btnSottrazione, SIGNAL(clicked()),      this, SLOT(slotCalculate()));
+    connect(ui->btnMoltiplicazione, SIGNAL(clicked()),  this, SLOT(slotCalculate()));
+    connect(ui->btnDivisione, SIGNAL(clicked()),        this, SLOT(slotCalculate()));
+    connect(ui->btnInverso, SIGNAL(clicked()),          this, SLOT(slotCalculate()));
+    connect(ui->btnConiugato, SIGNAL(clicked()),        this, SLOT(slotCalculate()));
+    connect(ui->btnNorma, SIGNAL(clicked()),            this, SLOT(slotCalculate()));
+    connect(ui->btnMoveToA, SIGNAL(clicked()),          this, SLOT(slotCalculate()));
+    connect(ui->btnMoveToB, SIGNAL(clicked()),          this, SLOT(slotCalculate()));
+    /*
     connect(ui->btnMoveToA, SIGNAL(clicked(bool)),          this, SLOT(slot---()));
     connect(ui->btnMoveToB, SIGNAL(clicked(bool)),          this, SLOT(slot---()));*/
 }
@@ -31,9 +34,28 @@ void ComplexView::slotCalculate() {
     QString valB = ui->lineEditElementB->text();
     // TODO: controlli dei valori ??
 
-    if (sender() == ui->btnSomma) {
-        emit signalCalculate(Complex::possibleKalk::calcSum, valA, valB);
+    int operazione = -1;
+    if(sender() == ui->btnSomma) {
+        operazione = Complex::possibleKalk::calcSum;
+    }else if(sender() == ui->btnSottrazione) {
+        operazione = Complex::possibleKalk::calcSub;
+    }else if(sender() == ui->btnMoltiplicazione) {
+        operazione = Complex::possibleKalk::calcMult;
+    }else if(sender() == ui->btnDivisione) {
+        operazione = Complex::possibleKalk::calcDiv;
+    }else if(sender() == ui->btnInverso) {
+        operazione = Complex::possibleKalk::calcInverse;
+    }else if(sender() == ui->btnNorma) {
+        operazione = Complex::possibleKalk::calcNorm;
+    }else if(sender() == ui->btnConiugato) {
+        operazione = Complex::possibleKalk::calcConj;
+    }else if(sender() == ui->btnMoveToA) {
+        ui->lineEditElementA->setText( ui->lineEditElementC->text() );
+    }else if(sender() == ui->btnMoveToB) {
+        ui->lineEditElementB->setText( ui->lineEditElementC->text() );
     }
+
+    if (operazione >= 0) emit signalCalculate(operazione, valA, valB);
 }
 
 void ComplexView::slotCalcComplete(Complex res) {
