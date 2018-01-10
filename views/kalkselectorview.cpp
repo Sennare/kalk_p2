@@ -12,3 +12,7 @@ KalkSelectorView::~KalkSelectorView()
 {
     delete ui;
 }
+
+void KalkSelectorView::slotOpenComplex() {
+    emit signalOpenKalk(Application::KalkType::Complessi);
+}

@@ -2,6 +2,7 @@
 #define KALKSELECTORVIEW_H
 
 #include <QMainWindow>
+#include "application.h"
 
 namespace Ui {
 class KalkSelectorView;
@@ -17,6 +18,12 @@ public:
 
 private:
     Ui::KalkSelectorView *ui;
+
+private slots:
+    void slotOpenComplex();
+
+signals:
+    void signalOpenKalk(int);
 };
 
 #endif // KALKSELECTORVIEW_H

@@ -14,9 +14,17 @@ private:
     static Application* istanza;
     QApplication qAppl;
     Controller* currentController;
+    Controller* currentSubController;
 public:
     explicit Application(int* argc, char** argv[]);
     ~Application();
+
+    enum KalkType {
+        Complessi,
+        Quaternioni,
+        OndeAudio,
+        OndeColorate
+    };
 
     static Application* getIstanza();
     void initialize();
