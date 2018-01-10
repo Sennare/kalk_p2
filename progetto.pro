@@ -16,16 +16,35 @@ CONFIG += c++11
 
 SOURCES +=  real.cpp \
     complex.cpp \
-    main.cpp\
-    progetto.cpp \
     quaternion.cpp \
     numberscalculator.cpp
+    main.cpp\
+        progetto.cpp\
+	helper.cpp \
+    application.cpp \
+    controllers/controller.cpp \
+    models/model.cpp \
+    views/kalkselectorview.cpp \
+    controllers/kalkselectorcontroller.cpp \
+    views/testview.cpp \
+    controllers/testcontroller.cpp
 
 HEADERS  += real.h \
-    progetto.h \
     complex.h \
     quaternion.h \
     numberscalculator.h
+	helper.h \
+    application.h \
+    controllers/controller.h \
+    models/model.h \
+    views/kalkselectorview.h \
+    controllers/kalkselectorcontroller.h \
+    views/testview.h \
+    controllers/testcontroller.h
 
 FORMS    += progetto.ui \
-    numberscalculator.ui
+    views/kalkselectorview.ui \
+    views/testview.ui
+
+RESOURCES += \
+    resources.qrc
