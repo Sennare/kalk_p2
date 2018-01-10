@@ -20,7 +20,7 @@ public:
     unsigned int waveLenght() const;    //ritorna la lunghezza della lista dei valori
 
     void setAmpVal(const int, const double, const double);   //modifica un valore della lista
-    virtual double getAmpVal(const int) const;     //ritorna il valore desro e sinistro di un determinato punto della lista
+    double getAmpVal(const int) const;     //ritorna il valore desro e sinistro di un determinato punto della lista
 
     QString getString();    //ritorna la successione di punti in formato stringa
 
