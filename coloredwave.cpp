@@ -49,12 +49,61 @@ Color ColoredWave::getAmpColor(const int index) const {
 
 QString ColoredWave::getString(){
     QString ret("("), comma;
-    QVector<Color*>::const_iterator end=colori.end();
-    for(QVector<Color*>::const_iterator now = colori.begin(); now != end; ++now){
+    QMutableVectorIterator<Color*> i(colori);
+    while (i.hasNext()) {
         ret.append(comma);
-        ret.append(Color::ConvertRGBtoHex(*now));
-        comma=",";
+        ret.append(Color::ConvertRGBtoHex(*i.next());
+        comma = ",";
     }
     ret.append(")");
     return ret;
 }
+
+ColoredWave ColoredWave::operator+(const ColoredWave& x){
+    ColoredWave* aux = new ColoredWave();
+    int maxLenght = qMax(this->waveLenght(), x.waveLenght());
+
+    Color res;
+
+    for(int i=0; i<maxLenght; ++i) {
+        res = this->getColor(i) + x.getColor(i);
+        aux->pushPoint(this->getAmpVal(i) + x.getAmpVal(i), res);
+    }
+    return *aux;
+}
+/*ColoredWave ColoredWave::operator-(const ColoredWave& x){
+    ColoredWave* aux = new ColoredWave();
+    int maxLenght = qMax(this->waveLenght(), x.waveLenght());
+
+    Color res;
+
+    for(int i=0; i<maxLenght; ++i) {
+        res = this->getColor(i) - x.getColor(i);
+        aux->pushPoint(this->getAmpVal(i) - x.getAmpVal(i), res);
+    }
+    return *aux;
+}
+ColoredWave ColoredWave::operator*(const ColoredWave& x){
+    ColoredWave* aux = new ColoredWave();
+    int maxLenght = qMax(this->waveLenght(), x.waveLenght());
+
+    Color res;
+
+    for(int i=0; i<maxLenght; ++i) {
+        res = this->getColor(i) * x.getColor(i);
+        aux->pushPoint(this->getAmpVal(i) * x.getAmpVal(i), res);
+    }
+    return *aux;
+}
+ColoredWave ColoredWave::operator/(const ColoredWave& x){
+    ColoredWave* aux = new ColoredWave();
+    int maxLenght = qMax(this->waveLenght(), x.waveLenght());
+
+    Color res;
+
+    for(int i=0; i<maxLenght; ++i) {
+        res = this->getColor(i) / x.getColor(i);
+        aux->pushPoint(this->getAmpVal(i) / x.getAmpVal(i), res);
+    }
+    return *aux;
+}   */

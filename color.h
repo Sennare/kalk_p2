@@ -21,7 +21,7 @@ public:
      * Si possono creare scrivendo il colore in caratteri esadecimali o inserendo i valori
      */
     Color();
-    Color(string );
+    Color(QString );
     Color(unsigned int, unsigned int, unsigned int); //0<=r,g,b<=255
     Color(const Color&);
     ~Color() = default;
@@ -36,7 +36,8 @@ public:
     unsigned int getGdec() const;
     unsigned int getBdec() const;
 
-    QString ConvertRGBtoHex(const Color&);
+    QString ConvertRGBtoHex(const Color*);
+    QString GetColore() const;
 };
 
 Color* operator+(const Color& x, const Color& y);

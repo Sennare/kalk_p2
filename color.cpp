@@ -8,7 +8,7 @@
  * -costruttori a 3 parametri per interi
  */
 Color::Color(): r(255), g(255), b(255) {}
-Color::Color(string c) {
+Color::Color(QString c) {
 
 }
 Color::Color(unsigned int red, unsigned int green, unsigned int blue): r(red), g(green), b(blue) {
@@ -45,13 +45,21 @@ unsigned int Color::getBdec() const{
     return b;
 }
 
-QString ConvertRGBtoHex(const Color& RGB) {
+QString ConvertRGBtoHex(const Color* RGB) {
     Helper aux;
     QString result="#";
-    result.append(aux.decToHex(RGB.getRdec()));
-    result.append(aux.decToHex(RGB.getGdec()));
-    result.append(aux.decToHex(RGB.getBdec()));
+    result.append(aux.decToHex(RGB->getRdec()));
+    result.append(aux.decToHex(RGB->getGdec()));
+    result.append(aux.decToHex(RGB->getBdec()));
     return result;
+}
+
+QString Color::GetColore() const{
+    QString color;
+    color.append(getRdec());
+    color.append(getGdec());
+    color.append(getBdec());
+    return color;
 }
 
 Color* operator+ (const Color& x, const Color& y){

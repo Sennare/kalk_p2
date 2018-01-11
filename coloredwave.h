@@ -10,6 +10,7 @@ class ColoredWave : public Wave
 private:
     QVector<Color*> colori;
 public:
+
     ColoredWave();
     ~ColoredWave() = default;
 
@@ -25,6 +26,11 @@ public:
     Color getAmpColor(const int) const;
 
     QString getString();
+
+    ColoredWave operator+(const ColoredWave&);
+    ColoredWave operator-(const ColoredWave&);
+    ColoredWave operator/(const ColoredWave&);
+    ColoredWave operator*(const ColoredWave&);
 
 };
 
