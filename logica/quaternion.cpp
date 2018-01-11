@@ -1,7 +1,9 @@
 #include "quaternion.h"
+#include <QDebug>
 
 Quaternion::Quaternion(QString str) {
     str = str.simplified().toLower();
+    str.replace( " ", "" );
     // Controllo il formato "2,2,2,2"
     QStringList list = str.split(',');
     if (list.size() == 4) {
@@ -23,8 +25,13 @@ Quaternion::Quaternion(QString str) {
             this->setJ(list[2].toDouble());
             list[1] = list[3].replace("k", "");
             this->setK(list[3].toDouble());
-        }else
+        }else {
+            qDebug() << list[0];
+            qDebug() << list[1];
+            qDebug() << list[2];
+            qDebug() << list[3];
             throw exce_kalk(str.prepend("\nFormato numero non corretto\n").prepend(list[1].length()).toStdString());
+        }
     }
 }
 
