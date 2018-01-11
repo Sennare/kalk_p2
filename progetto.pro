@@ -16,14 +16,18 @@ CONFIG += c++11
 
 SOURCES += main.cpp\
         progetto.cpp\
-	helper.cpp \
+	  helper.cpp \
     application.cpp \
     controllers/controller.cpp \
     models/model.cpp \
     views/kalkselectorview.cpp \
     controllers/kalkselectorcontroller.cpp \
     views/testview.cpp \
-    controllers/testcontroller.cpp
+    controllers/testcontroller.cpp \
+    color.cpp \
+    wave.cpp \
+    audio.cpp \
+    coloredwave.cpp
 
 HEADERS  += progetto.h\
 	helper.h \
@@ -33,7 +37,11 @@ HEADERS  += progetto.h\
     views/kalkselectorview.h \
     controllers/kalkselectorcontroller.h \
     views/testview.h \
-    controllers/testcontroller.h
+    controllers/testcontroller.h \
+    color.h \
+    wave.h \
+    audio.h \
+    coloredwave.h
 
 FORMS    += progetto.ui \
     views/kalkselectorview.ui \
