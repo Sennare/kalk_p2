@@ -21,6 +21,7 @@ private:
 
 private slots:
     void slotOpenComplex();
+    void slotOpenQuaternion();
 
 signals:
     void signalOpenKalk(int);

@@ -1,6 +1,6 @@
 #include "complexcontroller.h"
 
-#include <QMessageBox>;
+#include <QMessageBox>
 
 ComplexController::ComplexController()
 {

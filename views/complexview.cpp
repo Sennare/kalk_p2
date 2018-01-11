@@ -19,9 +19,6 @@ ComplexView::ComplexView(QWidget *parent) :
     connect(ui->btnNorma, SIGNAL(clicked()),            this, SLOT(slotCalculate()));
     connect(ui->btnMoveToA, SIGNAL(clicked()),          this, SLOT(slotCalculate()));
     connect(ui->btnMoveToB, SIGNAL(clicked()),          this, SLOT(slotCalculate()));
-    /*
-    connect(ui->btnMoveToA, SIGNAL(clicked(bool)),          this, SLOT(slot---()));
-    connect(ui->btnMoveToB, SIGNAL(clicked(bool)),          this, SLOT(slot---()));*/
 }
 
 ComplexView::~ComplexView()
@@ -66,25 +63,3 @@ void ComplexView::slotCalculate() {
 void ComplexView::slotCalcComplete(Complex res) {
     ui->lineEditElementC->setText(res.getString());
 }
-
-/*void ComplexView::slotSum() {
-    // do something
-    if (ui->rbtnComplex->isChecked()) {
-        Complex vA, vB, vC;
-        vA = ui->lineEditElementA->text();
-        vB = ui->lineEditElementB->text();
-        vC = vA + vB;
-        ui->lineEditElementC->setText( vC.getString() );
-    }else{
-        Quaternion vA, vB, vC;
-        vA = ui->lineEditElementA->text();
-        vB = ui->lineEditElementB->text();
-        vC = vA + vB;
-        ui->lineEditElementC->setText( vC.getString() );
-    }
-}
-
-void ComplexView::slotDiff() {
-    // do something
-}
-*/

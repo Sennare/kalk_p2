@@ -13,13 +13,6 @@ private:
     float iVal;
 
 public:
-    /*enum errorType {
-        errorOutOfRange, //??
-        errorDivisionByZero,
-        errorStringNotValid,
-        errorRootNegative,
-        errorNormaNegative
-    };*/
     enum possibleKalk {
         calcSum,
         calcSub,

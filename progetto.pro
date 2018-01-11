@@ -28,7 +28,9 @@ SOURCES +=  logica/real.cpp \
     controllers/testcontroller.cpp \
     views/complexview.cpp \
     controllers/complexcontroller.cpp \
-    exce_kalk.cpp
+    exce_kalk.cpp \
+    views/quaternionview.cpp \
+    controllers/quaternioncontroller.cpp
 
 HEADERS  += logica/real.h \
     logica/complex.h \
@@ -43,12 +45,15 @@ HEADERS  += logica/real.h \
     controllers/testcontroller.h \
     views/complexview.h \
     controllers/complexcontroller.h \
-    exce_kalk.h
+    exce_kalk.h \
+    views/quaternionview.h \
+    controllers/quaternioncontroller.h
 
 FORMS    += \
     views/kalkselectorview.ui \
     views/testview.ui \
-    views/complexview.ui
+    views/complexview.ui \
+    views/quaternionview.ui
 
 RESOURCES += \
     resources.qrc
