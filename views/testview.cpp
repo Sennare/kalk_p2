@@ -15,6 +15,8 @@ TestView::TestView(QWidget *parent) :
     ui->label->setMovie(movie);
     movie->start();
 
+    ui->widget = new WaveGraph(this);
+    ui->widget->show();
 }
 
 TestView::~TestView()
@@ -32,7 +34,7 @@ void TestView::paintEvent(QPaintEvent *)
   QLineF line(0.0, 0.0, 90.0, 90.0);
 
   /* Draw the line: */
-  painter.drawLine(line);
+  //painter.drawLine(line);
 }
 
 void TestView::slotBackPressed() {

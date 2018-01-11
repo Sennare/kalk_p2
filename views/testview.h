@@ -2,6 +2,7 @@
 #define TESTVIEW_H
 
 #include <QWidget>
+#include "utils/wavegraph.h"
 
 namespace Ui {
 class TestView;
