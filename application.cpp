@@ -53,9 +53,9 @@ int Application::exec() {
 void Application::slotOpenKalkType(int tipo) {
     switch (tipo) {
     case Application::KalkType::Complessi:
-        TestController* aux = new TestController();
+        {TestController* aux = new TestController();
         connect(aux, &TestController::signalBack, this, &Application::slotBack);
-        initializeKalk(aux);
+        initializeKalk(aux);}
         break;
     }
 }

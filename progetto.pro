@@ -24,10 +24,10 @@ SOURCES += main.cpp\
     controllers/kalkselectorcontroller.cpp \
     views/testview.cpp \
     controllers/testcontroller.cpp \
-    color.cpp \
-    wave.cpp \
-    audio.cpp \
-    coloredwave.cpp
+    logica/color.cpp \
+    logica/wave.cpp \
+    logica/audio.cpp \
+    logica/coloredwave.cpp
 
 HEADERS  += progetto.h\
 	helper.h \
@@ -38,10 +38,10 @@ HEADERS  += progetto.h\
     controllers/kalkselectorcontroller.h \
     views/testview.h \
     controllers/testcontroller.h \
-    color.h \
-    wave.h \
-    audio.h \
-    coloredwave.h
+    logica/color.h \
+    logica/wave.h \
+    logica/audio.h \
+    logica/coloredwave.h
 
 FORMS    += progetto.ui \
     views/kalkselectorview.ui \
