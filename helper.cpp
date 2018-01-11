@@ -12,7 +12,7 @@ Helper::Helper()
     Helper *helper = new Helper();
     QString convertito = helper->decToHex(toConvert);
  */
-QString Helper::decToHex(int decimal) {
+QString Helper::decToHex(int decimal) const {
     QString hexVal = "";
     while (decimal > 15) {
         int rest = decimal % 16;
