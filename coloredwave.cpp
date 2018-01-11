@@ -71,7 +71,7 @@ ColoredWave ColoredWave::operator+(const ColoredWave& x){
     }
     return *aux;
 }
-/*ColoredWave ColoredWave::operator-(const ColoredWave& x){
+ColoredWave ColoredWave::operator-(const ColoredWave& x){
     ColoredWave* aux = new ColoredWave();
     int maxLenght = qMax(this->waveLenght(), x.waveLenght());
 
@@ -106,4 +106,4 @@ ColoredWave ColoredWave::operator/(const ColoredWave& x){
         aux->pushPoint(this->getAmpVal(i) / x.getAmpVal(i), res);
     }
     return *aux;
-}   */
+}
