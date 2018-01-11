@@ -28,7 +28,8 @@ SOURCES += main.cpp\
     logica/wave.cpp \
     logica/audio.cpp \
     logica/coloredwave.cpp \
-    views/audioview.cpp
+    views/audioview.cpp \
+    controllers/audiocontroller.cpp
 
 HEADERS  += progetto.h\
 	helper.h \
@@ -43,7 +44,8 @@ HEADERS  += progetto.h\
     logica/wave.h \
     logica/audio.h \
     logica/coloredwave.h \
-    views/audioview.h
+    views/audioview.h \
+    controllers/audiocontroller.h
 
 FORMS    += progetto.ui \
     views/kalkselectorview.ui \

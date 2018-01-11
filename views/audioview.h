@@ -2,6 +2,7 @@
 #define AUDIOVIEW_H
 
 #include <QWidget>
+#include "logica/audio.h"
 
 namespace Ui {
 class AudioView;
@@ -17,6 +18,15 @@ public:
 
 private:
     Ui::AudioView *ui;
+signals:
+    void signalBack();
+    void signalOpOndaUno(int, QString, QString, QString, QString);
+    void signalOpOndaDue(int, QString, QString, QString, QString);
+private slots:
+    void bottoniUno();
+    void bottoniDue();
+    void calcola();
+
 };
 
 #endif // AUDIOVIEW_H

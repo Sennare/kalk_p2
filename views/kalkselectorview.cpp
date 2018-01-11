@@ -8,6 +8,7 @@ KalkSelectorView::KalkSelectorView(QWidget *parent) :
     ui->setupUi(this);
 
     connect(ui->openComplex, SIGNAL(clicked(bool)), this, SLOT(slotOpenComplex()));
+    connect(ui->openAudio, SIGNAL(clicked(bool)), this, SLOT(slotOpenAudio()));
 }
 
 KalkSelectorView::~KalkSelectorView()
@@ -17,4 +18,7 @@ KalkSelectorView::~KalkSelectorView()
 
 void KalkSelectorView::slotOpenComplex() {
     emit signalOpenKalk(Application::KalkType::Complessi);
+}
+void KalkSelectorView::slotOpenAudio() {
+    emit signalOpenKalk(Application::KalkType::OndeAudio);
 }

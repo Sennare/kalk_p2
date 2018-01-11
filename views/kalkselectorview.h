@@ -21,6 +21,7 @@ private:
 
 private slots:
     void slotOpenComplex();
+    void slotOpenAudio();
 
 signals:
     void signalOpenKalk(int);
