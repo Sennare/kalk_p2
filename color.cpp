@@ -21,6 +21,11 @@ Color::Color(const Color& x) {
     g=x.g;
     b=x.b;
 }
+Color::Color(const Color* x) {
+    r=(*x).r;
+    g=(*x).g;
+    b=(*x).b;
+}
 /**
  * Per le modifiche dei colori attraverso interi:
  *      primi tre metodi per inserire i valori interi di un colore
@@ -45,7 +50,7 @@ unsigned int Color::getBdec() const{
     return b;
 }
 
-QString ConvertRGBtoHex(const Color* RGB) {
+QString Color::ConvertRGBtoHex(const Color* RGB) {
     Helper aux;
     QString result="#";
     result.append(aux.decToHex(RGB->getRdec()));
@@ -62,15 +67,23 @@ QString Color::GetColore() const{
     return color;
 }
 
-Color* operator+ (const Color& x, const Color& y){
-    return new Color ((x.getRdec()+y.getRdec())%255, (x.getGdec()+y.getGdec())%255, (x.getBdec()+y.getBdec())%255);
+Color Color::operator+ (const Color& x) const{
+    return new Color ((this->getRdec()+x.getRdec())%255,
+                      (this->getGdec()+x.getGdec())%255,
+                      (this->getBdec()+x.getBdec())%255);
 }
-Color* operator- (const Color& x, const Color& y){
-    return new Color ((x.getRdec()-y.getRdec())%255, (x.getGdec()-y.getGdec())%255, (x.getBdec()-y.getBdec())%255);
+Color Color::operator- (const Color& x) const{
+    return new Color ((this->getRdec()-x.getRdec())%255,
+                      (this->getGdec()-x.getGdec())%255,
+                      (this->getBdec()-x.getBdec())%255);
 }
-Color* operator* (const Color& x, const Color& y){
-    return new Color ((x.getRdec()*y.getRdec())%255, (x.getGdec()*y.getGdec())%255, (x.getBdec()*y.getBdec())%255);
+Color Color::operator* (const Color& x) const{
+    return new Color ((this->getRdec()*x.getRdec())%255,
+                      (this->getGdec()*x.getGdec())%255,
+                      (this->getBdec()*x.getBdec())%255);
 }
-Color* operator/ (const Color& x, const Color& y){
-    return new Color ((x.getRdec()/y.getRdec())%255, (x.getGdec()/y.getGdec())%255, (x.getBdec()/y.getBdec())%255);
+Color Color::operator/ (const Color& x) const{
+    return new Color ((this->getRdec()/x.getRdec())%255,
+                      (this->getGdec()/x.getGdec())%255,
+                      (this->getBdec()/x.getBdec())%255);
 }

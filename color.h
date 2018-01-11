@@ -24,6 +24,7 @@ public:
     Color(QString );
     Color(unsigned int, unsigned int, unsigned int); //0<=r,g,b<=255
     Color(const Color&);
+    Color(const Color*);
     ~Color() = default;
 
     /**
@@ -36,12 +37,12 @@ public:
     unsigned int getGdec() const;
     unsigned int getBdec() const;
 
-    QString ConvertRGBtoHex(const Color*);
+    static QString ConvertRGBtoHex(const Color*);
     QString GetColore() const;
-};
 
-Color* operator+(const Color& x, const Color& y);
-Color* operator-(const Color& x, const Color& y);
-Color* operator*(const Color& x, const Color& y);
-Color* operator/(const Color& x, const Color& y);
+    Color operator+(const Color& x) const;
+    Color operator-(const Color& x) const;
+    Color operator*(const Color& x) const;
+    Color operator/(const Color& x) const;
+};
 #endif // COLOR_H

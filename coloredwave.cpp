@@ -52,7 +52,7 @@ QString ColoredWave::getString(){
     QMutableVectorIterator<Color*> i(colori);
     while (i.hasNext()) {
         ret.append(comma);
-        ret.append(Color::ConvertRGBtoHex(*i.next());
+        ret.append(Color::ConvertRGBtoHex(i.next()));
         comma = ",";
     }
     ret.append(")");
