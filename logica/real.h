@@ -2,6 +2,7 @@
 #define REAL_H
 
 #include "QString"
+#include "exce_kalk.h"
 
 class Real
 {
@@ -9,10 +10,10 @@ private:
     float rVal;
 
 public:
-    enum errorType {
+    /*enum errorType {
         errorOutOfRange,
         errorDivisionByZero
-    };
+    };*/
 
     Real(float = 0);
     virtual ~Real() = default;

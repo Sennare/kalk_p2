@@ -1,21 +1,21 @@
 #include "complex.h"
 
-Complex::Complex(QString string) {
-    string = string.simplified();
+Complex::Complex(QString str) {
+    str = str.simplified();
     // Controllo il formato "2,2"
-    QStringList list = string.split(',');
+    QStringList list = str.split(',');
     if (list.size() == 2) {
         this->setR(list[0].toDouble());
         this->setI(list[1].toDouble());
     }else{
         // Controllo il formato "2 + 2i"
-        list = string.split("+");
-        if (list.size() == 2 && list[1].indexOf("i") != -1 ) {
+        list = str.split("+");
+        if (list.size() == 2 && list[1].indexOf("i") == list[1].length()-1 && list[1].count("i") == 1) {
             this->setR(list[0].toDouble());
             list[1] = list[1].replace("i", "");
             this->setI(list[1].toDouble());
-        }
-        throw Complex::errorType::errorStringNotValid;
+        }else
+            throw exce_kalk(str.prepend("Formato numero non corretto\n").toStdString());
     }
 }
 
@@ -45,20 +45,18 @@ Complex Complex::conjugate() const {
 
 float Complex::norm() const {
     float ret;
-    if (exp2(this->getR()) + exp2(this->getI()) < 0)
-        throw Complex::errorType::errorRootNegative;
-    else
-        ret = sqrt(exp2(this->getR()) + exp2(this->getI()));
+    if (pow(this->getR(),2) + pow(this->getI(),2) < 0)
+        throw exce_kalk("Errore radice negativa");
+    ret = sqrt(pow(this->getR(),2) + pow(this->getI(),2));
     return ret;
 }
 
 Complex Complex::inverse() const {
-    const Complex norma(exp2(this->norm()));
+    const Complex norma(pow(this->norm(),2));
     Complex ret = *this;
-    if (norma.getI() < 0)
-        throw Complex::errorType::errorNormaNegative;
-    else
-        ret = ret / norma;
+    /*if (norma.getI() < 0)
+        throw exce_kalk("Errore divisione per 0");*/
+    ret = ret / norma;
     return ret;
 }
 
@@ -91,12 +89,10 @@ Complex Complex::operator/(const Complex& b) const {
     float rPart;
     float iPart;
     if (denominatore < 0)
-        throw Complex::errorType::errorDivisionByZero;
-    else {
-        inverse = *this * inverse;
-        rPart = inverse.getR() / denominatore;
-        iPart = inverse.getI() / denominatore;
-    }
+        throw exce_kalk("Errore divisione per 0");
+    inverse = *this * inverse;
+    rPart = inverse.getR() / denominatore;
+    iPart = inverse.getI() / denominatore;
     Complex res(rPart, iPart);
     return res;
 }

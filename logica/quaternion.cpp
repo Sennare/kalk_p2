@@ -56,16 +56,16 @@ Quaternion Quaternion::conjugate() const {
 
 // TODO -> Da testare in GUI
 float Quaternion::norm() const {
-    return sqrt(exp2(this->getR()) +
-                exp2(this->getI()) +
-                exp2(this->getJ()) +
-                exp2(this->getK()));
+    return sqrt(pow(this->getR(),2) +
+                pow(this->getI(),2) +
+                pow(this->getJ(),2) +
+                pow(this->getK(),2));
 }
 
 
 // TODO -> Da testare in GUI
 Quaternion Quaternion::inverse() const {
-    const Quaternion norma(exp2(this->norm()));
+    const Quaternion norma(pow(this->norm(),2));
     Quaternion ret = *this;
     ret = ret / norma;
     return ret;

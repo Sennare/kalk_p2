@@ -29,17 +29,9 @@ ComplexView::~ComplexView()
     delete ui;
 }
 
-void ComplexView::errorManager(int err, bool param) {
-    switch (err) {
-    case Complex::errorType::errorStringNotValid:
-        if (param)
-            ui->lineEditElementB;
-        else
-            ui->lineEditElementA;
-        break;
-    default:
-        break;
-    }
+void ComplexView::errorManager(QString err) {
+    // Something to do here
+
 }
 
 void ComplexView::slotCalculate() {

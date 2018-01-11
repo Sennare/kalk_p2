@@ -17,7 +17,7 @@ public:
     explicit ComplexView(QWidget *parent = 0);
     ~ComplexView();
 
-    void errorManager(int, bool = false);
+    void errorManager(QString);
 
 private:
     Ui::ComplexView *ui;

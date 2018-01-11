@@ -1,5 +1,7 @@
 #include "complexcontroller.h"
 
+#include <QMessageBox>;
+
 ComplexController::ComplexController()
 {
     // Nothing to do here
@@ -25,42 +27,35 @@ void ComplexController::slotBack() {
 
 void ComplexController::slotCalculate(int calcType, QString valA, QString valB) {
     try{
-        Complex vA(valA);
-    }catch(Complex::errorType err){
-        view->errorManager(err);
-    }
-    try{
-        Complex vB(valB);
-    }catch(Complex::errorType err){
-        view->errorManager(err, true);
-    }
-    Complex vC;
-    switch (calcType) {
-    case Complex::possibleKalk::calcSum:
-        try{
-            vC = vA + vB;
-        }catch(Complex::errorType err){
-            view->errorManager(err);
+        Complex vA(valA), vB(valB);
+        Complex vC;
+        switch (calcType) {
+        case Complex::possibleKalk::calcSum:
+                vC = vA + vB;
+            break;
+        case Complex::possibleKalk::calcSub:
+            vC = vA - vB;
+            break;
+        case Complex::possibleKalk::calcMult:
+            vC = vA * vB;
+            break;
+        case Complex::possibleKalk::calcDiv:
+            vC = vA / vB;
+            break;
+        case Complex::possibleKalk::calcInverse:
+            vC = vA.inverse();
+            break;
+        case Complex::possibleKalk::calcNorm:
+            vC = vA.norm();
+            break;
+        case Complex::possibleKalk::calcConj:
+            vC = vA.conjugate();
+            break;
         }
-        break;
-    case Complex::possibleKalk::calcSub:
-        vC = vA - vB;
-        break;
-    case Complex::possibleKalk::calcMult:
-        vC = vA * vB;
-        break;
-    case Complex::possibleKalk::calcDiv:
-        vC = vA / vB;
-        break;
-    case Complex::possibleKalk::calcInverse:
-        vC = vA.inverse();
-        break;
-    case Complex::possibleKalk::calcNorm:
-        vC = vA.norm();
-        break;
-    case Complex::possibleKalk::calcConj:
-        vC = vA.conjugate();
-        break;
+        emit signalCalcComplete(vC);
+    }catch(exce_kalk err){
+        // Something to do here
+        QMessageBox::information(view, tr("Error"), err.what());
+        //view->errorManager(err.what());
     }
-    emit signalCalcComplete(vC);
 }

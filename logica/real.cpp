@@ -29,10 +29,8 @@ Real Real::operator*(const Real& b) const {
 }
 Real Real::operator/(const Real& b) const {
     Real res;
-    if (b.rVal == 0) {
-        throw Real::errorType::errorDivisionByZero;
-        return res;
-    }
+    if (b.rVal == 0)
+        throw exce_kalk("Errore divisione per 0");
     res.rVal = this->rVal / b.rVal;
     return res;
 }

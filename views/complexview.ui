@@ -66,6 +66,9 @@
      <pointsize>12</pointsize>
     </font>
    </property>
+   <property name="text">
+    <string>16,0</string>
+   </property>
    <property name="placeholderText">
     <string>Formato: &quot;a, b&quot;</string>
    </property>
@@ -84,6 +87,9 @@
      <family>Microsoft JhengHei Light</family>
      <pointsize>12</pointsize>
     </font>
+   </property>
+   <property name="text">
+    <string>1,1</string>
    </property>
    <property name="placeholderText">
     <string>Formato: &quot;a, b&quot;</string>

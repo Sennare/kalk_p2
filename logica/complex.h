@@ -5,6 +5,7 @@
 #include <QStringList>
 #include <cmath>
 #include "real.h"
+#include "exce_kalk.h"
 
 class Complex : public Real
 {
@@ -12,13 +13,13 @@ private:
     float iVal;
 
 public:
-    enum errorType {
+    /*enum errorType {
         errorOutOfRange, //??
         errorDivisionByZero,
         errorStringNotValid,
         errorRootNegative,
         errorNormaNegative
-    };
+    };*/
     enum possibleKalk {
         calcSum,
         calcSub,

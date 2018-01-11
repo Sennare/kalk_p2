@@ -4,6 +4,7 @@
 #include <QObject>
 #include "controllers/controller.h"
 #include "views/complexview.h"
+#include "exce_kalk.h"
 
 class ComplexController : public Controller
 {

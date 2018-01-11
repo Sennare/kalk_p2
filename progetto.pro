@@ -27,7 +27,8 @@ SOURCES +=  logica/real.cpp \
     views/testview.cpp \
     controllers/testcontroller.cpp \
     views/complexview.cpp \
-    controllers/complexcontroller.cpp
+    controllers/complexcontroller.cpp \
+    exce_kalk.cpp
 
 HEADERS  += logica/real.h \
     logica/complex.h \
@@ -41,7 +42,8 @@ HEADERS  += logica/real.h \
     views/testview.h \
     controllers/testcontroller.h \
     views/complexview.h \
-    controllers/complexcontroller.h
+    controllers/complexcontroller.h \
+    exce_kalk.h
 
 FORMS    += \
     views/kalkselectorview.ui \
