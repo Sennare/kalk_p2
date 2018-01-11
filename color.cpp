@@ -8,7 +8,7 @@
  * -costruttori a 3 parametri per interi
  */
 Color::Color(): r(255), g(255), b(255) {}
-Color::Color(string c) {
+Color::Color(QString c) {
 
 }
 Color::Color(unsigned int red, unsigned int green, unsigned int blue): r(red), g(green), b(blue) {
@@ -20,6 +20,11 @@ Color::Color(const Color& x) {
     r=x.r;
     g=x.g;
     b=x.b;
+}
+Color::Color(const Color* x) {
+    r=(*x).r;
+    g=(*x).g;
+    b=(*x).b;
 }
 /**
  * Per le modifiche dei colori attraverso interi:
@@ -45,24 +50,40 @@ unsigned int Color::getBdec() const{
     return b;
 }
 
-QString ConvertRGBtoHex(const Color& RGB) {
+QString Color::ConvertRGBtoHex(const Color* RGB) {
     Helper aux;
     QString result="#";
-    result.append(aux.decToHex(RGB.getRdec()));
-    result.append(aux.decToHex(RGB.getGdec()));
-    result.append(aux.decToHex(RGB.getBdec()));
+    result.append(aux.decToHex(RGB->getRdec()));
+    result.append(aux.decToHex(RGB->getGdec()));
+    result.append(aux.decToHex(RGB->getBdec()));
     return result;
 }
 
-Color* operator+ (const Color& x, const Color& y){
-    return new Color ((x.getRdec()+y.getRdec())%255, (x.getGdec()+y.getGdec())%255, (x.getBdec()+y.getBdec())%255);
+QString Color::GetColore() const{
+    QString color;
+    color.append(getRdec());
+    color.append(getGdec());
+    color.append(getBdec());
+    return color;
 }
-Color* operator- (const Color& x, const Color& y){
-    return new Color ((x.getRdec()-y.getRdec())%255, (x.getGdec()-y.getGdec())%255, (x.getBdec()-y.getBdec())%255);
+
+Color Color::operator+ (const Color& x) const{
+    return new Color ((this->getRdec()+x.getRdec())%255,
+                      (this->getGdec()+x.getGdec())%255,
+                      (this->getBdec()+x.getBdec())%255);
 }
-Color* operator* (const Color& x, const Color& y){
-    return new Color ((x.getRdec()*y.getRdec())%255, (x.getGdec()*y.getGdec())%255, (x.getBdec()*y.getBdec())%255);
+Color Color::operator- (const Color& x) const{
+    return new Color ((this->getRdec()-x.getRdec())%255,
+                      (this->getGdec()-x.getGdec())%255,
+                      (this->getBdec()-x.getBdec())%255);
 }
-Color* operator/ (const Color& x, const Color& y){
-    return new Color ((x.getRdec()/y.getRdec())%255, (x.getGdec()/y.getGdec())%255, (x.getBdec()/y.getBdec())%255);
+Color Color::operator* (const Color& x) const{
+    return new Color ((this->getRdec()*x.getRdec())%255,
+                      (this->getGdec()*x.getGdec())%255,
+                      (this->getBdec()*x.getBdec())%255);
+}
+Color Color::operator/ (const Color& x) const{
+    return new Color ((this->getRdec()/x.getRdec())%255,
+                      (this->getGdec()/x.getGdec())%255,
+                      (this->getBdec()/x.getBdec())%255);
 }

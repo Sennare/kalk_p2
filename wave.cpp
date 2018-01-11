@@ -5,33 +5,51 @@ Wave::Wave(){}
 Wave::Wave(QString x) {
     QStringList aux = x.split(",");
     for(int i=0; i < aux.size(); ++i) {
-        this->pushAmpVal(aux[i].toDouble());
+        this->pushPoint(aux[i].toDouble());
     }
 }
-void Wave::pushAmpVal(double x) {
-    v.push_back(x);
+
+double Wave::getVAmp(int index) const {
+    if (index < v.size()){
+        return v[index];
+    } else return 0;
 }
 
-void Wave::removeAmpVal(const int x){
+void Wave::setVAmp(double x, int index, bool insert){
+    if (index<0) {
+        v.push_back(x);
+    }
+    else if (index < waveLenght()){
+        if(insert) {
+            v.insert(index, x);
+        }
+        else{
+            v.replace(index, x);
+        }
+    }
+}
+
+void Wave::removeVAmp(int index) {
+    if (index< v.size())
+        v.remove(index);
+}
+
+void Wave::pushPoint(double x, int index, bool insert) {
+    this->setVAmp(x, index, insert);
+}
+
+void Wave::removePoint(const int index){
     //TODO: eccezione da aggiungere
-    if(x<=v.size()) v.remove(x);
+    removeVAmp(index);
 }
 
-unsigned int Wave::waveLenght() const{
+int Wave::waveLenght() const{
     return v.size();
 }
 
-void Wave::setAmpVal(const int x, const double y){
-    if (x<v.size()){
-        v.replace(x, y);
-    }
-    //TODO: eccezione da aggiungere
-}
 
 double Wave::getAmpVal(const int x) const{
-    if(x<v.size())
-        return v.at(x);
-    else return 0;
+    return getVAmp(x);
 }
 
 QString Wave::getString() {
@@ -50,7 +68,7 @@ Wave Wave::operator+ (const Wave& x) {
    int maxLenght = qMax(this->waveLenght(), x.waveLenght());
    int i=0;
    for( ; i<maxLenght; ++i) {
-        aux->pushAmpVal(this->getAmpVal(i) + x.getAmpVal(i));
+        aux->pushPoint(this->getAmpVal(i) + x.getAmpVal(i));
    }
    return *aux;
 }
@@ -60,7 +78,7 @@ Wave Wave::operator- (const Wave& x) {
    int maxLenght = qMax(this->waveLenght(), x.waveLenght());
 
    for(int i=0; i<maxLenght; ++i) {
-       aux->pushAmpVal(this->getAmpVal(i) - x.getAmpVal(i));
+       aux->pushPoint(this->getAmpVal(i) - x.getAmpVal(i));
    }
    return *aux;
 }
@@ -70,7 +88,7 @@ Wave Wave::operator/ (const Wave& x) {
    int maxLenght = qMax(this->waveLenght(), x.waveLenght());
 
    for(int i=0; i<maxLenght; ++i) {
-        aux->pushAmpVal(this->getAmpVal(i) / x.getAmpVal(i));
+        aux->pushPoint(this->getAmpVal(i) / x.getAmpVal(i));
    }
    // TODO: eccezzione div x 0
    return *aux;
@@ -81,7 +99,7 @@ Wave Wave::operator* (const Wave& x) {
    int maxLenght = qMax(this->waveLenght(), x.waveLenght());
 
    for(int i=0; i<maxLenght; ++i) {
-       aux->pushAmpVal(this->getAmpVal(i) * x.getAmpVal(i));
+       aux->pushPoint(this->getAmpVal(i) * x.getAmpVal(i));
    }
     return *aux;
 }

@@ -18,12 +18,15 @@ SOURCES += main.cpp\
         progetto.cpp \
     helper.cpp\
     color.cpp \
-    wave.cpp
+    wave.cpp \
+    audio.cpp \
+    coloredwave.cpp
 
 HEADERS  += progetto.h \
     helper.h \
-    wave.h
-HEADERS  += \
-    color.h
+    color.h \
+    wave.h \
+    audio.h \
+    coloredwave.h
 
 FORMS    += progetto.ui
