@@ -20,5 +20,8 @@ QString Helper::decToHex(int decimal) const {
         hexVal = Helper::hexList.at(rest) + hexVal;
     }
     hexVal = Helper::hexList.at(decimal) + hexVal;
+    while (hexVal.length()< caratteri) {
+        hexVal.prepend("0");
+    }
     return hexVal;
 }
