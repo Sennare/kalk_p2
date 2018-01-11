@@ -1,6 +1,6 @@
 #include "progetto.h"
 #include "ui_progetto.h"
-#include "wave.h"
+#include "logica/wave.h"
 #include<QString>
 Progetto::Progetto(QWidget *parent) :
     QMainWindow(parent),

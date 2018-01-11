@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>522</width>
+    <width>675</width>
     <height>420</height>
    </rect>
   </property>
@@ -40,6 +40,16 @@
    </property>
    <property name="text">
     <string>Torna indietro</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="widget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>90</y>
+     <width>211</width>
+     <height>161</height>
+    </rect>
    </property>
   </widget>
  </widget>
