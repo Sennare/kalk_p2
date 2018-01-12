@@ -15,7 +15,9 @@ TestView::TestView(QWidget *parent) :
     ui->label->setMovie(movie);
     movie->start();
 
-    ui->widget = new WaveGraph(this);
+    WaveGraph* grafico = new WaveGraph(this);
+    grafico->initialize(400,400,300,100);
+    ui->widget = grafico;
     ui->widget->show();
 }
 
@@ -26,12 +28,12 @@ TestView::~TestView()
 
 void TestView::paintEvent(QPaintEvent *)
 {
-  QPainter painter(this);
+  //QPainter painter(this);
 
-  painter.setPen(QPen(Qt::black,1));
+  //painter.setPen(QPen(Qt::black,1));
 
   /* Create the line object: */
-  QLineF line(0.0, 0.0, 90.0, 90.0);
+  //QLineF line(0.0, 0.0, 90.0, 90.0);
 
   /* Draw the line: */
   //painter.drawLine(line);
