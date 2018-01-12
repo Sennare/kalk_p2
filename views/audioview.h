@@ -23,6 +23,7 @@ signals:
     void signalOpOndaUno(int, QString, QString, QString, QString);
     void signalOpOndaDue(int, QString, QString, QString, QString);
 private slots:
+    void slotBackPressed();
     void bottoniUno();
     void bottoniDue();
     void calcola();

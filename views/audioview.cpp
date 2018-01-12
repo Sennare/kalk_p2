@@ -7,7 +7,7 @@ AudioView::AudioView(QWidget *parent) :
     ui(new Ui::AudioView)
 {
     ui->setupUi(this);
-    connect(ui->btnBack, SIGNAL(clicked(bool)), this, SIGNAL(signalBack));
+    connect(ui->btnBack, SIGNAL(clicked(bool)), this, SLOT(slotBackPressed()));
 
     connect(ui->btnInserisciOndaUno, SIGNAL(clicked(bool)), this, SLOT(bottoniUno));
     connect(ui->btnSostituisciOndaUno, SIGNAL(clicked(bool)), this, SLOT(bottoniUno));
@@ -29,6 +29,10 @@ AudioView::AudioView(QWidget *parent) :
 AudioView::~AudioView()
 {
     delete ui;
+}
+
+void AudioView::slotBackPressed(){
+    emit signalBack();
 }
 
 void AudioView::bottoniUno() {
