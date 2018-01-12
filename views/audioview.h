@@ -18,15 +18,25 @@ public:
 
 private:
     Ui::AudioView *ui;
+
 signals:
     void signalBack();
+
     void signalOpOndaUno(int, QString, QString, QString, QString);
+    //void signalOpOndaUnoEseguita(Audio);
+
     void signalOpOndaDue(int, QString, QString, QString, QString);
+    //void signalOpOndaDueEseguita(Audio);
+
 private slots:
-    void slotBackPressed();
-    void bottoniUno();
-    void bottoniDue();
-    void calcola();
+
+    void slotOpOndaUno();
+    //void slotOpOndaUnoEseguita(Audio);
+
+    void slotOpOndaDue();
+    //void slotOpOndaDueEseguita(Audio);
+
+    void slotCalcola();
 
 };
 

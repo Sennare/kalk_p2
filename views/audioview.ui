@@ -52,32 +52,6 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>170</y>
-     <width>341</width>
-     <height>81</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Onda1</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_2">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>170</y>
-     <width>351</width>
-     <height>81</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Onda2</string>
-   </property>
-  </widget>
   <widget class="QLineEdit" name="lineEditValoriOndaUnoOndaSx">
    <property name="geometry">
     <rect>
@@ -154,19 +128,6 @@
    </property>
    <property name="inputMask">
     <string/>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_8">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>20</y>
-     <width>351</width>
-     <height>141</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>RISULTATO FINALE</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btnSottrazioneOndeAudio">
@@ -466,6 +427,36 @@
    </property>
    <property name="text">
     <string>Elimina</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditRis">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>190</y>
+     <width>281</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>190</y>
+     <width>301</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>20</y>
+     <width>251</width>
+     <height>131</height>
+    </rect>
    </property>
   </widget>
  </widget>

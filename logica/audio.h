@@ -21,7 +21,6 @@ public:
         opGet,
         opRemove,
         opSostituzione
-
     };
 
     double getWAmp(int) const;    //ritorna l'ampiezza dell'onda nei vari punti

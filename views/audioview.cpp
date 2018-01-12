@@ -7,23 +7,23 @@ AudioView::AudioView(QWidget *parent) :
     ui(new Ui::AudioView)
 {
     ui->setupUi(this);
-    connect(ui->btnBack, SIGNAL(clicked(bool)), this, SLOT(slotBackPressed()));
+    connect(ui->btnBack, SIGNAL(clicked(bool)), this, SIGNAL(signalBack()));
 
-    connect(ui->btnInserisciOndaUno, SIGNAL(clicked(bool)), this, SLOT(bottoniUno));
-    connect(ui->btnSostituisciOndaUno, SIGNAL(clicked(bool)), this, SLOT(bottoniUno));
-    connect(ui->btnOttieniOndaUno, SIGNAL(clicked(bool)), this, SLOT(bottoniUno));
-    connect(ui->btnEliminaOndaUno, SIGNAL(clicked(bool)), this, SLOT(bottoniUno));
+    connect(ui->btnInserisciOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaUno));
+    connect(ui->btnSostituisciOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaUno));
+    connect(ui->btnOttieniOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaUno));
+    connect(ui->btnEliminaOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaUno));
 
-    connect(ui->btnInserisciOndaUno, SIGNAL(clicked(bool)), this, SLOT(bottoniDue));
-    connect(ui->btnSostituisciOndaUno, SIGNAL(clicked(bool)), this, SLOT(bottoniDue));
-    connect(ui->btnOttieniOndaUno, SIGNAL(clicked(bool)), this, SLOT(bottoniDue));
-    connect(ui->btnEliminaOndaUno, SIGNAL(clicked(bool)), this, SLOT(bottoniDue));
+    connect(ui->btnInserisciOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaDue));
+    connect(ui->btnSostituisciOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaDue));
+    connect(ui->btnOttieniOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaDue));
+    connect(ui->btnEliminaOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaDue));
 
-    connect(ui->btnSommaOndeAudio, SIGNAL(clicked(bool)), this, SLOT(calcola));
-    connect(ui->btnSottrazioneOndeAudio, SIGNAL(clicked(bool)), this, SLOT(calcola));
-    connect(ui->btnDivisioneOndeAudio, SIGNAL(clicked(bool)), this, SLOT(calcola));
-    connect(ui->btnMoltiplicazioneOndeAudio, SIGNAL(clicked(bool)), this, SLOT(calcola));
-    connect(ui->btnUguaglianzaOndeAudio, SIGNAL(clicked(bool)), this, SLOT(calcola));
+    connect(ui->btnSommaOndeAudio, SIGNAL(clicked(bool)), this, SLOT(slotCalcola));
+    connect(ui->btnSottrazioneOndeAudio, SIGNAL(clicked(bool)), this, SLOT(slotCalcola));
+    connect(ui->btnDivisioneOndeAudio, SIGNAL(clicked(bool)), this, SLOT(slotCalcola));
+    connect(ui->btnMoltiplicazioneOndeAudio, SIGNAL(clicked(bool)), this, SLOT(slotCalcola));
+    connect(ui->btnUguaglianzaOndeAudio, SIGNAL(clicked(bool)), this, SLOT(slotCalcola));
 }
 
 AudioView::~AudioView()
@@ -31,11 +31,7 @@ AudioView::~AudioView()
     delete ui;
 }
 
-void AudioView::slotBackPressed(){
-    emit signalBack();
-}
-
-void AudioView::bottoniUno() {
+void AudioView::slotOpOndaUno() {
     QString valOndaUnoSx = ui->lineEditValoriOndaUnoOndaSx->text();
     QString valOndaUnoDx = ui->lineEditValoriOndaUnoOndaDx->text();
     QString indOndaUno = ui->lineEditIndiceOndaUno->text();
@@ -60,7 +56,11 @@ void AudioView::bottoniUno() {
                                                         lungOndaUno);
 }
 
-void AudioView::bottoniDue() {
+/*void AudioView::slotOpOndaUnoEseguita(Audio risultato) {
+    ui->lineEditRis->setText(risultato.getString());
+}*/
+
+void AudioView::slotOpOndaDue() {
     QString valOndaDueSx = ui->lineEditValoriOndaDueOndaSx->text();
     QString valOndaDueDx = ui->lineEditValoriOndaDueOndaDx->text();
     QString indOndaDue = ui->lineEditIndiceOndaDue->text();
@@ -83,7 +83,12 @@ void AudioView::bottoniDue() {
                                                         indOndaDue,
                                                         lungOndaDue);
 }
-void AudioView::calcola() {
+
+/*void AudioView::slotOpOndaDueEseguita(Audio risultato) {
+    ui->lineEditRis->setText(risultato.getString());
+}*/
+
+void AudioView::slotCalcola() {
     if (sender() == ui->btnSommaOndeAudio) {
     } else if (sender() == ui->btnSottrazioneOndeAudio){
     } else if (sender() == ui->btnDivisioneOndeAudio) {

@@ -23,8 +23,16 @@ public:
 
 private slots:
     void slotBack();
+
+    //void slotOpOndaUno(int, QString, QString, QString, QString);
+
+    //void slotOpOndaDue(int, QString, QString, QString, QString);
 signals:
     void signalBack();
+
+    //signalOpOndaUnoEseguita(Audio);
+
+    //signalOpOndaDueEseguita(Audio);
 };
 
 #endif // AUDIOCONTROLLER_H
