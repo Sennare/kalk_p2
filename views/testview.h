@@ -16,8 +16,6 @@ public:
     explicit TestView(QWidget *parent = 0);
     ~TestView();
 
-    void paintEvent(QPaintEvent *);
-
 private:
     Ui::TestView *ui;
 

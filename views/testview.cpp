@@ -19,24 +19,12 @@ TestView::TestView(QWidget *parent) :
     grafico->initialize(400,400,300,100);
     ui->widget = grafico;
     ui->widget->show();
+    dynamic_cast<WaveGraph*>(ui->widget)->setLine(0.0,0.0,50.0,80.0);
 }
 
 TestView::~TestView()
 {
     delete ui;
-}
-
-void TestView::paintEvent(QPaintEvent *)
-{
-  //QPainter painter(this);
-
-  //painter.setPen(QPen(Qt::black,1));
-
-  /* Create the line object: */
-  //QLineF line(0.0, 0.0, 90.0, 90.0);
-
-  /* Draw the line: */
-  //painter.drawLine(line);
 }
 
 void TestView::slotBackPressed() {

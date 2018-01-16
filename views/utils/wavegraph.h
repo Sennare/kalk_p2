@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QPainter>
+#include <QStyleOption>
 
 class WaveGraph : public QWidget
 {
@@ -13,8 +14,7 @@ public:
     void paintEvent(QPaintEvent *);
 
     void initialize(int, int, int = -1, int = -1);
-    void setLine(QVector<double>, QVector<double>, int = 0);
-    void removeLine(int = 0);
+    void setLine(double, double, double, double, int = 0);
 signals:
 
 public slots:
