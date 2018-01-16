@@ -1,5 +1,6 @@
 #include "application.h"
 #include "controllers/kalkselectorcontroller.h"
+#include "controllers/audiocontroller.h"
 #include "controllers/testcontroller.h"
 
 Application* Application::istanza = 0;
@@ -57,7 +58,13 @@ void Application::slotOpenKalkType(int tipo) {
         connect(aux, &TestController::signalBack, this, &Application::slotBack);
         initializeKalk(aux);}
         break;
+    case Application::KalkType::OndeAudio:{
+        AudioController* aux = new AudioController();
+        connect(aux, &AudioController::signalBack, this, &Application::slotBack);
+        initializeKalk(aux);}
+        break;
     }
+
 }
 
 void Application::slotBack() {

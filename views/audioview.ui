@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AudioView</class>
+ <widget class="QWidget" name="AudioView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>713</width>
+    <height>476</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QPushButton" name="btnBack">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>51</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>back</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>160</y>
+     <width>711</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_2">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>170</y>
+     <width>20</width>
+     <height>351</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditValoriOndaUnoOndaSx">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>270</y>
+     <width>331</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Formato: numero, numero</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnInserisciOndaUno">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>380</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Inserisci</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnOttieniOndaUno">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>420</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ottieni</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditIndiceOndaUno">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>370</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="inputMask">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditValoriOndaUnoOndaDx">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>320</y>
+     <width>331</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Formato: numero, numero</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditLunghezzaOndaUno">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>430</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="inputMask">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnSottrazioneOndeAudio">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>10</y>
+     <width>61</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>-</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnEliminaOndaUno">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>420</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Elimina</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnSostituisciOndaUno">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>380</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Sostituisci</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnSommaOndeAudio">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>10</y>
+     <width>61</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>+</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnDivisioneOndeAudio">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>70</y>
+     <width>61</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>:</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnMoltiplicazioneOndeAudio">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>70</y>
+     <width>61</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>x</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnUguaglianzaOndeAudio">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>130</y>
+     <width>351</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>=</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>250</y>
+     <width>161</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Inserisci valori onda Sx</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>300</y>
+     <width>161</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Inserisci valori onda Dx</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>350</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>indice</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>410</y>
+     <width>81</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Lunghezza</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>350</y>
+     <width>67</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>indice</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnSostituisciOndaDue">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>380</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Sostituisci</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditLunghezzaOndaDue">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>430</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="inputMask">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>410</y>
+     <width>81</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Lunghezza</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnInserisciOndaDue">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>380</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Inserisci</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditValoriOndaDueOndaSx">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>270</y>
+     <width>341</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Formato: numero, numero</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditValoriOndaDueOndaDx">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>320</y>
+     <width>341</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="placeholderText">
+    <string>Formato: numero, numero</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>300</y>
+     <width>161</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Inserisci valori onda Dx</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnOttieniOndaDue">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>420</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ottieni</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>250</y>
+     <width>161</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Inserisci valori onda Sx</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditIndiceOndaDue">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>370</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="inputMask">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnEliminaOndaDue">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>420</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Elimina</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEditRis">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>190</y>
+     <width>281</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>190</y>
+     <width>301</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>20</y>
+     <width>251</width>
+     <height>131</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

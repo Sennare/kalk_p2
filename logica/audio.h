@@ -16,6 +16,12 @@ public:
         ondaSx,
         ondaDx
     };
+    enum operazioniDisponibili {
+        opPush,
+        opGet,
+        opRemove,
+        opSostituzione
+    };
 
     double getWAmp(int) const;    //ritorna l'ampiezza dell'onda nei vari punti
     void setWAmp(double, int=-1, bool=false);   //per settare altezza desiderata o con indice di default
