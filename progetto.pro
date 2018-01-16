@@ -18,36 +18,30 @@ SOURCES += main.cpp\
         progetto.cpp\
 	  helper.cpp \
     application.cpp \
-    controllers/controller.cpp \
     models/model.cpp \
     views/kalkselectorview.cpp \
-    controllers/kalkselectorcontroller.cpp \
     views/testview.cpp \
-    controllers/testcontroller.cpp \
     logica/color.cpp \
     logica/wave.cpp \
     logica/audio.cpp \
     logica/coloredwave.cpp \
     views/audioview.cpp \
-    controllers/audiocontroller.cpp \
-    views/utils/qcustomplot.cpp
+    views/utils/qcustomplot.cpp \
+    views/view.cpp
 
 HEADERS  += progetto.h\
 	helper.h \
     application.h \
-    controllers/controller.h \
     models/model.h \
     views/kalkselectorview.h \
-    controllers/kalkselectorcontroller.h \
     views/testview.h \
-    controllers/testcontroller.h \
     logica/color.h \
     logica/wave.h \
     logica/audio.h \
     logica/coloredwave.h \
     views/audioview.h \
-    controllers/audiocontroller.h \
-    views/utils/qcustomplot.h
+    views/utils/qcustomplot.h \
+    views/view.h
 
 FORMS    += progetto.ui \
     views/kalkselectorview.ui \

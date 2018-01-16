@@ -6,7 +6,18 @@ AudioView::AudioView(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::AudioView)
 {
+}
+
+AudioView::~AudioView()
+{
+    delete ui;
+}
+
+void AudioView::handle() {
+    // Something to do here
     ui->setupUi(this);
+    show();
+
     connect(ui->btnBack, SIGNAL(clicked(bool)), this, SIGNAL(signalBack()));
 
     connect(ui->btnInserisciOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaUno));
@@ -50,10 +61,6 @@ AudioView::AudioView(QWidget *parent) :
     ui->widgetOndaUno->graph(0)->rescaleAxes();*/
 }
 
-AudioView::~AudioView()
-{
-    delete ui;
-}
 
 void AudioView::updateOperatore(QVector<QVector<double>*> valori, int operatore) {
     switch (operatore) {
@@ -97,11 +104,11 @@ void AudioView::slotOpOndaUno() {
         operazioneDaEseguire = Audio::operazioniDisponibili::opRemove;
     }
 
-    if (operazioneDaEseguire >= 0) emit signalOpOndaUno(operazioneDaEseguire,
+    /*if (operazioneDaEseguire >= 0) emit signalOpOndaUno(operazioneDaEseguire,
                                                         valOndaUnoSx,
                                                         valOndaUnoDx,
                                                         indOndaUno,
-                                                        lungOndaUno);
+                                                        lungOndaUno);*/
 }
 
 /*void AudioView::slotOpOndaUnoEseguita(Audio risultato) {
@@ -125,11 +132,11 @@ void AudioView::slotOpOndaDue() {
     } else if (sender() == ui->btnEliminaOndaDue) {
         operazioneDaEseguire = Audio::operazioniDisponibili::opRemove;
     }
-    if (operazioneDaEseguire >= 0) emit signalOpOndaDue(operazioneDaEseguire,
+    /*if (operazioneDaEseguire >= 0) emit signalOpOndaDue(operazioneDaEseguire,
                                                         valOndaDueSx,
                                                         valOndaDueDx,
                                                         indOndaDue,
-                                                        lungOndaDue);
+                                                        lungOndaDue);*/
 }
 
 /*void AudioView::slotOpOndaDueEseguita(Audio risultato) {
