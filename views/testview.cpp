@@ -3,6 +3,7 @@
 
 #include <QMovie>
 #include <QPainter>
+#include <QStringListModel>
 
 TestView::TestView(QWidget *parent) :
     QWidget(parent),
@@ -20,6 +21,18 @@ TestView::TestView(QWidget *parent) :
     ui->widget = grafico;
     ui->widget->show();
     dynamic_cast<WaveGraph*>(ui->widget)->setLine(0.0,0.0,50.0,80.0);
+
+    QStringListModel* model = new QStringListModel();
+    QStringList list;
+    list << "50";
+    list << "-23";
+    list << "54";
+    list << "70";
+    list << "-60";
+    list << "50";
+    model->setStringList(list);
+    ui->listView->setModel(model);
+
 }
 
 TestView::~TestView()
