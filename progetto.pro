@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     logica/coloredwave.cpp \
     views/audioview.cpp \
     controllers/audiocontroller.cpp \
-    views/utils/qcustomplot.cpp
+    views/utils/qcustomplot.cpp \
+    views/coloredwaveview.cpp
 
 HEADERS  += progetto.h\
 	helper.h \
@@ -47,12 +48,14 @@ HEADERS  += progetto.h\
     logica/coloredwave.h \
     views/audioview.h \
     controllers/audiocontroller.h \
-    views/utils/qcustomplot.h
+    views/utils/qcustomplot.h \
+    views/coloredwaveview.h
 
 FORMS    += progetto.ui \
     views/kalkselectorview.ui \
     views/testview.ui \
-    views/audioview.ui
+    views/audioview.ui \
+    views/coloredwaveview.ui
 
 RESOURCES += \
     resources.qrc
