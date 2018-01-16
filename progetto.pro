@@ -4,9 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui charts
+QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = progetto
 TEMPLATE = app
@@ -28,7 +28,7 @@ SOURCES += main.cpp\
     logica/wave.cpp \
     logica/audio.cpp \
     logica/coloredwave.cpp \
-    views/utils/wavegraph.cpp
+    views/utils/qcustomplot.cpp
 
 HEADERS  += progetto.h\
 	helper.h \
@@ -43,7 +43,7 @@ HEADERS  += progetto.h\
     logica/wave.h \
     logica/audio.h \
     logica/coloredwave.h \
-    views/utils/wavegraph.h
+    views/utils/qcustomplot.h
 
 FORMS    += progetto.ui \
     views/kalkselectorview.ui \

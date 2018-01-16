@@ -4,6 +4,7 @@
 #include <QMovie>
 #include <QPainter>
 #include <QStringListModel>
+#include "views/utils/qcustomplot.h"
 
 TestView::TestView(QWidget *parent) :
     QWidget(parent),
@@ -16,23 +17,21 @@ TestView::TestView(QWidget *parent) :
     ui->label->setMovie(movie);
     movie->start();
 
-    WaveGraph* grafico = new WaveGraph(this);
-    grafico->initialize(400,400,300,100);
-    ui->widget = grafico;
-    ui->widget->show();
-    dynamic_cast<WaveGraph*>(ui->widget)->setLine(0.0,0.0,50.0,80.0);
-
-    QStringListModel* model = new QStringListModel();
-    QStringList list;
-    list << "50";
-    list << "-23";
-    list << "54";
-    list << "70";
-    list << "-60";
-    list << "50";
-    model->setStringList(list);
-    ui->listView->setModel(model);
-
+    // ui->grafico TEST
+    QVector<double> x(101), y(101);
+    for (int i=0; i<101; ++i)
+    {
+      x[i] = i/50.0 - 1; // x goes from -1 to 1
+      y[i] = x[i]*x[i];  // let's plot a quadratic function
+    }
+    ui->grafico->addGraph();
+    ui->grafico->graph(0)->setData(x, y);
+    // give the axes some labels:
+    ui->grafico->xAxis->setLabel("x");
+    ui->grafico->yAxis->setLabel("y");
+    // set axes ranges, so we see all data:
+    ui->grafico->xAxis->setRange(-1, 1);
+    ui->grafico->yAxis->setRange(0, 1);
 }
 
 TestView::~TestView()
