@@ -2,10 +2,11 @@
 #define AUDIOVIEW_H
 
 #include <QWidget>
-#include "views/view.h"
-#include "logica/audio.h"
 #include <QVector>
 #include <QPair>
+#include "views/view.h"
+#include "logica/audio.h"
+#include "views/utils/qcustomplot.h"
 
 
 namespace Ui {
@@ -21,10 +22,14 @@ public:
     ~AudioView();
 
     void handle() override;
-    void updateOperatore(QVector<QVector<double>*>, int = 0);
+    void updateAllOp();
+    void updateOperatore(QCustomPlot*, Audio*);
 
 private:
     Ui::AudioView *ui;
+    Audio* operatoreUno;
+    Audio* operatoreDue;
+    Audio* operatoreTre;
 
 signals:
     void signalBack();

@@ -1,16 +1,23 @@
 #include "audioview.h"
 #include "ui_audioview.h"
 
+#include <QDebug>
 
 AudioView::AudioView(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::AudioView)
 {
+    operatoreUno = new Audio();
+    operatoreDue = new Audio();
+    operatoreTre = new Audio();
 }
 
 AudioView::~AudioView()
 {
     delete ui;
+    delete operatoreUno;
+    delete operatoreDue;
+    delete operatoreTre;
 }
 
 void AudioView::handle() {
@@ -20,95 +27,97 @@ void AudioView::handle() {
 
     connect(ui->btnBack, SIGNAL(clicked(bool)), this, SIGNAL(signalBack()));
 
-    connect(ui->btnInserisciOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaUno));
-    connect(ui->btnSostituisciOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaUno));
-    connect(ui->btnOttieniOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaUno));
-    connect(ui->btnEliminaOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaUno));
+    connect(ui->btnInserisciOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaUno()));
+    connect(ui->btnSostituisciOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaUno()));
+    connect(ui->btnOttieniOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaUno()));
+    connect(ui->btnEliminaOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaUno()));
 
-    connect(ui->btnInserisciOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaDue));
-    connect(ui->btnSostituisciOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaDue));
-    connect(ui->btnOttieniOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaDue));
-    connect(ui->btnEliminaOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaDue));
+    connect(ui->btnInserisciOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaDue()));
+    connect(ui->btnSostituisciOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaDue()));
+    connect(ui->btnOttieniOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaDue()));
+    connect(ui->btnEliminaOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaDue()));
 
-    connect(ui->btnSommaOndeAudio, SIGNAL(clicked(bool)), this, SLOT(slotCalcola));
-    connect(ui->btnSottrazioneOndeAudio, SIGNAL(clicked(bool)), this, SLOT(slotCalcola));
-    connect(ui->btnDivisioneOndeAudio, SIGNAL(clicked(bool)), this, SLOT(slotCalcola));
-    connect(ui->btnMoltiplicazioneOndeAudio, SIGNAL(clicked(bool)), this, SLOT(slotCalcola));
-    connect(ui->btnUguaglianzaOndeAudio, SIGNAL(clicked(bool)), this, SLOT(slotCalcola));
+    connect(ui->btnSommaOndeAudio, SIGNAL(clicked(bool)), this, SLOT(slotCalcola()));
+    connect(ui->btnSottrazioneOndeAudio, SIGNAL(clicked(bool)), this, SLOT(slotCalcola()));
+    connect(ui->btnDivisioneOndeAudio, SIGNAL(clicked(bool)), this, SLOT(slotCalcola()));
+    connect(ui->btnMoltiplicazioneOndeAudio, SIGNAL(clicked(bool)), this, SLOT(slotCalcola()));
+    connect(ui->btnUguaglianzaOndeAudio, SIGNAL(clicked(bool)), this, SLOT(slotCalcola()));
 
-    // Setup grafici
-    /*ui->widgetOndaUno->addGraph();
-    ui->widgetOndaUno->graph(0)->setPen(QPen(Qt::blue));
-    ui->widgetOndaUno->graph(0)->setBrush(QBrush(QColor(0, 0, 255, 20)));
-
-    QVector<double> x(251), y0(251), y1(251);
-    for (int i=0; i<251; ++i)
-    {
-      x[i] = i;
-      y0[i] = qExp(-i/150.0)*qCos(i/10.0); // exponentially decaying cosine
-      y1[i] = qExp(-i/150.0);              // exponential envelope
-    }
+    *operatoreTre = *operatoreUno + *operatoreDue;
+    updateOperatore(ui->widgetOndaUno, operatoreUno);
+    updateOperatore(ui->widgetOndaDue, operatoreDue);
+    updateOperatore(ui->widgetRisultato, operatoreTre);
 
     ui->widgetOndaUno->xAxis2->setVisible(true);
     ui->widgetOndaUno->xAxis2->setTickLabels(false);
     ui->widgetOndaUno->yAxis2->setVisible(true);
     ui->widgetOndaUno->yAxis2->setTickLabels(false);
-    // make left and bottom axes always transfer their ranges to right and top axes:
-    connect(ui->widgetOndaUno->xAxis, SIGNAL(rangeChanged(QCPRange)), ui->widgetOndaUno->xAxis2, SLOT(setRange(QCPRange)));
-    connect(ui->widgetOndaUno->yAxis, SIGNAL(rangeChanged(QCPRange)), ui->widgetOndaUno->yAxis2, SLOT(setRange(QCPRange)));
-    // pass data points to graphs:
-    ui->widgetOndaUno->graph(0)->setData(x, y0);
-    ui->widgetOndaUno->graph(0)->rescaleAxes();*/
 }
 
+void AudioView::updateAllOp() {
+    updateOperatore(ui->widgetOndaUno, operatoreUno);
+    updateOperatore(ui->widgetOndaDue, operatoreDue);
+    updateOperatore(ui->widgetRisultato, operatoreTre);
+}
 
-void AudioView::updateOperatore(QVector<QVector<double>*> valori, int operatore) {
-    switch (operatore) {
-    case 1:
-        { // onda 1
-            ui->widgetOndaUno->removeGraph(0);
-            ui->widgetOndaUno->removeGraph(1);
-            ui->widgetOndaUno->addGraph();
-            ui->widgetOndaUno->addGraph();
+void AudioView::updateOperatore(QCustomPlot* cPlot, Audio* audio) {
+    cPlot->removeGraph(0);
+    cPlot->removeGraph(1);
+    cPlot->addGraph();
+    cPlot->addGraph();
+    cPlot->graph(0)->setPen(QPen(Qt::blue));
+    cPlot->graph(0)->setBrush(QBrush(QColor(0, 0, 255, 20)));
+    cPlot->graph(1)->setPen(QPen(Qt::red));
+    cPlot->graph(1)->setBrush(QBrush(QColor(0, 255, 0, 20)));
 
-            QVector<double> x(valori[0]->length());
-            for (int i=0; i<valori[0]->length(); ++i)
-            { x[i] = i; }
-            auto it = valori.begin();
-            for ( ; it != valori.end(); ++it) {
-                ui->widgetOndaUno->graph(0)->setData(x, *valori[0]);
-                ui->widgetOndaUno->graph(1)->setData(x, *valori[1]);
-            }
-            ui->widgetOndaUno->graph(0)->rescaleAxes();
-            ui->widgetOndaUno->graph(1)->rescaleAxes(true);
-        }
-        break;
+    for (int i=0; i < audio->waveLenght() ; ++i) {
+        cPlot->graph(0)->addData(i, audio->getAmpVal(i));
+        cPlot->graph(1)->addData(i, audio->getAmpVal(i, Audio::ondeDisponibili::ondaDx));
+        qDebug() << "Aggiornata onda:" << audio->getAmpVal((i));
     }
+
+    cPlot->graph(0)->rescaleAxes();
+    cPlot->graph(1)->rescaleAxes(true);
+    cPlot->replot();
 }
 
 void AudioView::slotOpOndaUno() {
     QString valOndaUnoSx = ui->lineEditValoriOndaUnoOndaSx->text();
     QString valOndaUnoDx = ui->lineEditValoriOndaUnoOndaDx->text();
-    QString indOndaUno = ui->lineEditIndiceOndaUno->text();
-    QString lungOndaUno = ui->lineEditLunghezzaOndaUno->text();
+    int indOndaUno = ui->lineEditIndiceOndaUno->text().simplified().toLower().replace( " ", "" ).toInt();
+    int lungOndaUno = ui->lineEditLunghezzaOndaUno->text().simplified().toLower().replace( " ", "" ).toInt();
 
-    int operazioneDaEseguire = -1;
+    // controlli vari sul formato degli input
+    valOndaUnoSx = valOndaUnoSx.simplified().toLower();
+    valOndaUnoSx.replace( " ", "" );
+    valOndaUnoDx = valOndaUnoDx.simplified().toLower();
+    valOndaUnoDx.replace( " ", "" );
+    QStringList listUnoSx = valOndaUnoSx.split(',');
+    QStringList listUnoDx = valOndaUnoDx.split(',');
 
     if (sender() == ui->btnInserisciOndaUno) {
-        operazioneDaEseguire = Audio::operazioniDisponibili::opPush;
+        //operazioneDaEseguire = Audio::operazioniDisponibili::opPush;
+        if (listUnoSx.length() != listUnoDx.length()) {
+            // trow err
+        }else{
+            for (int i = 0; i < listUnoSx.length() ; ++i) {
+                qDebug() << listUnoSx[i].toDouble() << " - " <<
+                            listUnoDx[i].toDouble() << " - " <<
+                            indOndaUno+i;
+                operatoreUno->pushPoint(listUnoSx[i].toDouble() , listUnoDx[i].toDouble(), (indOndaUno < 0 ? -1 : indOndaUno+i));
+            }
+            qDebug() << "lol--" << listUnoSx.length()  << "--" << operatoreUno->waveLenght();
+            updateAllOp();
+        }
     } else if (sender() == ui->btnSostituisciOndaUno){
-        operazioneDaEseguire = Audio::operazioniDisponibili::opSostituzione;
+        //operazioneDaEseguire = Audio::operazioniDisponibili::opSostituzione;
     } else if (sender() == ui->btnOttieniOndaUno) {
-        operazioneDaEseguire = Audio::operazioniDisponibili::opGet;
+        //operazioneDaEseguire = Audio::operazioniDisponibili::opGet;
     } else if (sender() == ui->btnEliminaOndaUno) {
-        operazioneDaEseguire = Audio::operazioniDisponibili::opRemove;
+        //operazioneDaEseguire = Audio::operazioniDisponibili::opRemove;
     }
 
-    /*if (operazioneDaEseguire >= 0) emit signalOpOndaUno(operazioneDaEseguire,
-                                                        valOndaUnoSx,
-                                                        valOndaUnoDx,
-                                                        indOndaUno,
-                                                        lungOndaUno);*/
+
 }
 
 /*void AudioView::slotOpOndaUnoEseguita(Audio risultato) {

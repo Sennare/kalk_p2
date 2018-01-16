@@ -25,8 +25,8 @@ void Audio::removeWAmp(int index) {
 }
 
 void Audio::pushPoint(double x, double y, int index, bool insert) {
-    this->setVAmp(x, index, insert);
-    this->setWAmp(y, index, insert);
+    setVAmp(x, index, insert);
+    setWAmp(y, index, insert);
 }
 
 void Audio::removePoint(const int index){

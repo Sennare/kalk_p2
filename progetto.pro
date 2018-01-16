@@ -26,7 +26,6 @@ SOURCES += main.cpp\
     logica/audio.cpp \
     logica/coloredwave.cpp \
     views/audioview.cpp \
-    controllers/audiocontroller.cpp \
     views/utils/qcustomplot.cpp \
     views/coloredwaveview.cpp \
     views/view.cpp
@@ -42,7 +41,6 @@ HEADERS  += progetto.h\
     logica/audio.h \
     logica/coloredwave.h \
     views/audioview.h \
-    controllers/audiocontroller.h \
     views/utils/qcustomplot.h \
     views/coloredwaveview.h \
     views/view.h
