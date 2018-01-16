@@ -6,7 +6,7 @@
 
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = progetto
 TEMPLATE = app
@@ -30,6 +30,7 @@ SOURCES += main.cpp\
     logica/coloredwave.cpp \
     views/audioview.cpp \
     controllers/audiocontroller.cpp
+    views/utils/qcustomplot.cpp
 
 HEADERS  += progetto.h\
 	helper.h \
@@ -45,7 +46,8 @@ HEADERS  += progetto.h\
     logica/audio.h \
     logica/coloredwave.h \
     views/audioview.h \
-    controllers/audiocontroller.h
+    controllers/audiocontroller.h \
+    views/utils/qcustomplot.h
 
 FORMS    += progetto.ui \
     views/kalkselectorview.ui \
