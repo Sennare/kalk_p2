@@ -4,7 +4,6 @@
 #include <QMovie>
 #include <QPainter>
 #include <QStringListModel>
-#include "views/utils/qcustomplot.h"
 
 TestView::TestView(QWidget *parent) :
     QWidget(parent),

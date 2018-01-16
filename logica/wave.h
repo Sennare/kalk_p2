@@ -13,13 +13,13 @@ class Wave
 protected:
     QVector<double> v;
     void setVAmp(double, int=-1, bool = false);
+    double getVAmp(int) const;
     void removeVAmp(int);
 
 public:
     Wave();
     Wave(QString);
 
-    double getVAmp(int) const;
     virtual ~Wave() = default;
 
     virtual void pushPoint(double, int=-1, bool=false);  //aggiunge un valore all'onda

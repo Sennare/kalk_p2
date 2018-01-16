@@ -29,7 +29,7 @@ SOURCES += main.cpp\
     logica/audio.cpp \
     logica/coloredwave.cpp \
     views/audioview.cpp \
-    controllers/audiocontroller.cpp
+    controllers/audiocontroller.cpp \
     views/utils/qcustomplot.cpp
 
 HEADERS  += progetto.h\

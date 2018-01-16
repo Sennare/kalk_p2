@@ -2,6 +2,7 @@
 #define TESTVIEW_H
 
 #include <QWidget>
+#include "views/utils/qcustomplot.h"
 
 namespace Ui {
 class TestView;

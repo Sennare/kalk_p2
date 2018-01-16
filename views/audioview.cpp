@@ -24,11 +24,59 @@ AudioView::AudioView(QWidget *parent) :
     connect(ui->btnDivisioneOndeAudio, SIGNAL(clicked(bool)), this, SLOT(slotCalcola));
     connect(ui->btnMoltiplicazioneOndeAudio, SIGNAL(clicked(bool)), this, SLOT(slotCalcola));
     connect(ui->btnUguaglianzaOndeAudio, SIGNAL(clicked(bool)), this, SLOT(slotCalcola));
+
+    // Setup grafici
+    /*ui->widgetOndaUno->addGraph();
+    ui->widgetOndaUno->graph(0)->setPen(QPen(Qt::blue));
+    ui->widgetOndaUno->graph(0)->setBrush(QBrush(QColor(0, 0, 255, 20)));
+
+    QVector<double> x(251), y0(251), y1(251);
+    for (int i=0; i<251; ++i)
+    {
+      x[i] = i;
+      y0[i] = qExp(-i/150.0)*qCos(i/10.0); // exponentially decaying cosine
+      y1[i] = qExp(-i/150.0);              // exponential envelope
+    }
+
+    ui->widgetOndaUno->xAxis2->setVisible(true);
+    ui->widgetOndaUno->xAxis2->setTickLabels(false);
+    ui->widgetOndaUno->yAxis2->setVisible(true);
+    ui->widgetOndaUno->yAxis2->setTickLabels(false);
+    // make left and bottom axes always transfer their ranges to right and top axes:
+    connect(ui->widgetOndaUno->xAxis, SIGNAL(rangeChanged(QCPRange)), ui->widgetOndaUno->xAxis2, SLOT(setRange(QCPRange)));
+    connect(ui->widgetOndaUno->yAxis, SIGNAL(rangeChanged(QCPRange)), ui->widgetOndaUno->yAxis2, SLOT(setRange(QCPRange)));
+    // pass data points to graphs:
+    ui->widgetOndaUno->graph(0)->setData(x, y0);
+    ui->widgetOndaUno->graph(0)->rescaleAxes();*/
 }
 
 AudioView::~AudioView()
 {
     delete ui;
+}
+
+void AudioView::updateOperatore(QVector<QVector<double>*> valori, int operatore) {
+    switch (operatore) {
+    case 1:
+        { // onda 1
+            ui->widgetOndaUno->removeGraph(0);
+            ui->widgetOndaUno->removeGraph(1);
+            ui->widgetOndaUno->addGraph();
+            ui->widgetOndaUno->addGraph();
+
+            QVector<double> x(valori[0]->length());
+            for (int i=0; i<valori[0]->length(); ++i)
+            { x[i] = i; }
+            auto it = valori.begin();
+            for ( ; it != valori.end(); ++it) {
+                ui->widgetOndaUno->graph(0)->setData(x, *valori[0]);
+                ui->widgetOndaUno->graph(1)->setData(x, *valori[1]);
+            }
+            ui->widgetOndaUno->graph(0)->rescaleAxes();
+            ui->widgetOndaUno->graph(1)->rescaleAxes(true);
+        }
+        break;
+    }
 }
 
 void AudioView::slotOpOndaUno() {

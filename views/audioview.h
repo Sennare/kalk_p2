@@ -3,6 +3,9 @@
 
 #include <QWidget>
 #include "logica/audio.h"
+#include <QVector>
+#include <QPair>
+
 
 namespace Ui {
 class AudioView;
@@ -16,6 +19,7 @@ public:
     explicit AudioView(QWidget *parent = 0);
     ~AudioView();
 
+    void updateOperatore(QVector<QVector<double>*>, int = 0);
 private:
     Ui::AudioView *ui;
 
