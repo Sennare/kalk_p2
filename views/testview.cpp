@@ -3,6 +3,7 @@
 
 #include <QMovie>
 #include <QPainter>
+#include <QStringListModel>
 
 TestView::TestView(QWidget *parent) :
     QWidget(parent),
@@ -19,6 +20,18 @@ TestView::TestView(QWidget *parent) :
     grafico->initialize(400,400,300,100);
     ui->widget = grafico;
     ui->widget->show();
+
+    QStringListModel* model = new QStringListModel();
+    QStringList list;
+    list << "50";
+    list << "-23";
+    list << "54";
+    list << "70";
+    list << "-60";
+    list << "50";
+    model->setStringList(list);
+    ui->listView->setModel(model);
+
 }
 
 TestView::~TestView()
