@@ -407,7 +407,7 @@
     <enum>Qt::Vertical</enum>
    </property>
   </widget>
-  <widget class="QListWidget" name="listWidget">
+  <widget class="QListWidget" name="listWidgetColoriOndaUno">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -456,7 +456,7 @@
     <string>B:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="lineEditROndaUno">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -466,7 +466,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_2">
+  <widget class="QLineEdit" name="lineEditGOndaUno">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -476,7 +476,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_3">
+  <widget class="QLineEdit" name="lineEditBOndaUno">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -486,7 +486,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider">
+  <widget class="QSlider" name="horizontalSliderROndaUno">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -499,7 +499,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_2">
+  <widget class="QSlider" name="horizontalSliderGOndaUno">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -512,7 +512,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_3">
+  <widget class="QSlider" name="horizontalSliderBOndaUno">
    <property name="geometry">
     <rect>
      <x>90</x>
@@ -525,7 +525,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_4">
+  <widget class="QLineEdit" name="lineEditStringOndaUno">
    <property name="geometry">
     <rect>
      <x>220</x>
@@ -548,7 +548,7 @@
     <string>Stringa:</string>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_4">
+  <widget class="QSlider" name="horizontalSliderROndaDue">
    <property name="geometry">
     <rect>
      <x>440</x>
@@ -561,7 +561,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_5">
+  <widget class="QSlider" name="horizontalSliderGOndaDue">
    <property name="geometry">
     <rect>
      <x>440</x>
@@ -613,7 +613,7 @@
     <string>Stringa:</string>
    </property>
   </widget>
-  <widget class="QListWidget" name="listWidget_2">
+  <widget class="QListWidget" name="listWidgetColoriOndaDue">
    <property name="geometry">
     <rect>
      <x>360</x>
@@ -623,7 +623,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_5">
+  <widget class="QLineEdit" name="lineEditStringOndaDue">
    <property name="geometry">
     <rect>
      <x>570</x>
@@ -633,7 +633,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_6">
+  <widget class="QLineEdit" name="lineEditGOndaDue">
    <property name="geometry">
     <rect>
      <x>440</x>
@@ -643,7 +643,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QSlider" name="horizontalSlider_6">
+  <widget class="QSlider" name="horizontalSliderBOndaDue">
    <property name="geometry">
     <rect>
      <x>440</x>
@@ -669,7 +669,7 @@
     <string>G:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_7">
+  <widget class="QLineEdit" name="lineEditROndaDue">
    <property name="geometry">
     <rect>
      <x>440</x>
@@ -679,7 +679,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_8">
+  <widget class="QLineEdit" name="lineEditBOndaDue">
    <property name="geometry">
     <rect>
      <x>440</x>

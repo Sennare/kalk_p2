@@ -2,6 +2,7 @@
 #include "views/kalkselectorview.h"
 #include "views/audioview.h"
 #include "views/testview.h"
+#include "views/coloredwaveview.h"
 
 Application* Application::istanza = 0;
 
@@ -63,6 +64,10 @@ void Application::slotOpenKalkType(int tipo) {
         connect(aux, &AudioView::signalBack, this, &Application::slotBack);
         initializeKalk(aux);}
         break;
+    case Application::KalkType::OndeColorate:{
+        ColoredWaveView* aux = new ColoredWaveView();
+        connect(aux, &ColoredWaveView::signalBack, this, &Application::slotBack);
+        initializeKalk(aux);}
     }
 
 }

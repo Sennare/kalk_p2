@@ -12,3 +12,10 @@ ColoredWaveView::~ColoredWaveView()
 {
     delete ui;
 }
+
+void ColoredWaveView::handle() {
+    ui->setupUi(this);
+    show();
+
+    connect(ui->btnBack, SIGNAL(clicked(bool)), this, SIGNAL(signalBack()));
+}

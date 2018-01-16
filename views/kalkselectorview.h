@@ -25,6 +25,7 @@ private:
 private slots:
     void slotOpenComplex();
     void slotOpenAudio();
+    void slotOpenColoredWave();
 
 signals:
     void signalBack();
