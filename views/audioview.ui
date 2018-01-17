@@ -6,31 +6,68 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>713</width>
-    <height>576</height>
+    <width>710</width>
+    <height>649</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">#AudioView {
+	background-color: #eeeeee;
+}
+
+QPushButton {
+	border-style: solid;
+	border-width: 2px;
+	border-color:  #dddddd;
+	background: white;
+	color: #222222;
+}
+
+QPushButton:hover {
+	border-color: #cccccc;
+	background: #dddddd;
+}
+
+QPushButton:pressed {
+	border-color: #bebebe;
+	background: #cccccc;
+}
+
+QLineEdit {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #dddddd;
+	background: white;
+	padding-left: 4px;
+	padding-right: 4px;
+}</string>
+  </property>
   <widget class="QPushButton" name="btnBack">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>51</width>
-     <height>21</height>
+     <x>10</x>
+     <y>10</y>
+     <width>101</width>
+     <height>16</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>7</pointsize>
+    </font>
+   </property>
    <property name="text">
-    <string>back</string>
+    <string>Back</string>
    </property>
   </widget>
   <widget class="Line" name="line">
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>160</y>
+     <y>220</y>
      <width>711</width>
      <height>16</height>
     </rect>
@@ -43,9 +80,9 @@
    <property name="geometry">
     <rect>
      <x>340</x>
-     <y>170</y>
+     <y>230</y>
      <width>20</width>
-     <height>411</height>
+     <height>421</height>
     </rect>
    </property>
    <property name="orientation">
@@ -56,10 +93,13 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>380</y>
+     <y>450</y>
      <width>331</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="text">
+    <string>2,-8,4,-6,12,-3,6</string>
    </property>
    <property name="placeholderText">
     <string>Formato: numero, numero</string>
@@ -69,7 +109,7 @@
    <property name="geometry">
     <rect>
      <x>110</x>
-     <y>490</y>
+     <y>560</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -82,7 +122,7 @@
    <property name="geometry">
     <rect>
      <x>110</x>
-     <y>530</y>
+     <y>600</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -95,7 +135,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>480</y>
+     <y>550</y>
      <width>71</width>
      <height>31</height>
     </rect>
@@ -103,15 +143,21 @@
    <property name="inputMask">
     <string/>
    </property>
+   <property name="text">
+    <string>-1</string>
+   </property>
   </widget>
   <widget class="QLineEdit" name="lineEditValoriOndaUnoOndaDx">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>430</y>
+     <y>500</y>
      <width>331</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="text">
+    <string>-12,3,-6,2,-8,4,-3</string>
    </property>
    <property name="placeholderText">
     <string>Formato: numero, numero</string>
@@ -121,7 +167,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>540</y>
+     <y>610</y>
      <width>71</width>
      <height>31</height>
     </rect>
@@ -129,15 +175,21 @@
    <property name="inputMask">
     <string/>
    </property>
+   <property name="text">
+    <string>0</string>
+   </property>
   </widget>
   <widget class="QPushButton" name="btnSottrazioneOndeAudio">
    <property name="geometry">
     <rect>
      <x>640</x>
-     <y>10</y>
+     <y>30</y>
      <width>61</width>
-     <height>51</height>
+     <height>91</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size: 28px;</string>
    </property>
    <property name="text">
     <string>-</string>
@@ -147,7 +199,7 @@
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>530</y>
+     <y>600</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -160,7 +212,7 @@
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>490</y>
+     <y>560</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -173,10 +225,13 @@
    <property name="geometry">
     <rect>
      <x>570</x>
-     <y>10</y>
+     <y>30</y>
      <width>61</width>
-     <height>51</height>
+     <height>91</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size: 28px;</string>
    </property>
    <property name="text">
     <string>+</string>
@@ -186,10 +241,13 @@
    <property name="geometry">
     <rect>
      <x>640</x>
-     <y>70</y>
+     <y>130</y>
      <width>61</width>
-     <height>51</height>
+     <height>91</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size: 28px;</string>
    </property>
    <property name="text">
     <string>:</string>
@@ -199,33 +257,23 @@
    <property name="geometry">
     <rect>
      <x>570</x>
-     <y>70</y>
+     <y>130</y>
      <width>61</width>
-     <height>51</height>
+     <height>91</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font-size: 28px;</string>
    </property>
    <property name="text">
     <string>x</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnUguaglianzaOndeAudio">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>130</y>
-     <width>351</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>=</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>360</y>
+     <y>430</y>
      <width>161</width>
      <height>17</height>
     </rect>
@@ -238,7 +286,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>410</y>
+     <y>480</y>
      <width>161</width>
      <height>20</height>
     </rect>
@@ -251,7 +299,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>460</y>
+     <y>530</y>
      <width>67</width>
      <height>17</height>
     </rect>
@@ -264,7 +312,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>520</y>
+     <y>590</y>
      <width>81</width>
      <height>17</height>
     </rect>
@@ -277,7 +325,7 @@
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>460</y>
+     <y>530</y>
      <width>67</width>
      <height>17</height>
     </rect>
@@ -290,7 +338,7 @@
    <property name="geometry">
     <rect>
      <x>590</x>
-     <y>490</y>
+     <y>560</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -303,7 +351,7 @@
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>540</y>
+     <y>610</y>
      <width>71</width>
      <height>31</height>
     </rect>
@@ -311,12 +359,15 @@
    <property name="inputMask">
     <string/>
    </property>
+   <property name="text">
+    <string>0</string>
+   </property>
   </widget>
   <widget class="QLabel" name="label_6">
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>520</y>
+     <y>590</y>
      <width>81</width>
      <height>17</height>
     </rect>
@@ -329,7 +380,7 @@
    <property name="geometry">
     <rect>
      <x>470</x>
-     <y>490</y>
+     <y>560</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -342,10 +393,13 @@
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>380</y>
+     <y>450</y>
      <width>341</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="text">
+    <string>2,-8,4,-6,12,-3,6</string>
    </property>
    <property name="placeholderText">
     <string>Formato: numero, numero</string>
@@ -355,10 +409,13 @@
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>430</y>
+     <y>500</y>
      <width>341</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="text">
+    <string>-12,3,-6,2,-8,4,-3</string>
    </property>
    <property name="placeholderText">
     <string>Formato: numero, numero</string>
@@ -368,7 +425,7 @@
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>410</y>
+     <y>480</y>
      <width>161</width>
      <height>20</height>
     </rect>
@@ -381,7 +438,7 @@
    <property name="geometry">
     <rect>
      <x>470</x>
-     <y>530</y>
+     <y>600</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -394,7 +451,7 @@
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>360</y>
+     <y>430</y>
      <width>161</width>
      <height>17</height>
     </rect>
@@ -407,7 +464,7 @@
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>480</y>
+     <y>550</y>
      <width>71</width>
      <height>31</height>
     </rect>
@@ -415,12 +472,15 @@
    <property name="inputMask">
     <string/>
    </property>
+   <property name="text">
+    <string>-1</string>
+   </property>
   </widget>
   <widget class="QPushButton" name="btnEliminaOndaDue">
    <property name="geometry">
     <rect>
      <x>590</x>
-     <y>530</y>
+     <y>600</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -434,8 +494,8 @@
     <rect>
      <x>10</x>
      <y>30</y>
-     <width>341</width>
-     <height>131</height>
+     <width>551</width>
+     <height>191</height>
     </rect>
    </property>
   </widget>
@@ -443,7 +503,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>170</y>
+     <y>240</y>
      <width>331</width>
      <height>171</height>
     </rect>
@@ -453,7 +513,7 @@
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>170</y>
+     <y>240</y>
      <width>341</width>
      <height>171</height>
     </rect>
