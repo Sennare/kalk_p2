@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include "views/view.h"
+#include "logica/coloredwave.h"
+#include "views/utils/qcustomplot.h"
 namespace Ui {
 class ColoredWaveView;
 }
@@ -16,11 +18,30 @@ public:
     ~ColoredWaveView();
 
     void handle() override;
+
+    void updateAllOp();
+
+    void updateOperatore(QCustomPlot*, ColoredWave*);
+
 private:
     Ui::ColoredWaveView *ui;
 
+    ColoredWave* operatoreUno;
+
+    ColoredWave* operatoreDue;
+
+    ColoredWave* operatoreTre;
+
 signals:
     void signalBack();
+
+private slots:
+
+    void slotOpOndaColorataUno();
+
+    void slotOpOndaColorataDue();
+
+    void slotCalcolaOndaColorata();
 };
 
 #endif // COLOREDWAVEVIEW_H
