@@ -21,7 +21,7 @@ public:
 
     void updateAllOp();
 
-   // void updateOperatore(QCustomPlot*, ColoredWave*);
+    void updateOperatore(QCustomPlot*, ColoredWave*);
 
 private:
     Ui::ColoredWaveView *ui;

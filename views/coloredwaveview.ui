@@ -254,7 +254,7 @@
     <string/>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEditValoriOndaDueOndaSx">
+  <widget class="QLineEdit" name="lineEditValoriOndaDue">
    <property name="geometry">
     <rect>
      <x>360</x>
@@ -267,7 +267,7 @@
     <string>Formato: numero, numero</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEditValoriOndaUnoOndaSx">
+  <widget class="QLineEdit" name="lineEditValoriOndaUno">
    <property name="geometry">
     <rect>
      <x>10</x>
