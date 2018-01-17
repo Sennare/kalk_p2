@@ -1,6 +1,8 @@
 #include "application.h"
-#include "controllers/kalkselectorcontroller.h"
-#include "controllers/testcontroller.h"
+#include "views/kalkselectorview.h"
+#include "views/audioview.h"
+#include "views/testview.h"
+#include "views/coloredwaveview.h"
 
 Application* Application::istanza = 0;
 
@@ -22,26 +24,26 @@ Application *Application::getIstanza() {
 
 void Application::initialize() {
     // do something   0_0
-    currentController = new KalkSelectorController();
+    currentView = new KalkSelectorView();
 
-    currentController->handle();
+    currentView->handle();
 
-    KalkSelectorController* aux = dynamic_cast<KalkSelectorController*>(currentController);
+    KalkSelectorView* aux = dynamic_cast<KalkSelectorView*>(currentView);
     connect(aux, SIGNAL(signalOpenKalk(int)), this, SLOT(slotOpenKalkType(int)));
 }
 
-void Application::initializeKalk(Controller* subC) {
-    destroyController();
-    currentController = subC;
+void Application::initializeKalk(View* subC) {
+    destroyView();
+    currentView = subC;
     subC->handle();
 }
 
-void Application::destroyController() {
-    delete currentController;
+void Application::destroyView() {
+    delete currentView;
 }
 
 void Application::exitKalk() {
-    destroyController();
+    destroyView();
     initialize();
 }
 
@@ -53,11 +55,21 @@ int Application::exec() {
 void Application::slotOpenKalkType(int tipo) {
     switch (tipo) {
     case Application::KalkType::Complessi:
-        TestController* aux = new TestController();
-        connect(aux, &TestController::signalBack, this, &Application::slotBack);
-        initializeKalk(aux);
+        {TestView* aux = new TestView();
+        connect(aux, &TestView::signalBack, this, &Application::slotBack);
+        initializeKalk(aux);}
         break;
+    case Application::KalkType::OndeAudio:{
+        AudioView* aux = new AudioView();
+        connect(aux, &AudioView::signalBack, this, &Application::slotBack);
+        initializeKalk(aux);}
+        break;
+    case Application::KalkType::OndeColorate:{
+        ColoredWaveView* aux = new ColoredWaveView();
+        connect(aux, &ColoredWaveView::signalBack, this, &Application::slotBack);
+        initializeKalk(aux);}
     }
+
 }
 
 void Application::slotBack() {
