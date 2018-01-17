@@ -6,15 +6,22 @@ QuaternionView::QuaternionView(QWidget *parent) :
     ui(new Ui::QuaternionView)
 {
     // Nothing to do here
+    op1 = new Quaternion();
+    op2 = new Quaternion();
+    op3 = new Quaternion();
 }
 
 QuaternionView::~QuaternionView()
 {
     delete ui;
+    delete op1;
+    delete op2;
+    delete op3;
 }
 
 void QuaternionView::handle() {
     ui->setupUi(this);
+    show();
 
     // Connect all buttons
     connect(ui->btnBack, SIGNAL(clicked()),             this, SIGNAL(signalBack()));
@@ -36,34 +43,32 @@ void QuaternionView::errorManager(QString err) {
 }
 
 void QuaternionView::slotCalculate() {
-    QString valA = ui->lineEditElementA->text();
-    QString valB = ui->lineEditElementB->text();
+    op1->string(ui->lineEditElementA->text());
+    op2->string(ui->lineEditElementB->text());
     // TODO: controlli dei valori ??
 
-    int operazione = -1;
+    bool operazione = true;
     if(sender() == ui->btnSomma) {
-        operazione = Quaternion::possibleKalk::calcSum;
+        *op3 = *op1 + *op2;
     }else if(sender() == ui->btnSottrazione) {
-        operazione = Quaternion::possibleKalk::calcSub;
+        *op3 = *op1 - *op2;
     }else if(sender() == ui->btnMoltiplicazione) {
-        operazione = Quaternion::possibleKalk::calcMult;
+        *op3 = *op1 * *op2;
     }else if(sender() == ui->btnDivisione) {
-        operazione = Quaternion::possibleKalk::calcDiv;
+        *op3 = *op1 / *op2;
     }else if(sender() == ui->btnInverso) {
-        operazione = Quaternion::possibleKalk::calcInverse;
+        *op3 = op1->inverse();
     }else if(sender() == ui->btnNorma) {
-        operazione = Quaternion::possibleKalk::calcNorm;
+        *op3 = op1->norm();
     }else if(sender() == ui->btnConiugato) {
-        operazione = Quaternion::possibleKalk::calcConj;
+        *op3 = op1->conjugate();
     }else if(sender() == ui->btnMoveToA) {
+        operazione = false;
         ui->lineEditElementA->setText( ui->lineEditElementC->text() );
     }else if(sender() == ui->btnMoveToB) {
+        operazione = false;
         ui->lineEditElementB->setText( ui->lineEditElementC->text() );
     }
 
-    if (operazione >= 0) emit signalCalculate(operazione, valA, valB);
-}
-
-void QuaternionView::slotCalcComplete(Quaternion res) {
-    ui->lineEditElementC->setText(res.getString());
+    if (operazione) ui->lineEditElementC->setText(op3->getString());
 }

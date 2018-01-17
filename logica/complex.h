@@ -13,16 +13,6 @@ private:
     float iVal;
 
 public:
-    enum possibleKalk {
-        calcSum,
-        calcSub,
-        calcMult,
-        calcDiv,
-        calcConj,
-        calcNorm,
-        calcInverse
-    };
-
     Complex(QString);
     Complex(float = 0, float = 0);
     ~Complex() = default;
@@ -34,6 +24,8 @@ public:
     Complex conjugate() const;
     float norm() const;
     Complex inverse() const;
+
+    void string(QString);
 
     Complex operator+(const Complex&) const;
     Complex operator-(const Complex&) const;

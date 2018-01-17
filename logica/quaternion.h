@@ -14,16 +14,6 @@ private:
     float kVal;
 
 public:
-    enum possibleKalk {
-        calcSum,
-        calcSub,
-        calcMult,
-        calcDiv,
-        calcConj,
-        calcNorm,
-        calcInverse
-    };
-
     Quaternion(QString);
     Quaternion(float = 0, float = 0, float = 0, float = 0);
     ~Quaternion() = default;
@@ -38,6 +28,8 @@ public:
     Quaternion conjugate() const;
     float norm() const;
     Quaternion inverse() const;
+
+    void string(QString);
 
     Quaternion operator+(const Quaternion&) const;
     Quaternion operator-(const Quaternion&) const;

@@ -1,22 +1,7 @@
 #include "complex.h"
 
 Complex::Complex(QString str) {
-    str = str.simplified();
-    // Controllo il formato "2,2"
-    QStringList list = str.split(',');
-    if (list.size() == 2) {
-        this->setR(list[0].toDouble());
-        this->setI(list[1].toDouble());
-    }else{
-        // Controllo il formato "2 + 2i"
-        list = str.split("+");
-        if (list.size() == 2 && list[1].indexOf("i") == list[1].length()-1 && list[1].count("i") == 1) {
-            this->setR(list[0].toDouble());
-            list[1] = list[1].replace("i", "");
-            this->setI(list[1].toDouble());
-        }else
-            throw exce_kalk(str.prepend("Formato numero non corretto\n").toStdString());
-    }
+    string(str);
 }
 
 Complex::Complex(float rVal, float iVal)
@@ -58,6 +43,25 @@ Complex Complex::inverse() const {
         throw exce_kalk("Errore divisione per 0");*/
     ret = ret / norma;
     return ret;
+}
+
+void Complex::string(QString str) {
+    str = str.simplified();
+    // Controllo il formato "2,2"
+    QStringList list = str.split(',');
+    if (list.size() == 2) {
+        this->setR(list[0].toDouble());
+        this->setI(list[1].toDouble());
+    }else{
+        // Controllo il formato "2 + 2i"
+        list = str.split("+");
+        if (list.size() == 2 && list[1].indexOf("i") == list[1].length()-1 && list[1].count("i") == 1) {
+            this->setR(list[0].toDouble());
+            list[1] = list[1].replace("i", "");
+            this->setI(list[1].toDouble());
+        }else
+            throw exce_kalk(str.prepend("Formato numero non corretto\n").toStdString());
+    }
 }
 
 Complex Complex::operator+(const Complex& b) const {

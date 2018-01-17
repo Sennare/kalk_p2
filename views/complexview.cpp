@@ -6,15 +6,22 @@ ComplexView::ComplexView(QWidget *parent) :
     ui(new Ui::ComplexView)
 {
     // Nothing to do here
+    op1 = new Complex();
+    op2 = new Complex();
+    op3 = new Complex();
 }
 
 ComplexView::~ComplexView()
 {
     delete ui;
+    delete op1;
+    delete op2;
+    delete op3;
 }
 
 void ComplexView::handle() {
     ui->setupUi(this);
+    show();
 
     // Connect all buttons
     connect(ui->btnBack, SIGNAL(clicked()),             this, SIGNAL(signalBack()));
@@ -36,34 +43,33 @@ void ComplexView::errorManager(QString err) {
 }
 
 void ComplexView::slotCalculate() {
-    QString valA = ui->lineEditElementA->text();
-    QString valB = ui->lineEditElementB->text();
+    op1->string(ui->lineEditElementA->text());
+    op2->string(ui->lineEditElementB->text());
     // TODO: controlli dei valori ??
 
-    int operazione = -1;
+
+    bool operazione = true;
     if(sender() == ui->btnSomma) {
-        operazione = Complex::possibleKalk::calcSum;
+        *op3 = *op1 + *op2;
     }else if(sender() == ui->btnSottrazione) {
-        operazione = Complex::possibleKalk::calcSub;
+        *op3 = *op1 - *op2;
     }else if(sender() == ui->btnMoltiplicazione) {
-        operazione = Complex::possibleKalk::calcMult;
+        *op3 = *op1 * *op2;
     }else if(sender() == ui->btnDivisione) {
-        operazione = Complex::possibleKalk::calcDiv;
+        *op3 = *op1 / *op2;
     }else if(sender() == ui->btnInverso) {
-        operazione = Complex::possibleKalk::calcInverse;
+        *op3 = op1->inverse();
     }else if(sender() == ui->btnNorma) {
-        operazione = Complex::possibleKalk::calcNorm;
+        *op3 = op1->norm();
     }else if(sender() == ui->btnConiugato) {
-        operazione = Complex::possibleKalk::calcConj;
+        *op3 = op1->conjugate();
     }else if(sender() == ui->btnMoveToA) {
+        operazione = false;
         ui->lineEditElementA->setText( ui->lineEditElementC->text() );
     }else if(sender() == ui->btnMoveToB) {
+        operazione = false;
         ui->lineEditElementB->setText( ui->lineEditElementC->text() );
     }
 
-    if (operazione >= 0) emit signalCalculate(operazione, valA, valB);
-}
-
-void ComplexView::slotCalcComplete(Complex res) {
-    ui->lineEditElementC->setText(res.getString());
+    if (operazione) ui->lineEditElementC->setText(op3->getString());
 }

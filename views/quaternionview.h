@@ -24,9 +24,11 @@ public:
 private:
     Ui::QuaternionView *ui;
 
+    Quaternion* op1;
+    Quaternion* op2;
+    Quaternion* op3;
 public slots:
     void slotCalculate();
-    void slotCalcComplete(Quaternion);
 
 signals:
     void signalBack();

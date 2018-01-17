@@ -1,38 +1,7 @@
 #include "quaternion.h"
-#include <QDebug>
 
 Quaternion::Quaternion(QString str) {
-    str = str.simplified().toLower();
-    str.replace( " ", "" );
-    // Controllo il formato "2,2,2,2"
-    QStringList list = str.split(',');
-    if (list.size() == 4) {
-        this->setR(list[0].toInt());
-        this->setI(list[1].toInt());
-        this->setJ(list[2].toInt());
-        this->setK(list[3].toInt());
-    }else{
-        // Controllo il formato "2 + 2i +2j + 2k"
-        list = str.split("+");
-        if (list.size() == 4 &&
-                list[1].indexOf("i") == (list[1].length()-1) && list[1].count("i") == 1 &&
-                list[2].indexOf("j") == (list[2].length()-1) && list[2].count("j") == 1 &&
-                list[3].indexOf("k") == (list[3].length()-1) && list[3].count("k") == 1) {
-            this->setR(list[0].toDouble());
-            list[1] = list[1].replace("i", "");
-            this->setI(list[1].toDouble());
-            list[1] = list[2].replace("j", "");
-            this->setJ(list[2].toDouble());
-            list[1] = list[3].replace("k", "");
-            this->setK(list[3].toDouble());
-        }else {
-            qDebug() << list[0];
-            qDebug() << list[1];
-            qDebug() << list[2];
-            qDebug() << list[3];
-            throw exce_kalk(str.prepend("\nFormato numero non corretto\n").prepend(list[1].length()).toStdString());
-        }
-    }
+    string(str);
 }
 
 Quaternion::Quaternion(float rVal, float iVal, float jVal, float kVal)
@@ -67,6 +36,7 @@ void Quaternion::inverseK() {
     this->kVal *= -1;
 }
 
+
 // TODO -> Da testare in GUI
 Quaternion Quaternion::conjugate() const {
     Quaternion res;
@@ -94,6 +64,35 @@ Quaternion Quaternion::inverse() const {
     return ret;
 }
 
+void Quaternion::string(QString str) {
+    str = str.simplified().toLower();
+    str.replace( " ", "" );
+    // Controllo il formato "2,2,2,2"
+    QStringList list = str.split(',');
+    if (list.size() == 4) {
+        this->setR(list[0].toInt());
+        this->setI(list[1].toInt());
+        this->setJ(list[2].toInt());
+        this->setK(list[3].toInt());
+    }else{
+        // Controllo il formato "2 + 2i +2j + 2k"
+        list = str.split("+");
+        if (list.size() == 4 &&
+                list[1].indexOf("i") == (list[1].length()-1) && list[1].count("i") == 1 &&
+                list[2].indexOf("j") == (list[2].length()-1) && list[2].count("j") == 1 &&
+                list[3].indexOf("k") == (list[3].length()-1) && list[3].count("k") == 1) {
+            this->setR(list[0].toDouble());
+            list[1] = list[1].replace("i", "");
+            this->setI(list[1].toDouble());
+            list[1] = list[2].replace("j", "");
+            this->setJ(list[2].toDouble());
+            list[1] = list[3].replace("k", "");
+            this->setK(list[3].toDouble());
+        }else {
+            throw exce_kalk(str.prepend("\nFormato numero non corretto\n").prepend(list[1].length()).toStdString());
+        }
+    }
+}
 
 Quaternion Quaternion::operator+(const Quaternion& b) const {
     Quaternion ret;

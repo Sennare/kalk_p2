@@ -25,9 +25,12 @@ public:
 private:
     Ui::ComplexView *ui;
 
+    Complex *op1;
+    Complex *op2;
+    Complex *op3;
+
 public slots:
     void slotCalculate();
-    void slotCalcComplete(Complex);
 
 signals:
     void signalBack();
