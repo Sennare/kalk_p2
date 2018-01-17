@@ -22,6 +22,11 @@ public:
     ~AudioView();
 
     void handle() override;
+
+    /**
+     * @name updateAllOp
+     * @brief Aggiorna la grafica di tutti i grafici della calcolatrice
+     */
     void updateAllOp();
     void updateOperatore(QCustomPlot*, Audio*);
 
@@ -43,7 +48,6 @@ private slots:
     //void slotOpOndaDueEseguita(Audio);
 
     void slotCalcola();
-
 };
 
 #endif // AUDIOVIEW_H
