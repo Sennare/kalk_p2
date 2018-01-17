@@ -1,6 +1,7 @@
 #include "application.h"
 #include "controllers/kalkselectorcontroller.h"
-#include "controllers/testcontroller.h"
+#include "controllers/complexcontroller.h"
+#include "controllers/quaternioncontroller.h"
 
 Application* Application::istanza = 0;
 
@@ -53,9 +54,14 @@ int Application::exec() {
 void Application::slotOpenKalkType(int tipo) {
     switch (tipo) {
     case Application::KalkType::Complessi:
-        TestController* aux = new TestController();
-        connect(aux, &TestController::signalBack, this, &Application::slotBack);
-        initializeKalk(aux);
+    {ComplexController* aux = new ComplexController();
+        connect(aux, &ComplexController::signalBack, this, &Application::slotBack);
+        initializeKalk(aux);}
+        break;
+    case Application::KalkType::Quaternioni:
+    {QuaternionController* aux = new QuaternionController();
+        connect(aux, &QuaternionController::signalBack, this, &Application::slotBack);
+        initializeKalk(aux);}
         break;
     }
 }

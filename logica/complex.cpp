@@ -1,12 +1,21 @@
 #include "complex.h"
 
-Complex::Complex(QString string) {
-    QStringList list = string.split(',');
+Complex::Complex(QString str) {
+    str = str.simplified();
+    // Controllo il formato "2,2"
+    QStringList list = str.split(',');
     if (list.size() == 2) {
-        this->setR(list[0].toInt());
-        this->setI(list[1].toInt());
+        this->setR(list[0].toDouble());
+        this->setI(list[1].toDouble());
     }else{
-        // TODO : Throw error
+        // Controllo il formato "2 + 2i"
+        list = str.split("+");
+        if (list.size() == 2 && list[1].indexOf("i") == list[1].length()-1 && list[1].count("i") == 1) {
+            this->setR(list[0].toDouble());
+            list[1] = list[1].replace("i", "");
+            this->setI(list[1].toDouble());
+        }else
+            throw exce_kalk(str.prepend("Formato numero non corretto\n").toStdString());
     }
 }
 
@@ -35,12 +44,18 @@ Complex Complex::conjugate() const {
 }
 
 float Complex::norm() const {
-    return sqrt(exp2(this->getR()) + exp2(this->getI()));
+    float ret;
+    if (pow(this->getR(),2) + pow(this->getI(),2) < 0)
+        throw exce_kalk("Errore radice negativa");
+    ret = sqrt(pow(this->getR(),2) + pow(this->getI(),2));
+    return ret;
 }
 
 Complex Complex::inverse() const {
-    const Complex norma(exp2(this->norm()));
+    const Complex norma(pow(this->norm(),2));
     Complex ret = *this;
+    /*if (norma.getI() < 0)
+        throw exce_kalk("Errore divisione per 0");*/
     ret = ret / norma;
     return ret;
 }
@@ -71,9 +86,13 @@ Complex Complex::operator/(const Complex& b) const {
     inverse.inverseI();
     denominatoreComplex = inverse * b;
     float denominatore = denominatoreComplex.getR();
+    float rPart;
+    float iPart;
+    if (denominatore < 0)
+        throw exce_kalk("Errore divisione per 0");
     inverse = *this * inverse;
-    float rPart = inverse.getR() / denominatore;
-    float iPart = inverse.getI() / denominatore;
+    rPart = inverse.getR() / denominatore;
+    iPart = inverse.getI() / denominatore;
     Complex res(rPart, iPart);
     return res;
 }

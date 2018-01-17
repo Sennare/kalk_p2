@@ -3,8 +3,9 @@
 
 #include <QString>
 #include <QStringList>
-#include <real.h>
 #include <cmath>
+#include "real.h"
+#include "exce_kalk.h"
 
 class Complex : public Real
 {
@@ -12,6 +13,16 @@ private:
     float iVal;
 
 public:
+    enum possibleKalk {
+        calcSum,
+        calcSub,
+        calcMult,
+        calcDiv,
+        calcConj,
+        calcNorm,
+        calcInverse
+    };
+
     Complex(QString);
     Complex(float = 0, float = 0);
     ~Complex() = default;

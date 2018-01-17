@@ -1,10 +1,11 @@
 #ifndef QUATERNION_H
 #define QUATERNION_H
 
-#include <complex.h>
-#include <cmath>
 #include <QString>
 #include <QStringList>
+#include <cmath>
+#include "complex.h"
+#include "exce_kalk.h"
 
 class Quaternion : public Complex
 {
@@ -13,6 +14,16 @@ private:
     float kVal;
 
 public:
+    enum possibleKalk {
+        calcSum,
+        calcSub,
+        calcMult,
+        calcDiv,
+        calcConj,
+        calcNorm,
+        calcInverse
+    };
+
     Quaternion(QString);
     Quaternion(float = 0, float = 0, float = 0, float = 0);
     ~Quaternion() = default;
