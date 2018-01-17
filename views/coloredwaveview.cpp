@@ -6,11 +6,17 @@ ColoredWaveView::ColoredWaveView(QWidget *parent) :
     ui(new Ui::ColoredWaveView)
 {
     ui->setupUi(this);
+    operatoreUno = new ColoredWave();
+    operatoreDue = new ColoredWave();
+    operatoreTre = new ColoredWave();
 }
 
 ColoredWaveView::~ColoredWaveView()
 {
     delete ui;
+    delete operatoreUno;
+    delete operatoreDue;
+    delete operatoreTre;
 }
 
 void ColoredWaveView::handle() {
@@ -34,10 +40,6 @@ void ColoredWaveView::handle() {
     connect(ui->btnDivisioneOndeColorate, SIGNAL(clicked(bool)), this, SLOT(slotCalcolaOndaColorata));
     connect(ui->btnMoltiplicazioneOndeColorate, SIGNAL(clicked(bool)), this, SLOT(slotCalcolaOndaColorata));
 
-    *operatoreTre = *operatoreUno + *operatoreDue;
-    updateOperatore(ui->widgetOndaUno, operatoreUno);
-    updateOperatore(ui->widgetOndaDue, operatoreDue);
-    updateOperatore(ui->widgetRisultato, operatoreTre);
 
     ui->widgetOndaUno->xAxis2->setVisible(true);
     ui->widgetOndaUno->xAxis2->setTickLabels(false);
