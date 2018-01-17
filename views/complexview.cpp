@@ -5,6 +5,15 @@ ComplexView::ComplexView(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ComplexView)
 {
+    // Nothing to do here
+}
+
+ComplexView::~ComplexView()
+{
+    delete ui;
+}
+
+void ComplexView::handle() {
     ui->setupUi(this);
 
     // Connect all buttons
@@ -19,11 +28,6 @@ ComplexView::ComplexView(QWidget *parent) :
     connect(ui->btnNorma, SIGNAL(clicked()),            this, SLOT(slotCalculate()));
     connect(ui->btnMoveToA, SIGNAL(clicked()),          this, SLOT(slotCalculate()));
     connect(ui->btnMoveToB, SIGNAL(clicked()),          this, SLOT(slotCalculate()));
-}
-
-ComplexView::~ComplexView()
-{
-    delete ui;
 }
 
 void ComplexView::errorManager(QString err) {

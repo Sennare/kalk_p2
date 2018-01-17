@@ -37,3 +37,4 @@ void KalkSelectorView::slotOpenAudio() {
 }
 void KalkSelectorView::slotOpenColoredWave() {
     emit signalOpenKalk(Application::KalkType::OndeColorate);
+}

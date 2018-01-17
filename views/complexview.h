@@ -3,19 +3,22 @@
 
 #include <QWidget>
 #include <QString>
+#include "views/view.h"
 #include "logica/complex.h"
 
 namespace Ui {
 class ComplexView;
 }
 
-class ComplexView : public QWidget
+class ComplexView : public QWidget, public View
 {
     Q_OBJECT
 
 public:
     explicit ComplexView(QWidget *parent = 0);
     ~ComplexView();
+
+    void handle() override;
 
     void errorManager(QString);
 

@@ -5,6 +5,15 @@ QuaternionView::QuaternionView(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::QuaternionView)
 {
+    // Nothing to do here
+}
+
+QuaternionView::~QuaternionView()
+{
+    delete ui;
+}
+
+void QuaternionView::handle() {
     ui->setupUi(this);
 
     // Connect all buttons
@@ -19,11 +28,6 @@ QuaternionView::QuaternionView(QWidget *parent) :
     connect(ui->btnNorma, SIGNAL(clicked()),            this, SLOT(slotCalculate()));
     connect(ui->btnMoveToA, SIGNAL(clicked()),          this, SLOT(slotCalculate()));
     connect(ui->btnMoveToB, SIGNAL(clicked()),          this, SLOT(slotCalculate()));
-}
-
-QuaternionView::~QuaternionView()
-{
-    delete ui;
 }
 
 void QuaternionView::errorManager(QString err) {

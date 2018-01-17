@@ -26,6 +26,8 @@ SOURCES += main.cpp\
     logica/wave.cpp \
     logica/audio.cpp \
     logica/coloredwave.cpp \
+    views/complexview.cpp \
+    views/quaternionview.cpp \
     views/kalkselectorview.cpp \
     views/testview.cpp \
     views/audioview.cpp \
@@ -44,6 +46,8 @@ HEADERS  += helper.h \
     logica/wave.h \
     logica/audio.h \
     logica/coloredwave.h \
+    views/complexview.h \
+    views/quaternionview.h \
     views/kalkselectorview.h \
     views/testview.h \
     views/audioview.h \
@@ -51,8 +55,7 @@ HEADERS  += helper.h \
     views/coloredwaveview.h \
     views/view.h
 
-FORMS    += progetto.ui \
-    views/kalkselectorview.ui \
+FORMS    += views/kalkselectorview.ui \
     views/testview.ui \
     views/audioview.ui \
     views/coloredwaveview.ui \

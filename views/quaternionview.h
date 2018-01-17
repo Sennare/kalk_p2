@@ -3,19 +3,22 @@
 
 #include <QWidget>
 #include <QString>
+#include "views/view.h"
 #include "logica/quaternion.h"
 
 namespace Ui {
 class QuaternionView;
 }
 
-class QuaternionView : public QWidget
+class QuaternionView : public QWidget, public View
 {
     Q_OBJECT
 
 public:
     explicit QuaternionView(QWidget *parent = 0);
     ~QuaternionView();
+
+    void handle() override;
 
     void errorManager(QString);
 private:
