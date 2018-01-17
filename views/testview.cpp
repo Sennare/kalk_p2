@@ -4,13 +4,23 @@
 #include <QMovie>
 #include <QPainter>
 #include <QStringListModel>
-#include "views/utils/qcustomplot.h"
 
 TestView::TestView(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::TestView)
 {
+}
+
+TestView::~TestView()
+{
+    delete ui;
+}
+
+void TestView::handle() {
+    // Something to do here
     ui->setupUi(this);
+    show();
+
     connect(ui->btnBack, SIGNAL(clicked(bool)), this, SLOT(slotBackPressed()));
 
     QMovie *movie = new QMovie(":/Resources/Resources/what.gif");
@@ -34,10 +44,6 @@ TestView::TestView(QWidget *parent) :
     ui->grafico->yAxis->setRange(0, 1);
 }
 
-TestView::~TestView()
-{
-    delete ui;
-}
 
 void TestView::slotBackPressed() {
     emit signalBack();

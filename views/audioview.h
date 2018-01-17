@@ -2,13 +2,18 @@
 #define AUDIOVIEW_H
 
 #include <QWidget>
+#include <QVector>
+#include <QPair>
+#include "views/view.h"
 #include "logica/audio.h"
+#include "views/utils/qcustomplot.h"
+
 
 namespace Ui {
 class AudioView;
 }
 
-class AudioView : public QWidget
+class AudioView : public QWidget, public View
 {
     Q_OBJECT
 
@@ -16,17 +21,23 @@ public:
     explicit AudioView(QWidget *parent = 0);
     ~AudioView();
 
+    void handle() override;
+
+    /**
+     * @name updateAllOp
+     * @brief Aggiorna la grafica di tutti i grafici della calcolatrice
+     */
+    void updateAllOp();
+    void updateOperatore(QCustomPlot*, Audio*);
+
 private:
     Ui::AudioView *ui;
+    Audio* operatoreUno;
+    Audio* operatoreDue;
+    Audio* operatoreTre;
 
 signals:
     void signalBack();
-
-    void signalOpOndaUno(int, QString, QString, QString, QString);
-    //void signalOpOndaUnoEseguita(Audio);
-
-    void signalOpOndaDue(int, QString, QString, QString, QString);
-    //void signalOpOndaDueEseguita(Audio);
 
 private slots:
 
@@ -37,7 +48,6 @@ private slots:
     //void slotOpOndaDueEseguita(Audio);
 
     void slotCalcola();
-
 };
 
 #endif // AUDIOVIEW_H

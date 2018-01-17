@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QApplication>
-#include "controllers/controller.h"
+#include "views/view.h"
 
 
 class Application : public QObject
@@ -12,8 +12,7 @@ class Application : public QObject
 private:
     static Application* istanza;
     QApplication qAppl;
-    Controller* currentController;
-    Controller* currentSubController;
+    View* currentView;
 public:
     explicit Application(int* argc, char** argv[]);
     ~Application();
@@ -27,8 +26,8 @@ public:
 
     static Application* getIstanza();
     void initialize();
-    void initializeKalk(Controller*);
-    void destroyController();
+    void initializeKalk(View*);
+    void destroyView();
     void exitKalk();
     int exec();
 signals:
