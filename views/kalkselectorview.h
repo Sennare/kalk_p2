@@ -24,6 +24,7 @@ private:
 
 private slots:
     void slotOpenComplex();
+    void slotOpenQuaternion();
     void slotOpenAudio();
     void slotOpenColoredWave();
 

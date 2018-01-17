@@ -17,6 +17,20 @@ public:
 
 private:
     Ui::Progetto *ui;
+
+private slots:
+    void slotRealSum();
+    void slotRealSottr();
+    void slotRealMult();
+    void slotRealDiv();
+    void slotComplexSum();
+    void slotComplexSottr();
+    void slotComplexPer();
+    void slotComplexDiv();
+    void slotQuaternionSum();
+    void slotQuaternionSottr();
+    void slotQuaternionPer();
+    void slotQuaternionDiv();
 };
 
 #endif // PROGETTO_H

@@ -15,31 +15,37 @@ TEMPLATE = app
 CONFIG += c++11
 
 SOURCES += main.cpp\
-        progetto.cpp\
-	  helper.cpp \
+          helper.cpp \
     application.cpp \
     models/model.cpp \
-    views/kalkselectorview.cpp \
-    views/testview.cpp \
+    exce_kalk.cpp \
+    logica/real.cpp \
+    logica/complex.cpp \
+    logica/quaternion.cpp \
     logica/color.cpp \
     logica/wave.cpp \
     logica/audio.cpp \
     logica/coloredwave.cpp \
+    views/kalkselectorview.cpp \
+    views/testview.cpp \
     views/audioview.cpp \
     views/utils/qcustomplot.cpp \
     views/coloredwaveview.cpp \
     views/view.cpp
 
-HEADERS  += progetto.h\
-	helper.h \
+HEADERS  += helper.h \
     application.h \
     models/model.h \
-    views/kalkselectorview.h \
-    views/testview.h \
+    exce_kalk.h \
+    logica/real.h \
+    logica/complex.h \
+    logica/quaternion.h \
     logica/color.h \
     logica/wave.h \
     logica/audio.h \
     logica/coloredwave.h \
+    views/kalkselectorview.h \
+    views/testview.h \
     views/audioview.h \
     views/utils/qcustomplot.h \
     views/coloredwaveview.h \
@@ -49,7 +55,9 @@ FORMS    += progetto.ui \
     views/kalkselectorview.ui \
     views/testview.ui \
     views/audioview.ui \
-    views/coloredwaveview.ui
+    views/coloredwaveview.ui \
+    views/complexview.ui \
+    views/quaternionview.ui
 
 RESOURCES += \
     resources.qrc

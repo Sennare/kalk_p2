@@ -3,6 +3,8 @@
 #include "views/audioview.h"
 #include "views/testview.h"
 #include "views/coloredwaveview.h"
+#include "views/complexview.h"
+#include "views/quaternionview.h"
 
 Application* Application::istanza = 0;
 
@@ -55,8 +57,13 @@ int Application::exec() {
 void Application::slotOpenKalkType(int tipo) {
     switch (tipo) {
     case Application::KalkType::Complessi:
-        {TestView* aux = new TestView();
-        connect(aux, &TestView::signalBack, this, &Application::slotBack);
+        {ComplexView* aux = new ComplexView();
+        connect(aux, &ComplexView::signalBack, this, &Application::slotBack);
+        initializeKalk(aux);}
+        break;
+    case Application::KalkType::Quaternioni:
+        {QuaternionView* aux = new QuaternionView();
+        connect(aux, &QuaternionView::signalBack, this, &Application::slotBack);
         initializeKalk(aux);}
         break;
     case Application::KalkType::OndeAudio:{
