@@ -1,7 +1,6 @@
 #include "audioview.h"
 #include "ui_audioview.h"
 
-#include <QDebug>
 
 AudioView::AudioView(QWidget *parent) :
     QWidget(parent),
@@ -77,7 +76,7 @@ void AudioView::updateOperatore(QCustomPlot* cPlot, Audio* audio) {
         cPlot->graph(1)->addData(i, audio->getAmpVal(i, Audio::ondeDisponibili::ondaDx));
     }
 
-    cPlot->graph(0)->rescaleAxes();
+    cPlot->graph(0)->rescaleAxes(true);
     cPlot->graph(1)->rescaleAxes(true);
     cPlot->replot();
 }
@@ -103,7 +102,6 @@ void AudioView::slotOpOndaUno() {
             for (int i = 0; i < listUnoSx.length() ; ++i) {
                 int indTarget = (indOndaUno<0 ? -1 : indOndaUno+i);
                 operatoreUno->pushPoint(listUnoSx[i].toDouble() , listUnoDx[i].toDouble(), indTarget, true);
-                qDebug() << "Indice target: " << indTarget << " ; Valori: " << listUnoSx[i].toDouble() <<","<< listUnoDx[i].toDouble();
             }
             updateAllOp();
         }
@@ -115,7 +113,6 @@ void AudioView::slotOpOndaUno() {
             for (int i = 0; i < listUnoSx.length() ; ++i) {
                 int indTarget = (indOndaUno<0 ? 0 : indOndaUno+i);
                 operatoreUno->pushPoint(listUnoSx[i].toDouble() , listUnoDx[i].toDouble(), indTarget, false);
-                qDebug() << "Indice target(replace): " << indTarget << " ; Valori: " << listUnoSx[i].toDouble() <<","<< listUnoDx[i].toDouble();
             }
             updateAllOp();
         }

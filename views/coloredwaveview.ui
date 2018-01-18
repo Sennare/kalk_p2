@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>590</x>
-     <y>490</y>
+     <y>520</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -30,7 +30,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>440</y>
+     <y>490</y>
      <width>71</width>
      <height>31</height>
     </rect>
@@ -38,12 +38,15 @@
    <property name="inputMask">
     <string/>
    </property>
+   <property name="text">
+    <string>-1</string>
+   </property>
   </widget>
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>420</y>
+     <y>480</y>
      <width>67</width>
      <height>17</height>
     </rect>
@@ -56,7 +59,7 @@
    <property name="geometry">
     <rect>
      <x>470</x>
-     <y>450</y>
+     <y>480</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -79,7 +82,7 @@
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>360</y>
+     <y>390</y>
      <width>161</width>
      <height>17</height>
     </rect>
@@ -92,7 +95,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>360</y>
+     <y>390</y>
      <width>161</width>
      <height>17</height>
     </rect>
@@ -105,7 +108,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>420</y>
+     <y>470</y>
      <width>67</width>
      <height>17</height>
     </rect>
@@ -128,7 +131,7 @@
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>450</y>
+     <y>470</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -137,37 +140,11 @@
     <string>Sostituisci</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEditLunghezzaOndaDue">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>500</y>
-     <width>71</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="inputMask">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>480</y>
-     <width>81</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Lunghezza</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="btnInserisciOndaUno">
    <property name="geometry">
     <rect>
      <x>110</x>
-     <y>450</y>
+     <y>470</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -193,7 +170,7 @@
    <property name="geometry">
     <rect>
      <x>470</x>
-     <y>490</y>
+     <y>520</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -206,7 +183,7 @@
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>490</y>
+     <y>510</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -241,24 +218,11 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEditLunghezzaOndaUno">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>500</y>
-     <width>71</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="inputMask">
-    <string/>
-   </property>
-  </widget>
   <widget class="QLineEdit" name="lineEditValoriOndaDue">
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>380</y>
+     <y>410</y>
      <width>341</width>
      <height>31</height>
     </rect>
@@ -271,10 +235,13 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>380</y>
+     <y>410</y>
      <width>331</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="text">
+    <string>2</string>
    </property>
    <property name="placeholderText">
     <string>Formato: numero, numero</string>
@@ -333,7 +300,7 @@
    <property name="geometry">
     <rect>
      <x>360</x>
-     <y>440</y>
+     <y>500</y>
      <width>71</width>
      <height>31</height>
     </rect>
@@ -346,7 +313,7 @@
    <property name="geometry">
     <rect>
      <x>110</x>
-     <y>490</y>
+     <y>510</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -355,24 +322,11 @@
     <string>Ottieni</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>480</y>
-     <width>81</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Lunghezza</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="btnSostituisciOndaDue">
    <property name="geometry">
     <rect>
      <x>590</x>
-     <y>450</y>
+     <y>480</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -398,17 +352,30 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>550</y>
-     <width>41</width>
-     <height>141</height>
+     <y>350</y>
+     <width>331</width>
+     <height>31</height>
     </rect>
    </property>
+   <property name="flow">
+    <enum>QListView::LeftToRight</enum>
+   </property>
+   <item>
+    <property name="text">
+     <string>sdfsdfdsf</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>sdeeeeee</string>
+    </property>
+   </item>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>550</y>
+     <x>80</x>
+     <y>560</y>
      <width>16</width>
      <height>17</height>
     </rect>
@@ -420,8 +387,8 @@
   <widget class="QLabel" name="label_7">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>600</y>
+     <x>80</x>
+     <y>610</y>
      <width>16</width>
      <height>17</height>
     </rect>
@@ -433,8 +400,8 @@
   <widget class="QLabel" name="label_9">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>650</y>
+     <x>80</x>
+     <y>660</y>
      <width>16</width>
      <height>17</height>
     </rect>
@@ -446,38 +413,47 @@
   <widget class="QLineEdit" name="lineEditROndaUno">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>550</y>
+     <x>100</x>
+     <y>560</y>
      <width>113</width>
      <height>25</height>
     </rect>
+   </property>
+   <property name="text">
+    <string>22</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEditGOndaUno">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>600</y>
+     <x>100</x>
+     <y>610</y>
      <width>113</width>
      <height>25</height>
     </rect>
+   </property>
+   <property name="text">
+    <string>33</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEditBOndaUno">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>650</y>
+     <x>100</x>
+     <y>660</y>
      <width>113</width>
      <height>25</height>
     </rect>
+   </property>
+   <property name="text">
+    <string>44</string>
    </property>
   </widget>
   <widget class="QSlider" name="horizontalSliderROndaUno">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>580</y>
+     <x>100</x>
+     <y>590</y>
      <width>111</width>
      <height>16</height>
     </rect>
@@ -489,8 +465,8 @@
   <widget class="QSlider" name="horizontalSliderGOndaUno">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>630</y>
+     <x>100</x>
+     <y>640</y>
      <width>111</width>
      <height>16</height>
     </rect>
@@ -502,8 +478,8 @@
   <widget class="QSlider" name="horizontalSliderBOndaUno">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>680</y>
+     <x>100</x>
+     <y>690</y>
      <width>111</width>
      <height>16</height>
     </rect>
@@ -515,8 +491,8 @@
   <widget class="QLineEdit" name="lineEditStringOndaUno">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>570</y>
+     <x>230</x>
+     <y>580</y>
      <width>111</width>
      <height>25</height>
     </rect>
@@ -525,8 +501,8 @@
   <widget class="QLabel" name="label_10">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>550</y>
+     <x>230</x>
+     <y>560</y>
      <width>67</width>
      <height>17</height>
     </rect>
@@ -538,8 +514,8 @@
   <widget class="QSlider" name="horizontalSliderROndaDue">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>580</y>
+     <x>460</x>
+     <y>590</y>
      <width>111</width>
      <height>16</height>
     </rect>
@@ -551,8 +527,8 @@
   <widget class="QSlider" name="horizontalSliderGOndaDue">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>630</y>
+     <x>460</x>
+     <y>640</y>
      <width>111</width>
      <height>16</height>
     </rect>
@@ -564,8 +540,8 @@
   <widget class="QLabel" name="label_11">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>650</y>
+     <x>440</x>
+     <y>660</y>
      <width>16</width>
      <height>17</height>
     </rect>
@@ -577,8 +553,8 @@
   <widget class="QLabel" name="label_12">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>550</y>
+     <x>440</x>
+     <y>560</y>
      <width>16</width>
      <height>17</height>
     </rect>
@@ -590,8 +566,8 @@
   <widget class="QLabel" name="label_13">
    <property name="geometry">
     <rect>
-     <x>570</x>
-     <y>550</y>
+     <x>590</x>
+     <y>560</y>
      <width>67</width>
      <height>17</height>
     </rect>
@@ -600,21 +576,11 @@
     <string>Stringa:</string>
    </property>
   </widget>
-  <widget class="QListWidget" name="listWidgetColoriOndaDue">
-   <property name="geometry">
-    <rect>
-     <x>360</x>
-     <y>550</y>
-     <width>41</width>
-     <height>141</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QLineEdit" name="lineEditStringOndaDue">
    <property name="geometry">
     <rect>
-     <x>570</x>
-     <y>570</y>
+     <x>590</x>
+     <y>580</y>
      <width>111</width>
      <height>25</height>
     </rect>
@@ -623,8 +589,8 @@
   <widget class="QLineEdit" name="lineEditGOndaDue">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>600</y>
+     <x>460</x>
+     <y>610</y>
      <width>113</width>
      <height>25</height>
     </rect>
@@ -633,8 +599,8 @@
   <widget class="QSlider" name="horizontalSliderBOndaDue">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>680</y>
+     <x>460</x>
+     <y>690</y>
      <width>111</width>
      <height>16</height>
     </rect>
@@ -646,8 +612,8 @@
   <widget class="QLabel" name="label_14">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>600</y>
+     <x>440</x>
+     <y>610</y>
      <width>16</width>
      <height>17</height>
     </rect>
@@ -659,8 +625,8 @@
   <widget class="QLineEdit" name="lineEditROndaDue">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>550</y>
+     <x>460</x>
+     <y>560</y>
      <width>113</width>
      <height>25</height>
     </rect>
@@ -669,11 +635,24 @@
   <widget class="QLineEdit" name="lineEditBOndaDue">
    <property name="geometry">
     <rect>
-     <x>440</x>
-     <y>650</y>
+     <x>460</x>
+     <y>660</y>
      <width>113</width>
      <height>25</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="listWidgetColoriOndaDue">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>350</y>
+     <width>341</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="flow">
+    <enum>QListView::LeftToRight</enum>
    </property>
   </widget>
  </widget>

@@ -61,9 +61,11 @@ QString Color::ConvertRGBtoHex(const Color* RGB) {
 
 QString Color::GetColore() const{
     QString color;
-    color.append(getRdec());
-    color.append(getGdec());
-    color.append(getBdec());
+    color.append(QString::number(getRdec()));
+    color.append(",");
+    color.append(QString::number(getGdec()));
+    color.append(",");
+    color.append(QString::number(getBdec()));
     return color;
 }
 
