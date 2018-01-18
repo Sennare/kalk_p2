@@ -21,21 +21,27 @@ public:
     void handle() override;
 
     void errorManager(QString);
-
 private:
     Ui::ComplexView *ui;
 
-    Complex *op1;
-    Complex *op2;
-    Complex *op3;
+    enum tipiCalcolo {
+        sum, sub, mult, div
+    };
+    Complex* op1;
+    Complex* op2;
+    Complex* op3;
+    int operationStep;
+    tipiCalcolo operation;
+
+    void appendToLog(QString);
+
+    void calcola();
 
 public slots:
     void slotCalculate();
 
 signals:
     void signalBack();
-    void signalCalculate(int, QString, QString);
-    void signalCalcComplete(Complex);
 };
 
 #endif // COMPLEXVIEW_H

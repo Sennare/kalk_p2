@@ -126,7 +126,7 @@ void QuaternionView::slotCalculate() {
     }else if(operationStep == 1) {
         if(sender() == ui->btnCalcola) {
             op2->string(ui->lineEditCurrent->text());
-            appendToLog(op1->getString());
+            appendToLog(op2->getString());
             appendToLog("=");
             calcola();
             operationStep = 0;

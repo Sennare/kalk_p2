@@ -42,8 +42,6 @@ public slots:
 
 signals:
     void signalBack();
-    void signalCalculate(int, QString, QString);
-    void signalCalcComplete(Quaternion);
 };
 
 #endif // QUATERNIONVIEW_H
