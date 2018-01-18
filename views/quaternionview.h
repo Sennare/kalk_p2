@@ -24,9 +24,19 @@ public:
 private:
     Ui::QuaternionView *ui;
 
+    enum tipiCalcolo {
+        sum, sub, mult, div
+    };
     Quaternion* op1;
     Quaternion* op2;
     Quaternion* op3;
+    int operationStep;
+    tipiCalcolo operation;
+
+    void appendToLog(QString);
+
+    void calcola();
+
 public slots:
     void slotCalculate();
 

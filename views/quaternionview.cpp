@@ -9,6 +9,7 @@ QuaternionView::QuaternionView(QWidget *parent) :
     op1 = new Quaternion();
     op2 = new Quaternion();
     op3 = new Quaternion();
+    operationStep = 0;
 }
 
 QuaternionView::~QuaternionView()
@@ -21,6 +22,7 @@ QuaternionView::~QuaternionView()
 
 void QuaternionView::handle() {
     ui->setupUi(this);
+    ui->labelLog->setAlignment(Qt::AlignRight | Qt::AlignBottom);
     show();
 
     // Connect all buttons
@@ -33,8 +35,8 @@ void QuaternionView::handle() {
     connect(ui->btnInverso, SIGNAL(clicked()),          this, SLOT(slotCalculate()));
     connect(ui->btnConiugato, SIGNAL(clicked()),        this, SLOT(slotCalculate()));
     connect(ui->btnNorma, SIGNAL(clicked()),            this, SLOT(slotCalculate()));
-    connect(ui->btnMoveToA, SIGNAL(clicked()),          this, SLOT(slotCalculate()));
-    connect(ui->btnMoveToB, SIGNAL(clicked()),          this, SLOT(slotCalculate()));
+
+    connect(ui->btnCalcola, SIGNAL(clicked()),          this, SLOT(slotCalculate()));
 }
 
 void QuaternionView::errorManager(QString err) {
@@ -42,33 +44,92 @@ void QuaternionView::errorManager(QString err) {
 
 }
 
+void QuaternionView::appendToLog(QString str) {
+    ui->labelLog->setText(
+        ui->labelLog->text().append("<p>").append(str).append("</p>"));
+}
+
+void QuaternionView::calcola() {
+    switch (operation) {
+    case tipiCalcolo::sum:
+        *op3 = *op1 + *op2;
+        break;
+    case tipiCalcolo::sub:
+        *op3 = *op1 - *op2;
+        break;
+    case tipiCalcolo::mult:
+        *op3 = *op1 * *op2;
+        break;
+    case tipiCalcolo::div:
+        *op3 = *op1 / *op2;
+        break;
+    }
+    appendToLog(op3->getString());
+    ui->lineEditCurrent->setText(op3->getString());
+}
+
 void QuaternionView::slotCalculate() {
-    op1->string(ui->lineEditElementA->text());
-    op2->string(ui->lineEditElementB->text());
     // TODO: controlli dei valori ??
 
-    bool operazione = true;
-    if(sender() == ui->btnSomma) {
-        *op3 = *op1 + *op2;
-    }else if(sender() == ui->btnSottrazione) {
-        *op3 = *op1 - *op2;
-    }else if(sender() == ui->btnMoltiplicazione) {
-        *op3 = *op1 * *op2;
-    }else if(sender() == ui->btnDivisione) {
-        *op3 = *op1 / *op2;
-    }else if(sender() == ui->btnInverso) {
-        *op3 = op1->inverse();
-    }else if(sender() == ui->btnNorma) {
-        *op3 = op1->norm();
-    }else if(sender() == ui->btnConiugato) {
-        *op3 = op1->conjugate();
-    }else if(sender() == ui->btnMoveToA) {
-        operazione = false;
-        ui->lineEditElementA->setText( ui->lineEditElementC->text() );
-    }else if(sender() == ui->btnMoveToB) {
-        operazione = false;
-        ui->lineEditElementB->setText( ui->lineEditElementC->text() );
+    if (operationStep == 0) {
+        ++operationStep;
+        ui->labelLog->setText("");
+        if(sender() == ui->btnSomma) {
+            op1->string(ui->lineEditCurrent->text());
+            operation = tipiCalcolo::sum;
+            appendToLog(op1->getString());
+            appendToLog("+");
+            ui->lineEditCurrent->setText("");
+        }else if(sender() == ui->btnSottrazione) {
+            op1->string(ui->lineEditCurrent->text());
+            operation = tipiCalcolo::sub;
+            appendToLog(op1->getString());
+            appendToLog("-");
+            ui->lineEditCurrent->setText("");
+        }else if(sender() == ui->btnMoltiplicazione) {
+            op1->string(ui->lineEditCurrent->text());
+            operation = tipiCalcolo::mult;
+            appendToLog(op1->getString());
+            appendToLog("*");
+            ui->lineEditCurrent->setText("");
+        }else if(sender() == ui->btnDivisione) {
+            op1->string(ui->lineEditCurrent->text());
+            operation = tipiCalcolo::div;
+            appendToLog(op1->getString());
+            appendToLog("/");
+            ui->lineEditCurrent->setText("");
+        }else if(sender() == ui->btnInverso) {
+            op3->string(ui->lineEditCurrent->text());
+            appendToLog(op3->getString());
+            *op3 = op3->inverse();
+            appendToLog("Inverso:");
+            appendToLog(op3->getString());
+            ui->lineEditCurrent->setText(op3->getString());
+            operationStep = 0;
+        }else if(sender() == ui->btnNorma) {
+            op3->string(ui->lineEditCurrent->text());
+            appendToLog(op3->getString());
+            *op3 = op3->norm();
+            appendToLog("Norma:");
+            appendToLog(op3->getString());
+            ui->lineEditCurrent->setText(op3->getString());
+            operationStep = 0;
+        }else if(sender() == ui->btnConiugato) {
+            op3->string(ui->lineEditCurrent->text());
+            appendToLog(op3->getString());
+            *op3 = op3->conjugate();
+            appendToLog("Coniugato:");
+            appendToLog(op3->getString());
+            ui->lineEditCurrent->setText(op3->getString());
+            operationStep = 0;
+        }
+    }else if(operationStep == 1) {
+        if(sender() == ui->btnCalcola) {
+            op2->string(ui->lineEditCurrent->text());
+            appendToLog(op1->getString());
+            appendToLog("=");
+            calcola();
+            operationStep = 0;
+        }
     }
-
-    if (operazione) ui->lineEditElementC->setText(op3->getString());
 }
