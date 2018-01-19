@@ -655,6 +655,19 @@
     <enum>QListView::LeftToRight</enum>
    </property>
   </widget>
+  <widget class="QListWidget" name="listWidgetColoriOndaTre">
+   <property name="geometry">
+    <rect>
+     <x>500</x>
+     <y>140</y>
+     <width>341</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="flow">
+    <enum>QListView::LeftToRight</enum>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>

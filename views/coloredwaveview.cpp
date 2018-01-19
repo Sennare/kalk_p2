@@ -64,28 +64,38 @@ void ColoredWaveView::handle() {
 }
 
 void ColoredWaveView::updateAllOp(){
-    updateOperatore(ui->widgetOndaUno, operatoreUno);
-    updateOperatore(ui->widgetOndaDue, operatoreDue);
-    updateOperatore(ui->widgetRisultato, operatoreTre);
+    updateOperatore(ui->widgetOndaUno, ui->listWidgetColoriOndaUno, operatoreUno);
+    updateOperatore(ui->widgetOndaDue, ui->listWidgetColoriOndaDue, operatoreDue);
+    updateOperatore(ui->widgetRisultato, ui->listWidgetColoriOndaTre, operatoreTre);
 }
 
-void ColoredWaveView::updateOperatore(QCustomPlot* cPlot, ColoredWave* cWave) {
+void ColoredWaveView::updateOperatore(QCustomPlot* cPlot, QListWidget* listW, ColoredWave* cWave) {
     cPlot->clearGraphs();
     cPlot->addGraph();
     cPlot->graph(0)->setPen(QPen(Qt::black));
     cPlot->graph(0)->setBrush(QBrush(QColor(0, 0, 255, 20)));
-
+    listW->clear();
     for(int i=0; i<cWave->waveLenght(); ++i){
         cPlot->graph(0)->addData(i, cWave->getAmpVal(i));
+
+        Color colore = cWave->getColor(i);
+        QColor coloreSfondo(colore.getRdec(), colore.getGdec(), colore.getBdec());
+        QBrush brushSfondo(coloreSfondo);
+        QColor coloreText(255-colore.getRdec(), 255-colore.getGdec(), 255-colore.getBdec());
+        QBrush brushText(coloreText);
+        QListWidgetItem *item = new QListWidgetItem();
+        item->setBackground(brushSfondo);
+        item->setForeground(brushText);
+        item->setText(QString::number(i));
+        listW->addItem(item);
     }
     cPlot->graph(0)->rescaleAxes(true);
     cPlot->replot();
 }
 
 void ColoredWaveView::slotOpOndaColorataUno(){
-    QString valOndaUno = ui->lineEditValoriOndaUno->text().simplified().toLower().replace( " ", "") ;
+    double ampOndaUno = ui->lineEditValoriOndaUno->text().simplified().toLower().replace(" ", "").toDouble();
     int indOndaUno = ui->lineEditIndiceOndaUno->text().simplified().toLower().replace( " ", "" ). toInt();
-    QStringList listaUno = valOndaUno.split(',');
 
     int valROndaUno = ui->lineEditROndaUno->text().simplified().toLower().replace( " ", "").toInt();
     int valGOndaUno = ui->lineEditGOndaUno->text().simplified().toLower().replace( " ", "").toInt();
@@ -93,34 +103,25 @@ void ColoredWaveView::slotOpOndaColorataUno(){
     Color colore(valROndaUno, valGOndaUno, valBOndaUno);
 
     if (sender() == ui->btnInserisciOndaUno){
-        for(int i = 0; i < listaUno.length(); ++i) {
-            int indTarget = (indOndaUno<0 ? -1 : indOndaUno+i);
-            operatoreUno->pushPoint(listaUno[i].toDouble(), colore, indTarget, true);
-            qDebug()<<listaUno[i]<< "-" << colore.GetColore() <<"-"<< operatoreUno->waveLenght();
-        }
+        int indTarget = (indOndaUno<0 ? -1 : indOndaUno);
+        operatoreUno->pushPoint(ampOndaUno, colore, indTarget, true);
         updateAllOp();
     } else if(sender() == ui->btnSostituisciOndaUno) {
         if (indOndaUno < 0) indOndaUno = 0;
-        for (int i=0; i<listaUno.length(); ++i){
-            int indTarget = (indOndaUno<0 ? 0 : indOndaUno+i);
-            operatoreUno->pushPoint(listaUno[i].toDouble(), colore.GetColore(), indTarget, false);
-        }
+        int indTarget = (indOndaUno<0 ? 0 : indOndaUno);
+        operatoreUno->pushPoint(ampOndaUno, colore, indTarget, false);
         updateAllOp();
     } else if (sender() == ui->btnOttieniOndaUno) {
-        QString onda, comma;
-        for (int i= indOndaUno; i<listaUno.length(); ++i) {
-            onda.append(comma);
-            onda.append(QString::number(operatoreUno->getAmpVal(i)));
-            comma = ", ";
-        }
-        ui->lineEditValoriOndaUno->setText(onda);
+        ui->lineEditValoriOndaUno->setText((QString::number(operatoreUno->getAmpVal(indOndaUno))));
+    } else if (sender() == ui->btnEliminaOndaUno) {
+        operatoreUno->removePoint(indOndaUno);
+        updateAllOp();
     }
 }
 
 void ColoredWaveView::slotOpOndaColorataDue() {
-    QString valOndaDue = ui->lineEditValoriOndaDue->text().simplified().toLower().replace( " ", "") ;
+    double ampOndaDue = ui->lineEditValoriOndaDue->text().simplified().toLower().replace( " ", "").toDouble();
     int indOndaDue = ui->lineEditIndiceOndaDue->text().simplified().toLower().replace( " ", "" ). toInt();
-    QStringList listaDue = valOndaDue.split(',');
 
     int valROndaDue = ui->lineEditROndaDue->text().simplified().toLower().replace( " ", "").toInt();
     int valGOndaDue = ui->lineEditGOndaDue->text().simplified().toLower().replace( " ", "").toInt();
@@ -128,20 +129,21 @@ void ColoredWaveView::slotOpOndaColorataDue() {
     Color colore(valROndaDue, valGOndaDue, valBOndaDue);
 
     if (sender() == ui->btnInserisciOndaDue){
-        for(int i = 0; i < listaDue.length(); ++i) {
-            int indTarget = (indOndaDue<0 ? -1 : indOndaDue+i);
-            operatoreDue->pushPoint(listaDue[i].toDouble(), colore, indTarget, true);
-            qDebug()<<listaDue[i]<< "-" << colore.GetColore() <<"-"<< operatoreDue->waveLenght();
-        }
+        int indTarget = (indOndaDue<0 ? -1 : indOndaDue);
+        operatoreDue->pushPoint(ampOndaDue, colore, indTarget, true);
         updateAllOp();
     } else if(sender() == ui->btnSostituisciOndaDue) {
         if (indOndaDue < 0) indOndaDue = 0;
-        for (int i=0; i<listaDue.length(); ++i){
-            int indTarget = (indOndaDue<0 ? 0 : indOndaDue+i);
-            operatoreDue->pushPoint(listaDue[i].toDouble(), colore.GetColore(), indTarget, false);
-        }
+        int indTarget = (indOndaDue<0 ? 0 : indOndaDue);
+        operatoreDue->pushPoint(ampOndaDue, colore, indTarget, false);
+        updateAllOp();
+    } else if (sender() == ui->btnOttieniOndaDue) {
+        ui->lineEditValoriOndaDue->setText((QString::number(operatoreDue->getAmpVal(indOndaDue))));
+    } else if (sender() == ui->btnEliminaOndaDue) {
+        operatoreDue->removePoint(indOndaDue);
         updateAllOp();
     }
+
 }
 
 void ColoredWaveView::slotCalcolaOndaColorata(){
@@ -154,5 +156,5 @@ void ColoredWaveView::slotCalcolaOndaColorata(){
     } else if (sender() == ui->btnMoltiplicazioneOndeColorate) {
         *operatoreTre = *operatoreUno * *operatoreDue;
     }
-    updateOperatore(ui->widgetRisultato, operatoreTre);
+    updateOperatore(ui->widgetRisultato, ui->listWidgetColoriOndaTre, operatoreTre);
 }
