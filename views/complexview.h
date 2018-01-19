@@ -18,18 +18,22 @@ public:
     explicit ComplexView(QWidget *parent = 0);
     ~ComplexView();
 
-    void handle() override;
+    virtual void initialize();
+    void handle();
 
     void errorManager(QString);
+
+protected:
+    Complex* op1;
+    Complex* op2;
+    Complex* op3;
+
 private:
     Ui::ComplexView *ui;
 
     enum tipiCalcolo {
         sum, sub, mult, div
     };
-    Complex* op1;
-    Complex* op2;
-    Complex* op3;
     int operationStep;
     tipiCalcolo operation;
 

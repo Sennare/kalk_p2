@@ -60,7 +60,7 @@ void Complex::string(QString str) {
             list[1] = list[1].replace("i", "");
             this->setI(list[1].toDouble());
         }else
-            throw exce_kalk(str.prepend("Formato numero non corretto\n").toStdString());
+            throw exce_kalk(str.prepend("Formato numero(c) non corretto\n").toStdString());
     }
 }
 
@@ -101,6 +101,7 @@ Complex Complex::operator/(const Complex& b) const {
     return res;
 }
 
-QString Complex::getString(unsigned int rPrec, unsigned int iPrec) {
-    return QString::number(this->getR(), 'f', rPrec) + " + " + QString::number(this->getI(), 'f', iPrec) + "i";
+QString Complex::getString(unsigned int prec) {
+    return QString::number(this->getR(), 'f', prec) + " + " +
+            QString::number(this->getI(), 'f', prec) + "i";
 }

@@ -33,7 +33,8 @@ SOURCES += main.cpp\
     views/audioview.cpp \
     views/utils/qcustomplot.cpp \
     views/coloredwaveview.cpp \
-    views/view.cpp
+    views/view.cpp \
+    views/utils/tastierinoview.cpp
 
 HEADERS  += helper.h \
     application.h \
@@ -53,14 +54,19 @@ HEADERS  += helper.h \
     views/audioview.h \
     views/utils/qcustomplot.h \
     views/coloredwaveview.h \
-    views/view.h
+    views/view.h \
+    views/utils/tastierinoview.h
 
 FORMS    += views/kalkselectorview.ui \
     views/testview.ui \
     views/audioview.ui \
     views/coloredwaveview.ui \
     views/complexview.ui \
-    views/quaternionview.ui
+    views/quaternionview.ui \
+    views/utils/tastierinoview.ui
 
 RESOURCES += \
     resources.qrc
+
+DISTFILES += \
+    logica/Real.java

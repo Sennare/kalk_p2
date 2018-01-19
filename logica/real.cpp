@@ -12,6 +12,11 @@ float Real::getR() const {
     return this->rVal;
 }
 
+void Real::string(QString str) {
+    str = str.simplified();
+    setR(str.toFloat());
+}
+
 Real Real::operator+(const Real& b) const {
     Real res;
     res.rVal = this->rVal + b.rVal;

@@ -16,10 +16,12 @@ public:
     void setR(float);
     float getR() const;
 
-    Real operator+(const Real&) const;
-    Real operator-(const Real&) const;
-    Real operator*(const Real&) const;
-    Real operator/(const Real&) const;
+    virtual void string(QString);
+
+    virtual Real operator+(const Real&) const;
+    virtual Real operator-(const Real&) const;
+    virtual Real operator*(const Real&) const;
+    virtual Real operator/(const Real&) const;
 
     virtual QString getString(unsigned int = 2);
 };

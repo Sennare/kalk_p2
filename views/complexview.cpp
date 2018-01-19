@@ -6,10 +6,6 @@ ComplexView::ComplexView(QWidget *parent) :
     ui(new Ui::ComplexView)
 {
     // Nothing to do here
-    op1 = new Complex();
-    op2 = new Complex();
-    op3 = new Complex();
-    operationStep = 0;
 }
 
 ComplexView::~ComplexView()
@@ -20,7 +16,15 @@ ComplexView::~ComplexView()
     delete op3;
 }
 
+void ComplexView::initialize() {
+    op1 = new Complex();
+    op2 = new Complex();
+    op3 = new Complex();
+}
+
 void ComplexView::handle() {
+    initialize();
+    operationStep = 0;
     ui->setupUi(this);
     ui->labelLog->setAlignment(Qt::AlignRight | Qt::AlignBottom);
     show();

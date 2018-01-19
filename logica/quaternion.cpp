@@ -161,7 +161,10 @@ Quaternion Quaternion::operator/(const Quaternion& b) const {
     return ret;
 }
 
-QString Quaternion::getString(unsigned int rPrec, unsigned int iPrec, unsigned int jPrec, unsigned int kPrec) {
-    return QString::number(this->getR(), 'f', rPrec) + " + " + QString::number(this->getI(), 'f', iPrec) + "i + " + QString::number(this->getJ(), 'f', jPrec) + "j + " + QString::number(this->getK(), 'f', kPrec) + "k";
+QString Quaternion::getString(unsigned int prec) {
+    return QString::number(this->getR(), 'f', prec) + " + " +
+            QString::number(this->getI(), 'f', prec) + "i + " +
+            QString::number(this->getJ(), 'f', prec) + "j + " +
+            QString::number(this->getK(), 'f', prec) + "k";
 
 }
