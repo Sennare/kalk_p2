@@ -6,6 +6,7 @@
 #include "views/complexview.h"
 #include "logica/quaternion.h"
 
+
 class QuaternionView : public ComplexView
 {
     Q_OBJECT

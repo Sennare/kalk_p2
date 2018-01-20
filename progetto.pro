@@ -62,7 +62,6 @@ FORMS    += views/kalkselectorview.ui \
     views/audioview.ui \
     views/coloredwaveview.ui \
     views/complexview.ui \
-    views/quaternionview.ui \
     views/utils/tastierinoview.ui
 
 RESOURCES += \

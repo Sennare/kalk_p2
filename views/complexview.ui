@@ -163,11 +163,17 @@
      <pointsize>12</pointsize>
     </font>
    </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <property name="text">
-    <string>2,2</string>
+    <string/>
    </property>
    <property name="placeholderText">
-    <string>Formato: &quot;a, b, c, d&quot;</string>
+    <string/>
    </property>
   </widget>
   <widget class="Line" name="line_2">
@@ -261,6 +267,9 @@
      <pointsize>12</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <property name="orientation">
     <enum>Qt::Vertical</enum>
    </property>
@@ -284,7 +293,25 @@
     <string>Inverso</string>
    </property>
   </widget>
+  <widget class="TastierinoView" name="widgetTastierino" native="true">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>120</y>
+     <width>291</width>
+     <height>251</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TastierinoView</class>
+   <extends>QWidget</extends>
+   <header>views/utils/tastierinoview.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

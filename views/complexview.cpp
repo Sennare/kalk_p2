@@ -1,11 +1,16 @@
 #include "complexview.h"
 #include "ui_complexview.h"
+#include <QFile>
 
 ComplexView::ComplexView(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ComplexView)
 {
     // Nothing to do here
+    QFile file (":/Resources/Resources/stylesheet.qss");
+    file.open(QFile::ReadOnly);
+    QString styleSheet = QLatin1String(file.readAll());
+    this->setStyleSheet(styleSheet);
 }
 
 ComplexView::~ComplexView()
@@ -23,11 +28,16 @@ void ComplexView::initialize() {
 }
 
 void ComplexView::handle() {
+    // Setup iniziali
+    ui->setupUi(this);
     initialize();
     operationStep = 0;
-    ui->setupUi(this);
+
+    // Sistemiamo un po' la grafica
     ui->labelLog->setAlignment(Qt::AlignRight | Qt::AlignBottom);
-    show();
+    ui->lineEditCurrent->setAlignment(Qt::AlignRight);
+
+    show(); // Mostriamo il tutto altrimenti abbiamo fatto questo per niente
 
     // Connect all buttons
     connect(ui->btnBack, SIGNAL(clicked()),             this, SIGNAL(signalBack()));
@@ -41,6 +51,9 @@ void ComplexView::handle() {
     connect(ui->btnNorma, SIGNAL(clicked()),            this, SLOT(slotCalculate()));
 
     connect(ui->btnCalcola, SIGNAL(clicked()),          this, SLOT(slotCalculate()));
+
+        // Connetto il tastierino
+    connect(ui->widgetTastierino, TastierinoView::signalKeyPressed, this, ComplexView::slotKeyPressed);
 }
 
 void ComplexView::errorManager(QString err) {
@@ -70,6 +83,7 @@ void ComplexView::calcola() {
     }
     appendToLog(op3->getString());
     ui->lineEditCurrent->setText(op3->getString());
+    ui->lineEditCurrent->setFocus();
 }
 
 void ComplexView::slotCalculate() {
@@ -136,4 +150,10 @@ void ComplexView::slotCalculate() {
             operationStep = 0;
         }
     }
+    ui->lineEditCurrent->setFocus();
+}
+
+void ComplexView::slotKeyPressed(QString premuto) {
+    premuto.prepend(ui->lineEditCurrent->text());
+    ui->lineEditCurrent->setText(premuto);
 }

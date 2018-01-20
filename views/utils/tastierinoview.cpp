@@ -1,9 +1,9 @@
 #include "tastierinoview.h"
 #include "ui_tastierinoview.h"
 
-tastierinoView::tastierinoView(QWidget *parent) :
+TastierinoView::TastierinoView(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::tastierinoView)
+    ui(new Ui::TastierinoView)
 {
     ui->setupUi(this);
 
@@ -21,35 +21,35 @@ tastierinoView::tastierinoView(QWidget *parent) :
     connect(ui->btnComma, SIGNAL(clicked(bool)), this, SLOT(slotKeyPressed()));
 }
 
-tastierinoView::~tastierinoView()
+TastierinoView::~TastierinoView()
 {
     delete ui;
 }
 
-void tastierinoView::slotKeyPressed() {
+void TastierinoView::slotKeyPressed() {
     if (sender() == ui->btn0) {
-        // Do something
+        emit signalKeyPressed("0");
     }else if (sender() == ui->btn1) {
-        // Do something
+        emit signalKeyPressed("1");
     }else if (sender() == ui->btn2) {
-        // Do something
+        emit signalKeyPressed("2");
     }else if (sender() == ui->btn3) {
-        // Do something
+        emit signalKeyPressed("3");
     }else if (sender() == ui->btn4) {
-        // Do something
+        emit signalKeyPressed("4");
     }else if (sender() == ui->btn5) {
-        // Do something
+        emit signalKeyPressed("5");
     }else if (sender() == ui->btn6) {
-        // Do something
+        emit signalKeyPressed("6");
     }else if (sender() == ui->btn7) {
-        // Do something
+        emit signalKeyPressed("7");
     }else if (sender() == ui->btn8) {
-        // Do something
+        emit signalKeyPressed("8");
     }else if (sender() == ui->btn9) {
-        // Do something
+        emit signalKeyPressed("9");
     }else if (sender() == ui->btnPoint) {
-        // Do something
+        emit signalKeyPressed(".");
     }else if (sender() == ui->btnComma) {
-        // Do something
+        emit signalKeyPressed(",");
     }
 }

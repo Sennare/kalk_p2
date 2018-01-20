@@ -5,6 +5,7 @@
 #include <QString>
 #include "views/view.h"
 #include "logica/complex.h"
+#include "views/utils/tastierinoview.h"
 
 namespace Ui {
 class ComplexView;
@@ -43,6 +44,7 @@ private:
 
 public slots:
     void slotCalculate();
+    void slotKeyPressed(QString);
 
 signals:
     void signalBack();

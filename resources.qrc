@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/Resources">
         <file>Resources/what.gif</file>
+        <file>Resources/stylesheet.qss</file>
     </qresource>
 </RCC>

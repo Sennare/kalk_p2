@@ -2,24 +2,28 @@
 #define TASTIERINOVIEW_H
 
 #include <QWidget>
+#include <QString>
 
 namespace Ui {
-class tastierinoView;
+class TastierinoView;
 }
 
-class tastierinoView : public QWidget
+class TastierinoView : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit tastierinoView(QWidget *parent = 0);
-    ~tastierinoView();
+    explicit TastierinoView(QWidget *parent = 0);
+    ~TastierinoView();
 
 private:
-    Ui::tastierinoView *ui;
+    Ui::TastierinoView *ui;
 
 private slots:
     void slotKeyPressed();
+
+signals:
+    void signalKeyPressed(QString);
 };
 
 #endif // TASTIERINOVIEW_H
