@@ -38,12 +38,16 @@ private:
     int operationStep;
     tipiCalcolo operation;
 
-    void appendToLog(QString);
+    void logAppend(QString);
+    void logReset();
+
+    void manageKeys();
 
     void calcola();
 
 public slots:
     void slotCalculate();
+    void slotEditCurrent();
     void slotKeyPressed(QString);
 
 signals:

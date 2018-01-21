@@ -66,6 +66,3 @@ FORMS    += views/kalkselectorview.ui \
 
 RESOURCES += \
     resources.qrc
-
-DISTFILES += \
-    logica/Real.java
