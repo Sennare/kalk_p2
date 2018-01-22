@@ -6,6 +6,7 @@
 #include "views/view.h"
 #include "logica/complex.h"
 #include "views/utils/tastierinoview.h"
+#include <QRegExpValidator>
 
 namespace Ui {
 class ComplexView;
@@ -29,6 +30,7 @@ protected:
     Complex* op2;
     Complex* op3;
     TastierinoView::configurabile confFor;
+    QRegExpValidator validator;
 
 private:
     Ui::ComplexView *ui;

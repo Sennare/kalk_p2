@@ -2,6 +2,8 @@
 #include "ui_complexview.h"
 #include <QFile>
 #include <QMessageBox>
+#include <QPixmap>
+#include <QMovie>
 
 ComplexView::ComplexView(QWidget *parent) :
     QWidget(parent),
@@ -26,7 +28,13 @@ void ComplexView::initialize() {
     op1 = new Complex();
     op2 = new Complex();
     op3 = new Complex();
+
+    // Configurazione tasti disponibili
     confFor = TastierinoView::configurabile::confForComplessi;
+
+    // Validator setup for complex
+    QRegExp regExp("^([0-9]+[0-9]*)(\\+|,)([0-9]+[0-9]*)+i$");
+    validator.setRegExp(regExp);
 }
 
 void ComplexView::handle() {
@@ -66,7 +74,26 @@ void ComplexView::handle() {
 
 void ComplexView::errorManager(QString err) {
     // Something to do here
+    QMessageBox msgBox(this);
+    msgBox.setText(err);
+    QLabel* label = new QLabel(&msgBox);
+    label-> setWindowFlags(Qt::FramelessWindowHint);
+    label->setObjectName("imgGif");
+    QPixmap p(":/Resources/Resources/whatIcon.gif");
 
+    msgBox.setStyleSheet("QLabel{min-height:50px;padding-left:70px} #imgGif{padding-left:0;}");
+
+    label->setPixmap(p);
+    label->setFixedHeight(100);
+    label->setFixedWidth(100);
+
+    QMovie *movie = new QMovie(":/Resources/Resources/whatIcon.gif");
+    label->setMovie(movie);
+    movie->start();
+
+    label->show();
+    msgBox.exec();
+    // ------------------------
 }
 
 void ComplexView::logAppend(QString str) {
@@ -126,17 +153,22 @@ void ComplexView::calcola() {
         logAppend(op3->getString());
         ui->lineEditCurrent->setText(op3->getString());
         ui->lineEditCurrent->setFocus();
+        operationStep = 0;
     }catch (exce_kalk e) {
         // Errore
-        QMessageBox msgBox;
-        msgBox.setText(e.what());
-        msgBox.exec();
+        errorManager(e.what());
     }
 }
 
 void ComplexView::slotCalculate() {
     // TODO: controlli dei valori ??
     try {
+        QString curr = ui->lineEditCurrent->text();
+        int pos = 0;
+        if (validator.validate(curr, pos) != QRegExpValidator::State::Acceptable) {
+            errorManager("Input non valido, controlla che il formato sia corretto");
+            return;
+        }
         if (operationStep == 0) {
             logReset();
             if(sender() == ui->btnSomma) {
@@ -195,18 +227,15 @@ void ComplexView::slotCalculate() {
                 logAppend(op2->getString());
                 logAppend("=");
                 calcola();
-                operationStep = 0;
             }
         }
-        ui->lineEditCurrent->setFocus();
     }catch (exce_kalk e) {
         // Errore
         operationStep = 0;
-        QMessageBox msgBox;
-        msgBox.setText(e.what());
-        msgBox.exec();
+        errorManager(e.what());
     }
     manageKeys();
+    ui->lineEditCurrent->setFocus();
 }
 
 void ComplexView::slotEditCurrent() {
@@ -224,9 +253,11 @@ void ComplexView::slotEditCurrent() {
         ui->lineEditCurrent->setText( current );
     }
     manageKeys();
+    ui->lineEditCurrent->setFocus();
 }
 
 void ComplexView::slotKeyPressed(QString premuto) {
     premuto.prepend(ui->lineEditCurrent->text());
     ui->lineEditCurrent->setText(premuto);
+    ui->lineEditCurrent->setFocus();
 }
