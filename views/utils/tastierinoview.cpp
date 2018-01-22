@@ -19,11 +19,35 @@ TastierinoView::TastierinoView(QWidget *parent) :
     connect(ui->btn9, SIGNAL(clicked(bool)), this, SLOT(slotKeyPressed()));
     connect(ui->btnPoint, SIGNAL(clicked(bool)), this, SLOT(slotKeyPressed()));
     connect(ui->btnComma, SIGNAL(clicked(bool)), this, SLOT(slotKeyPressed()));
+    connect(ui->btnI, SIGNAL(clicked(bool)), this, SLOT(slotKeyPressed()));
+    connect(ui->btnJ, SIGNAL(clicked(bool)), this, SLOT(slotKeyPressed()));
+    connect(ui->btnK, SIGNAL(clicked(bool)), this, SLOT(slotKeyPressed()));
 }
 
 TastierinoView::~TastierinoView()
 {
     delete ui;
+}
+
+void TastierinoView::configureFor(configurabile confFor) {
+    switch (confFor) {
+    case configurabile::confForComplessi:
+        ui->btnI->setEnabled(true);
+        ui->btnJ->setEnabled(false);
+        ui->btnK->setEnabled(false);
+        break;
+    case configurabile::confForQuaternioni:
+        ui->btnI->setEnabled(true);
+        ui->btnJ->setEnabled(true);
+        ui->btnK->setEnabled(true);
+        break;
+    }
+    style()->unpolish(ui->btnI);
+    style()->polish(ui->btnI);
+    style()->unpolish(ui->btnJ);
+    style()->polish(ui->btnJ);
+    style()->unpolish(ui->btnK);
+    style()->polish(ui->btnK);
 }
 
 void TastierinoView::slotKeyPressed() {
@@ -47,9 +71,15 @@ void TastierinoView::slotKeyPressed() {
         emit signalKeyPressed("8");
     }else if (sender() == ui->btn9) {
         emit signalKeyPressed("9");
-    }else if (sender() == ui->btnPoint) {
-        emit signalKeyPressed(".");
     }else if (sender() == ui->btnComma) {
         emit signalKeyPressed(",");
+    }else if (sender() == ui->btnPoint) {
+        emit signalKeyPressed(".");
+    }else if (sender() == ui->btnI) {
+        emit signalKeyPressed("i");
+    }else if (sender() == ui->btnJ) {
+        emit signalKeyPressed("j");
+    }else if (sender() == ui->btnK) {
+        emit signalKeyPressed("k");
     }
 }

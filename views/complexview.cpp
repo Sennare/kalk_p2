@@ -26,6 +26,7 @@ void ComplexView::initialize() {
     op1 = new Complex();
     op2 = new Complex();
     op3 = new Complex();
+    confFor = TastierinoView::configurabile::confForComplessi;
 }
 
 void ComplexView::handle() {
@@ -59,7 +60,8 @@ void ComplexView::handle() {
     connect(ui->btnBackspace, SIGNAL(clicked()),        this, SLOT(slotEditCurrent()));
 
     // Connetto il tastierino
-    connect(ui->widgetTastierino, TastierinoView::signalKeyPressed, this, ComplexView::slotKeyPressed);
+    connect(ui->widgetTastierino, SIGNAL(signalKeyPressed(QString)), this, SLOT(slotKeyPressed(QString)));
+    ui->widgetTastierino->configureFor(confFor);
 }
 
 void ComplexView::errorManager(QString err) {
@@ -73,7 +75,7 @@ void ComplexView::logAppend(QString str) {
 }
 
 void ComplexView::logReset() {
-    ui->labelLog->setText("0");
+    ui->labelLog->setText("");
 }
 
 void ComplexView::manageKeys() {
@@ -136,7 +138,7 @@ void ComplexView::slotCalculate() {
     // TODO: controlli dei valori ??
     try {
         if (operationStep == 0) {
-            logAppend("-------");
+            logReset();
             if(sender() == ui->btnSomma) {
                 ++operationStep;
                 op1->string(ui->lineEditCurrent->text());

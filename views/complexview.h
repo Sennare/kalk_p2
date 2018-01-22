@@ -28,6 +28,7 @@ protected:
     Complex* op1;
     Complex* op2;
     Complex* op3;
+    TastierinoView::configurabile confFor;
 
 private:
     Ui::ComplexView *ui;

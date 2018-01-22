@@ -13,8 +13,14 @@ class TastierinoView : public QWidget
     Q_OBJECT
 
 public:
+    enum configurabile {
+        confForComplessi,
+        confForQuaternioni
+    };
     explicit TastierinoView(QWidget *parent = 0);
     ~TastierinoView();
+
+    void configureFor(configurabile = confForComplessi);
 
 private:
     Ui::TastierinoView *ui;
