@@ -5,7 +5,7 @@ ColoredWave::ColoredWave() {}
 Color ColoredWave::getColor(int index) const {
     Color ret;
     if(index < colori.size()) {
-        ret=*colori[index];
+        ret= *colori[index];
     } return ret;
 }
 

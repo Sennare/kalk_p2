@@ -33,9 +33,14 @@ private:
     ColoredWave* operatoreTre;
 
 signals:
+
     void signalBack();
 
 private slots:
+
+    void slotSliderOndaUno();
+
+    void slotSliderOndaDue();
 
     void slotOpOndaColorataUno();
 

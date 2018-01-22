@@ -30,18 +30,20 @@ void ColoredWaveView::handle() {
     connect(ui->btnSostituisciOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaColorataUno()));
     connect(ui->btnOttieniOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaColorataUno()));
     connect(ui->btnEliminaOndaUno, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaColorataUno()));
-    connect(ui->horizontalSliderROndaUno,SIGNAL(valueChanged(int)),this, SLOT(slotOpOndaColorataUno()));
-    connect(ui->horizontalSliderGOndaUno,SIGNAL(valueChanged(int)),this, SLOT(slotOpOndaColorataUno()));
-    connect(ui->horizontalSliderBOndaUno,SIGNAL(valueChanged(int)),this, SLOT(slotOpOndaColorataUno()));
+
+    connect(ui->horizontalSliderROndaUno,SIGNAL(valueChanged(int)),this, SLOT(slotSliderOndaUno()));
+    connect(ui->horizontalSliderGOndaUno,SIGNAL(valueChanged(int)),this, SLOT(slotSliderOndaUno()));
+    connect(ui->horizontalSliderBOndaUno,SIGNAL(valueChanged(int)),this, SLOT(slotSliderOndaUno()));
 
 
     connect(ui->btnInserisciOndaDue, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaColorataDue()));
     connect(ui->btnSostituisciOndaDue, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaColorataDue()));
     connect(ui->btnOttieniOndaDue, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaColorataDue()));
     connect(ui->btnEliminaOndaDue, SIGNAL(clicked(bool)), this, SLOT(slotOpOndaColorataDue()));
-    connect(ui->horizontalSliderROndaDue,SIGNAL(valueChanged(int)),this, SLOT(slotOpOndaColorataDue()));
-    connect(ui->horizontalSliderGOndaDue,SIGNAL(valueChanged(int)),this, SLOT(slotOpOndaColorataDue()));
-    connect(ui->horizontalSliderBOndaDue,SIGNAL(valueChanged(int)),this, SLOT(slotOpOndaColorataDue()));
+
+    connect(ui->horizontalSliderROndaDue,SIGNAL(valueChanged(int)),this, SLOT(slotSliderOndaDue()));
+    connect(ui->horizontalSliderGOndaDue,SIGNAL(valueChanged(int)),this, SLOT(slotSliderOndaDue()));
+    connect(ui->horizontalSliderBOndaDue,SIGNAL(valueChanged(int)),this, SLOT(slotSliderOndaDue()));
 
     connect(ui->btnSommaOndeColorate, SIGNAL(clicked(bool)), this, SLOT(slotCalcolaOndaColorata()));
     connect(ui->btnSottrazioneOndeColorate, SIGNAL(clicked(bool)), this, SLOT(slotCalcolaOndaColorata()));
@@ -93,6 +95,26 @@ void ColoredWaveView::updateOperatore(QCustomPlot* cPlot, QListWidget* listW, Co
     cPlot->replot();
 }
 
+void ColoredWaveView::slotSliderOndaUno() {
+    if(sender() == ui->horizontalSliderROndaUno){
+        ui->lineEditROndaUno->setText(QString::number(ui->horizontalSliderROndaUno->value()));
+    } else if(sender() == ui->horizontalSliderGOndaUno) {
+        ui->lineEditGOndaUno->setText(QString::number(ui->horizontalSliderGOndaUno->value()));
+    } else if (sender() == ui->horizontalSliderBOndaUno){
+        ui->lineEditBOndaUno->setText(QString::number(ui->horizontalSliderBOndaUno->value()));
+    }
+}
+
+void ColoredWaveView::slotSliderOndaDue() {
+    if(sender() == ui->horizontalSliderROndaDue){
+        ui->lineEditROndaDue->setText(QString::number(ui->horizontalSliderROndaDue->value()));
+    } else if(sender() == ui->horizontalSliderGOndaDue) {
+        ui->lineEditGOndaDue->setText(QString::number(ui->horizontalSliderGOndaDue->value()));
+    } else if (sender() == ui->horizontalSliderBOndaDue){
+        ui->lineEditBOndaDue->setText(QString::number(ui->horizontalSliderBOndaDue->value()));
+    }
+}
+
 void ColoredWaveView::slotOpOndaColorataUno(){
     double ampOndaUno = ui->lineEditValoriOndaUno->text().simplified().toLower().replace(" ", "").toDouble();
     int indOndaUno = ui->lineEditIndiceOndaUno->text().simplified().toLower().replace( " ", "" ). toInt();
@@ -112,7 +134,10 @@ void ColoredWaveView::slotOpOndaColorataUno(){
         operatoreUno->pushPoint(ampOndaUno, colore, indTarget, false);
         updateAllOp();
     } else if (sender() == ui->btnOttieniOndaUno) {
-        ui->lineEditValoriOndaUno->setText((QString::number(operatoreUno->getAmpVal(indOndaUno))));
+        ui->lineEditValoriOndaUno->setText(QString::number(operatoreUno->getAmpVal(indOndaUno)));
+        ui->lineEditROndaUno->setText(QString::number(operatoreUno->getColor(indOndaUno).getRdec()));
+        ui->lineEditGOndaUno->setText(QString::number(operatoreUno->getColor(indOndaUno).getGdec()));
+        ui->lineEditBOndaUno->setText(QString::number(operatoreUno->getColor(indOndaUno).getBdec()));
     } else if (sender() == ui->btnEliminaOndaUno) {
         operatoreUno->removePoint(indOndaUno);
         updateAllOp();
@@ -139,6 +164,9 @@ void ColoredWaveView::slotOpOndaColorataDue() {
         updateAllOp();
     } else if (sender() == ui->btnOttieniOndaDue) {
         ui->lineEditValoriOndaDue->setText((QString::number(operatoreDue->getAmpVal(indOndaDue))));
+        ui->lineEditROndaDue->setText(QString::number(operatoreDue->getColor(indOndaDue).getRdec()));
+        ui->lineEditGOndaDue->setText(QString::number(operatoreDue->getColor(indOndaDue).getGdec()));
+        ui->lineEditBOndaDue->setText(QString::number(operatoreDue->getColor(indOndaDue).getBdec()));
     } else if (sender() == ui->btnEliminaOndaDue) {
         operatoreDue->removePoint(indOndaDue);
         updateAllOp();
