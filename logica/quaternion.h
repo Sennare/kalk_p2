@@ -26,9 +26,9 @@ public:
     void inverseJ();
     void inverseK();
 
-    Quaternion conjugate() const;
+    Quaternion& conjugate() const;
     double norm() const;
-    Quaternion inverse() const;
+    Quaternion& inverse() const;
 
     void string(QString);
 

@@ -23,9 +23,9 @@ public:
     double getI() const;
     void inverseI();
 
-    Complex conjugate() const;
-    double norm() const;
-    Complex* inverse() const;
+    virtual Complex& conjugate() const;
+    virtual double norm() const;
+    virtual Complex& inverse() const;
 
     void string(QString);
 

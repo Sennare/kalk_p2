@@ -209,16 +209,16 @@ void ComplexView::slotCalculate() {
             }else if(sender() == ui->btnInverso) {
                 op3->string(str);
                 logAppend(op3->getString());
-                op3 = op3->inverse();
+                op3 = &(op3->inverse());
                 logAppend("Inverso:");
                 logAppend(op3->getString());
                 ui->lineEditCurrent->setText(op3->getString());
             }else if(sender() == ui->btnNorma) {
                 op3->string(str);
                 logAppend(op3->getString());
-                *op3 = op3->norm();
+                double res = op3->norm();
                 logAppend("Norma:");
-                logAppend(op3->getString());
+                logAppend(QString::number(res));
                 ui->lineEditCurrent->setText(op3->getString());
             }else if(sender() == ui->btnConiugato) {
                 op3->string(str);

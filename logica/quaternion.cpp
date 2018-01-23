@@ -1,6 +1,8 @@
 #include <QRegExpValidator>
 #include "quaternion.h"
 
+#include <QDebug>
+
 const QString Quaternion::regExp = "^(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*),(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*)i,(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*)j,(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*)k$";
 
 Quaternion::Quaternion(QString str) {
@@ -41,13 +43,13 @@ void Quaternion::inverseK() {
 
 
 // TODO -> Da testare in GUI
-Quaternion Quaternion::conjugate() const {
-    Quaternion res;
-    res.setR(getR());
-    res.setI(-getI());
-    res.setJ(-getJ());
-    res.setK(-getK());
-    return res;
+Quaternion& Quaternion::conjugate() const {
+    Quaternion* res = new Quaternion();
+    *res = *this;
+    res->inverseI();
+    res->inverseJ();
+    res->inverseK();
+    return *res;
 }
 
 // TODO -> Da testare in GUI
@@ -64,12 +66,13 @@ double Quaternion::norm() const {
 }
 
 
-// TODO -> Da testare in GUI
-Quaternion Quaternion::inverse() const {
-    const Quaternion norma(pow(norm(),2));
-    Quaternion ret = *this;
-    ret = ret / norma;
-    return ret;
+Quaternion& Quaternion::inverse() const {
+    const Quaternion* norma = new Quaternion(pow(norm(),2));
+    Quaternion* ret;
+    ret = &(*this / *norma);
+    qDebug() << "lol entra";
+    delete norma;
+    return *ret;
 }
 
 void Quaternion::string(QString str) {

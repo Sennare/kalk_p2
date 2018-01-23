@@ -1,6 +1,8 @@
 #include <QRegExpValidator>
 #include "complex.h"
 
+#include <QDebug>
+
 const QString Complex::regExp = "^(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*),(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*)i$";
 
 Complex::Complex(QString str)
@@ -26,10 +28,11 @@ void Complex::inverseI() {
     this->iVal *= -1;
 }
 
-Complex Complex::conjugate() const {
-    Complex res = *this;
-    res.inverseI();
-    return res;
+Complex& Complex::conjugate() const {
+    Complex* res = new Complex();
+    *res = *this;
+    res->inverseI();
+    return *res;
 }
 
 double Complex::norm() const {
@@ -40,13 +43,12 @@ double Complex::norm() const {
     return ret;
 }
 
-Complex* Complex::inverse() const {
+Complex& Complex::inverse() const {
     const Complex* norma = new Complex(pow(this->norm(),2));
-    Complex* ret = new Complex();
-    /*if (norma.getI() < 0)
-        throw exce_kalk("Errore divisione per 0");*/
-    *ret = *this / *norma;
-    return ret;
+    Complex* ret;
+    ret = &(*this / *norma);
+    qDebug() << "non entra :(";
+    return *ret;
 }
 
 void Complex::string(QString str) {
