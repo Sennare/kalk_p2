@@ -7,19 +7,21 @@
 class Real
 {
 private:
-    float rVal;
+    double rVal;
 
 public:
-    Real(float = 0);
+    Real(double = 0);
     virtual ~Real() = default;
 
-    void setR(float);
-    float getR() const;
+    void setR(double);
+    double getR() const;
 
-    Real operator+(const Real&) const;
-    Real operator-(const Real&) const;
-    Real operator*(const Real&) const;
-    Real operator/(const Real&) const;
+    virtual void string(QString);
+
+    virtual Real& operator+(const Real&) const;
+    virtual Real& operator-(const Real&) const;
+    virtual Real& operator*(const Real&) const;
+    virtual Real& operator/(const Real&) const;
 
     virtual QString getString(unsigned int = 2);
 };

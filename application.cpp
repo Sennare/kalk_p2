@@ -62,8 +62,8 @@ void Application::slotOpenKalkType(int tipo) {
         initializeKalk(aux);}
         break;
     case Application::KalkType::Quaternioni:
-        {QuaternionView* aux = new QuaternionView();
-        connect(aux, &QuaternionView::signalBack, this, &Application::slotBack);
+        {ComplexView* aux = new QuaternionView();
+        connect(aux, &ComplexView::signalBack, this, &Application::slotBack);
         initializeKalk(aux);}
         break;
     case Application::KalkType::OndeAudio:{

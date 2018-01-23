@@ -5,6 +5,8 @@
 #include <QString>
 #include "views/view.h"
 #include "logica/complex.h"
+#include "views/utils/tastierinoview.h"
+#include <QRegExpValidator>
 
 namespace Ui {
 class ComplexView;
@@ -18,24 +20,40 @@ public:
     explicit ComplexView(QWidget *parent = 0);
     ~ComplexView();
 
-    void handle() override;
+    virtual void initialize();
+    void handle();
 
+protected:
     void errorManager(QString);
+    Complex* op1;
+    Complex* op2;
+    Complex* op3;
+    TastierinoView::configurabile confFor;
+    QRegExpValidator validator;
 
 private:
     Ui::ComplexView *ui;
 
-    Complex *op1;
-    Complex *op2;
-    Complex *op3;
+    enum tipiCalcolo {
+        sum, sub, mult, div
+    };
+    int operationStep;
+    tipiCalcolo operation;
+
+    void logAppend(QString);
+    void logReset();
+
+    void manageKeys();
+
+    void calcola();
 
 public slots:
     void slotCalculate();
+    void slotEditCurrent();
+    void slotKeyPressed(QString);
 
 signals:
     void signalBack();
-    void signalCalculate(int, QString, QString);
-    void signalCalcComplete(Complex);
 };
 
 #endif // COMPLEXVIEW_H

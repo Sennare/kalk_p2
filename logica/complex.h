@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QStringList>
+#include <QRegExp>
 #include <cmath>
 #include "real.h"
 #include "exce_kalk.h"
@@ -10,29 +11,30 @@
 class Complex : public Real
 {
 private:
-    float iVal;
+    double iVal;
 
 public:
+    static const QString regExp;
     Complex(QString);
-    Complex(float = 0, float = 0);
+    Complex(double = 0, double = 0);
     ~Complex() = default;
 
-    void setI(float);
-    float getI() const;
+    void setI(double);
+    double getI() const;
     void inverseI();
 
-    Complex conjugate() const;
-    float norm() const;
-    Complex inverse() const;
+    virtual Complex& conjugate() const;
+    virtual double norm() const;
+    virtual Complex& inverse() const;
 
     void string(QString);
 
-    Complex operator+(const Complex&) const;
-    Complex operator-(const Complex&) const;
-    Complex operator*(const Complex&) const;
-    Complex operator/(const Complex&) const;
+    Complex& operator+(const Real&) const;
+    Complex& operator-(const Real&) const;
+    Complex& operator*(const Real&) const;
+    Complex& operator/(const Real&) const;
 
-    QString getString(unsigned int = 2, unsigned int = 2);
+    QString getString(unsigned int = 2) override;
 };
 
 #endif // COMPLEX_H
