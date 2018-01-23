@@ -6,6 +6,7 @@
 #include "QString"
 #include <iostream>
 
+#include"exce_kalk.h"
 #include "helper.h"
 
 using std::string;
@@ -13,7 +14,8 @@ using std::string;
 class Color
 {
 private:
-    unsigned int r, g, b;
+    int r, g, b;
+
 
 public:
     /**
@@ -21,8 +23,7 @@ public:
      * Si possono creare scrivendo il colore in caratteri esadecimali o inserendo i valori
      */
     Color();
-    Color(QString );
-    Color(unsigned int, unsigned int, unsigned int); //0<=r,g,b<=255
+    Color(int, int, int); //0<=r,g,b<=255
     Color(const Color&);
     Color(const Color*);
     ~Color() = default;
@@ -30,9 +31,9 @@ public:
     /**
      * Sezione parametri decimali per la creazione colore
      */
-    void setRdec(unsigned int);
-    void setGdec(unsigned int);
-    void setBdec(unsigned int);
+    void setRdec(int);
+    void setGdec(int);
+    void setBdec(int);
     unsigned int getRdec() const;
     unsigned int getGdec() const;
     unsigned int getBdec() const;

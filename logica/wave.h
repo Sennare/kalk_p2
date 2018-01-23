@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QString>
 #include <QStringList>
+#include "exce_kalk.h"
 
 class Wave
 {

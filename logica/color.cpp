@@ -1,6 +1,5 @@
 #include "color.h"
 
-
 /**
  * Costruttori per la classe colore
  * -costruttore per interi: imposta il colore predefinito di default
@@ -8,37 +7,57 @@
  * -costruttori a 3 parametri per interi
  */
 Color::Color(): r(255), g(255), b(255) {}
-Color::Color(QString c) {
+
+Color::Color(int red, int green, int blue) {
+    setRdec(red);
+    setGdec(green);
+    setBdec(blue);
 
 }
-Color::Color(unsigned int red, unsigned int green, unsigned int blue): r(red), g(green), b(blue) {
-    if(r>255) r=255;
-    if(g>255) g=255;
-    if(b>255) b=255;
-}
 Color::Color(const Color& x) {
-    r=x.r;
-    g=x.g;
-    b=x.b;
+    setRdec(x.getRdec());
+    setGdec(x.getGdec());
+    setBdec(x.getBdec());
 }
 Color::Color(const Color* x) {
-    r=(*x).r;
-    g=(*x).g;
-    b=(*x).b;
+    setRdec(x->getRdec());
+    setGdec(x->getGdec());
+    setBdec(x->getBdec());
 }
 /**
  * Per le modifiche dei colori attraverso interi:
  *      primi tre metodi per inserire i valori interi di un colore
  *      gli alri parametri sono per ritornare i valori inseriti
  */
-void Color::setRdec(unsigned int red) {
-    r=red;
+void Color::setRdec(int red) {
+    if(red<0) {
+        r=0;
+    }
+    else if (red>255) {
+        r=255;
+    } else {
+        r=red;
+    }
 }
-void Color::setGdec(unsigned int green){
-    g=green;
+void Color::setGdec(int green){
+    if(green<0) {
+        g=0;
+    }
+    else if (green>255) {
+        g=255;
+    } else {
+        g=green;
+    }
 }
-void Color::setBdec(unsigned int blue){
-    b=blue;
+void Color::setBdec(int blue){
+    if(blue<0) {
+        b=0;
+    }
+    else if (blue>255) {
+        b=255;
+    } else {
+        b=blue;
+    }
 }
 unsigned int Color::getRdec() const{
     return r;
@@ -61,29 +80,35 @@ QString Color::ConvertRGBtoHex(const Color* RGB) {
 
 QString Color::GetColore() const{
     QString color;
-    color.append(getRdec());
-    color.append(getGdec());
-    color.append(getBdec());
+    color.append(QString::number(getRdec()));
+    color.append(",");
+    color.append(QString::number(getGdec()));
+    color.append(",");
+    color.append(QString::number(getBdec()));
     return color;
 }
 
 Color Color::operator+ (const Color& x) const{
-    return new Color ((this->getRdec()+x.getRdec())%255,
-                      (this->getGdec()+x.getGdec())%255,
-                      (this->getBdec()+x.getBdec())%255);
+    return new Color ((this->getRdec()+x.getRdec()),
+                      (this->getGdec()+x.getGdec()),
+                      (this->getBdec()+x.getBdec()));
 }
 Color Color::operator- (const Color& x) const{
-    return new Color ((this->getRdec()-x.getRdec())%255,
-                      (this->getGdec()-x.getGdec())%255,
-                      (this->getBdec()-x.getBdec())%255);
+    return new Color ((this->getRdec()-x.getRdec()),
+                      (this->getGdec()-x.getGdec()),
+                      (this->getBdec()-x.getBdec()));
 }
 Color Color::operator* (const Color& x) const{
-    return new Color ((this->getRdec()*x.getRdec())%255,
-                      (this->getGdec()*x.getGdec())%255,
-                      (this->getBdec()*x.getBdec())%255);
+    return new Color ((this->getRdec()*x.getRdec()),
+                      (this->getGdec()*x.getGdec()),
+                      (this->getBdec()*x.getBdec()));
 }
 Color Color::operator/ (const Color& x) const{
-    return new Color ((this->getRdec()/x.getRdec())%255,
-                      (this->getGdec()/x.getGdec())%255,
-                      (this->getBdec()/x.getBdec())%255);
+    if(x.getRdec() == 0 || x.getGdec() == 0 || x.getBdec() == 0){
+        throw exce_kalk("Impossibile dividere per 0.");
+    } else {
+        return new Color ((this->getRdec()/x.getRdec()),
+                      (this->getGdec()/x.getGdec()),
+                      (this->getBdec()/x.getBdec()));
+    }
 }

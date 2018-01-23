@@ -6,6 +6,8 @@
 #include "logica/coloredwave.h"
 #include "views/utils/qcustomplot.h"
 
+#include "exce_kalk.h"
+
 namespace Ui {
 class ColoredWaveView;
 }
@@ -22,7 +24,7 @@ public:
 
     void updateAllOp();
 
-   // void updateOperatore(QCustomPlot*, ColoredWave*);
+    void updateOperatore(QCustomPlot*, QListWidget*, ColoredWave*);
 
 private:
     Ui::ColoredWaveView *ui;
@@ -34,9 +36,14 @@ private:
     ColoredWave* operatoreTre;
 
 signals:
+
     void signalBack();
 
 private slots:
+
+    void slotSliderOndaUno();
+
+    void slotSliderOndaDue();
 
     void slotOpOndaColorataUno();
 
