@@ -1,43 +1,43 @@
 #include "real.h"
 
-Real::Real(float initVal) {
+Real::Real(double initVal) {
     this->setR(initVal);
 }
 
-void Real::setR(float valToSet) {
+void Real::setR(double valToSet) {
     this->rVal = valToSet;
 }
 
-float Real::getR() const {
+double Real::getR() const {
     return this->rVal;
 }
 
 void Real::string(QString str) {
     str = str.simplified();
-    setR(str.toFloat());
+    setR(str.toDouble());
 }
 
-Real Real::operator+(const Real& b) const {
-    Real res;
-    res.rVal = this->rVal + b.rVal;
-    return res;
+Real& Real::operator+(const Real& b) const {
+    Real* res = new Real();
+    res->rVal = this->rVal + b.rVal;
+    return *res;
 }
-Real Real::operator-(const Real& b) const {
-    Real res;
-    res.rVal = this->rVal - b.rVal;
-    return res;
+Real& Real::operator-(const Real& b) const {
+    Real* res = new Real();
+    res->rVal = this->rVal - b.rVal;
+    return *res;
 }
-Real Real::operator*(const Real& b) const {
-    Real res;
-    res.rVal = this->rVal * b.rVal;
-    return res;
+Real& Real::operator*(const Real& b) const {
+    Real* res = new Real();
+    res->rVal = this->rVal * b.rVal;
+    return *res;
 }
-Real Real::operator/(const Real& b) const {
-    Real res;
+Real& Real::operator/(const Real& b) const {
+    Real* res = new Real();
     if (b.rVal == 0)
         throw exce_kalk("Errore divisione per 0");
-    res.rVal = this->rVal / b.rVal;
-    return res;
+    res->rVal = this->rVal / b.rVal;
+    return *res;
 }
 
 QString Real::getString(unsigned int precision) {

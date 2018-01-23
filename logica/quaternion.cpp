@@ -1,64 +1,72 @@
+#include <QRegExpValidator>
 #include "quaternion.h"
+
+const QString Quaternion::regExp = "^(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*),(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*)i,(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*)j,(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*)k$";
 
 Quaternion::Quaternion(QString str) {
     string(str);
 }
 
-Quaternion::Quaternion(float rVal, float iVal, float jVal, float kVal)
+Quaternion::Quaternion(double rValIn, double iValIn, double jValIn, double kValIn)
 {
-    this->setR(rVal);
-    this->setI(iVal);
-    this->setJ(jVal);
-    this->setK(kVal);
+    setR(rValIn);
+    setI(iValIn);
+    setJ(jValIn);
+    setK(kValIn);
 }
 
-void Quaternion::setJ(float jVal) {
-    this->jVal = jVal;
+void Quaternion::setJ(double val) {
+    jVal = val;
 }
 
-float Quaternion::getJ() const {
-    return this->jVal;
+double Quaternion::getJ() const {
+    return jVal;
 }
 
-void Quaternion::setK(float kVal) {
-    this->kVal = kVal;
+void Quaternion::setK(double val) {
+    kVal = val;
 }
 
-float Quaternion::getK() const {
-    return this->kVal;
+double Quaternion::getK() const {
+    return kVal;
 }
 
 void Quaternion::inverseJ() {
-    this->jVal *= -1;
+    jVal *= -1;
 }
 
 void Quaternion::inverseK() {
-    this->kVal *= -1;
+    kVal *= -1;
 }
 
 
 // TODO -> Da testare in GUI
 Quaternion Quaternion::conjugate() const {
     Quaternion res;
-    res.setR(this->getR());
-    res.setI(-this->getI());
-    res.setJ(-this->getJ());
-    res.setK(-this->getK());
+    res.setR(getR());
+    res.setI(-getI());
+    res.setJ(-getJ());
+    res.setK(-getK());
     return res;
 }
 
 // TODO -> Da testare in GUI
-float Quaternion::norm() const {
-    return sqrt(pow(this->getR(),2) +
-                pow(this->getI(),2) +
-                pow(this->getJ(),2) +
-                pow(this->getK(),2));
+double Quaternion::norm() const {
+    if (pow(getR(),2) +
+            pow(getI(),2) +
+            pow(getJ(),2) +
+            pow(getK(),2) < 0)
+        throw exce_kalk("Errore radice negativa");
+    return sqrt(pow(getR(),2) +
+                pow(getI(),2) +
+                pow(getJ(),2) +
+                pow(getK(),2));
 }
 
 
 // TODO -> Da testare in GUI
 Quaternion Quaternion::inverse() const {
-    const Quaternion norma(pow(this->norm(),2));
+    const Quaternion norma(pow(norm(),2));
     Quaternion ret = *this;
     ret = ret / norma;
     return ret;
@@ -66,105 +74,112 @@ Quaternion Quaternion::inverse() const {
 
 void Quaternion::string(QString str) {
     str = str.simplified().toLower();
-    str.replace( " ", "" );
+    str = str.replace( " ", "" );
+
+    // Inizializziamo un validator per verificare il pattern
+    QRegExpValidator validator;
+    QRegExp rexp(regExp);
+    validator.setRegExp(rexp);
+    int pos = 0;
+    if (validator.validate(str, pos) != QRegExpValidator::State::Acceptable) {
+        throw exce_kalk(str.prepend("Formato numero non corretto\n").toStdString());
+        return;
+    }
+
     // Controllo il formato "2,2,2,2"
     QStringList list = str.split(',');
     if (list.size() == 4) {
-        this->setR(list[0].toInt());
-        this->setI(list[1].toInt());
-        this->setJ(list[2].toInt());
-        this->setK(list[3].toInt());
+        setR(list[0].toDouble());
+        list[1] = list[1].replace("i", "");
+        setI(list[1].toDouble());
+        list[2] = list[2].replace("j", "");
+        setJ(list[2].toDouble());
+        list[3] = list[3].replace("k", "");
+        setK(list[3].toDouble());
     }else{
-        // Controllo il formato "2 + 2i +2j + 2k"
-        list = str.split("+");
-        if (list.size() == 4 &&
-                list[1].indexOf("i") == (list[1].length()-1) && list[1].count("i") == 1 &&
-                list[2].indexOf("j") == (list[2].length()-1) && list[2].count("j") == 1 &&
-                list[3].indexOf("k") == (list[3].length()-1) && list[3].count("k") == 1) {
-            this->setR(list[0].toDouble());
-            list[1] = list[1].replace("i", "");
-            this->setI(list[1].toDouble());
-            list[1] = list[2].replace("j", "");
-            this->setJ(list[2].toDouble());
-            list[1] = list[3].replace("k", "");
-            this->setK(list[3].toDouble());
-        }else {
-            throw exce_kalk(str.prepend("\nFormato numero non corretto\n").prepend(list[1].length()).toStdString());
-        }
+        throw exce_kalk(str.prepend("\nQualcosa è andato storto con la conversione a quaternion di:\n").prepend(list[1].length()).toStdString());
     }
 }
 
-Quaternion Quaternion::operator+(const Quaternion& b) const {
-    Quaternion ret;
-    ret.setR(this->getR() + b.getR());
-    ret.setI(this->getI() + b.getI());
-    ret.setJ(this->getJ() + b.getJ());
-    ret.setK(this->getK() + b.getK());
-    return ret;
+Quaternion& Quaternion::operator+(const Real& elem) const {
+    const Quaternion& b = static_cast<const Quaternion&>(elem);
+    Quaternion* ret = new Quaternion(
+                getR() + b.getR(),
+                getI() + b.getI(),
+                getJ() + b.getJ(),
+                getK() + b.getK()
+            );
+    return *ret;
 }
 
-Quaternion Quaternion::operator-(const Quaternion& b) const {
-    Quaternion ret;
-    ret.setR(this->getR() - b.getR());
-    ret.setI(this->getI() - b.getI());
-    ret.setJ(this->getJ() - b.getJ());
-    ret.setK(this->getK() - b.getK());
-    return ret;
+Quaternion& Quaternion::operator-(const Real& elem) const {
+    const Quaternion& b = static_cast<const Quaternion&>(elem);
+    Quaternion* ret = new Quaternion(
+                getR() - b.getR(),
+                getI() - b.getI(),
+                getJ() - b.getJ(),
+                getK() - b.getK()
+            );
+    return *ret;
 }
 
-Quaternion Quaternion::operator*(const Quaternion& b) const {
-    Quaternion ret;
+Quaternion& Quaternion::operator*(const Real& elem) const {
+    const Quaternion& b = static_cast<const Quaternion&>(elem);
+    Quaternion* ret = new Quaternion;
     // prodotti normali
-    ret.setR((this->getR() * b.getR()) -
-             (this->getI() * b.getI()) -
-             (this->getJ() * b.getJ()) -
-             (this->getK() * b.getK()));
+    ret->setR((getR() * b.getR()) -
+             (getI() * b.getI()) -
+             (getJ() * b.getJ()) -
+             (getK() * b.getK()));
     // prodotti tra R<>I e J<>K
-    ret.setI((this->getR() * b.getI()) +
-             (this->getI() * b.getR()) +
-             (this->getJ() * b.getK()) -
-             (this->getK() * b.getJ()));
+    ret->setI((getR() * b.getI()) +
+             (getI() * b.getR()) +
+             (getJ() * b.getK()) -
+             (getK() * b.getJ()));
     // prodotti tra R<>J e I<>K
-    ret.setJ((this->getR() * b.getJ()) -
-             (this->getI() * b.getK()) +
-             (this->getJ() * b.getR()) +
-             (this->getK() * b.getI()));
+    ret->setJ((getR() * b.getJ()) -
+             (getI() * b.getK()) +
+             (getJ() * b.getR()) +
+             (getK() * b.getI()));
     // prodotti tra R<>K e I<>J
-    ret.setK((this->getR() * b.getK()) +
-             (this->getI() * b.getJ()) -
-             (this->getJ() * b.getI()) +
-             (this->getK() * b.getR()));
-    return ret;
+    ret->setK((getR() * b.getK()) +
+             (getI() * b.getJ()) -
+             (getJ() * b.getI()) +
+             (getK() * b.getR()));
+    return *ret;
 }
 
-Quaternion Quaternion::operator/(const Quaternion& b) const {
-    Quaternion ret;
-    float a1 = this->getR();
-    float b1 = this->getI();
-    float c1 = this->getJ();
-    float d1 = this->getK();
-    float a2 = b.getR();
-    float b2 = b.getI();
-    float c2 = b.getJ();
-    float d2 = b.getK();
+Quaternion& Quaternion::operator/(const Real& elem) const {
+    const Quaternion& b = static_cast<const Quaternion&>(elem);
+    Quaternion* ret = new Quaternion();
+    double a1 = getR();
+    double b1 = getI();
+    double c1 = getJ();
+    double d1 = getK();
+    double a2 = b.getR();
+    double b2 = b.getI();
+    double c2 = b.getJ();
+    double d2 = b.getK();
 
-    float denominatore = a2*a2 + b2*b2 + c2*c2 + d2*d2;
+    double denominatore = a2*a2 + b2*b2 + c2*c2 + d2*d2;
+    if (denominatore == 0)
+        throw exce_kalk("Errore divisione per 0");
     // Parte reale -- prodotti normali
-    ret.setR( ((a1*a2)+(b1*b2)+(c1*c2)+(d1*d2)) / denominatore);
+    ret->setR( ((a1*a2)+(b1*b2)+(c1*c2)+(d1*d2)) / denominatore);
     // Parte immaginaria I -- prodotti tra R<>I e J<>K
-    ret.setI( ((a1*-b2)+(b1*a2)+(c1*d2)+(d1*-c2)) / denominatore);
+    ret->setI( ((a1*-b2)+(b1*a2)+(c1*d2)+(d1*-c2)) / denominatore);
     // Parte immaginaria J -- prodotti tra R<>J e I<>K
-    ret.setJ( ((a1*-c2)+(b1*-d2)+(c1*a2)+(d1*b2)) / denominatore);
+    ret->setJ( ((a1*-c2)+(b1*-d2)+(c1*a2)+(d1*b2)) / denominatore);
     // Parte immaginaria K -- prodotti tra R<>K e I<>J
-    ret.setK( ((a1*-d2)+(b1*c2)+(c1*-b2)+(d1*a2)) / denominatore);
+    ret->setK( ((a1*-d2)+(b1*c2)+(c1*-b2)+(d1*a2)) / denominatore);
 
-    return ret;
+    return *ret;
 }
 
 QString Quaternion::getString(unsigned int prec) {
-    return QString::number(this->getR(), 'f', prec) + " + " +
-            QString::number(this->getI(), 'f', prec) + "i + " +
-            QString::number(this->getJ(), 'f', prec) + "j + " +
-            QString::number(this->getK(), 'f', prec) + "k";
+    return QString::number(getR(), 'f', prec) + ", " +
+            QString::number(getI(), 'f', prec) + "i, " +
+            QString::number(getJ(), 'f', prec) + "j, " +
+            QString::number(getK(), 'f', prec) + "k";
 
 }

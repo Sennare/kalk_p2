@@ -33,10 +33,11 @@ QLineEdit {
 	padding-right: 4px;
 }
 
-#lineEditCurrent {
-	background: white;
-}
-
 Line {
 	border-style: solid;
+}
+
+#labelLog {
+	background-color: white;
+	padding: 5px;
 }

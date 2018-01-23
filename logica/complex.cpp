@@ -1,20 +1,24 @@
+#include <QRegExpValidator>
 #include "complex.h"
 
-Complex::Complex(QString str) {
+const QString Complex::regExp = "^(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*),(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*)i$";
+
+Complex::Complex(QString str)
+{
     string(str);
 }
 
-Complex::Complex(float rVal, float iVal)
+Complex::Complex(double rValIn, double iValIn)
 {
-    this->setR(rVal);
-    this->setI(iVal);
+    this->setR(rValIn);
+    this->setI(iValIn);
 }
 
-void Complex::setI(float iVal)  {
+void Complex::setI(double iVal)  {
     this->iVal = iVal;
 }
 
-float Complex::getI() const {
+double Complex::getI() const {
     return this->iVal;
 }
 
@@ -28,80 +32,90 @@ Complex Complex::conjugate() const {
     return res;
 }
 
-float Complex::norm() const {
-    float ret;
-    if (pow(this->getR(),2) + pow(this->getI(),2) < 0)
+double Complex::norm() const {
+    double ret;
+    if (pow(getR(),2) + pow(getI(),2) < 0)
         throw exce_kalk("Errore radice negativa");
-    ret = sqrt(pow(this->getR(),2) + pow(this->getI(),2));
+    ret = sqrt(pow(getR(),2) + pow(getI(),2));
     return ret;
 }
 
-Complex Complex::inverse() const {
-    const Complex norma(pow(this->norm(),2));
-    Complex ret = *this;
+Complex* Complex::inverse() const {
+    const Complex* norma = new Complex(pow(this->norm(),2));
+    Complex* ret = new Complex();
     /*if (norma.getI() < 0)
         throw exce_kalk("Errore divisione per 0");*/
-    ret = ret / norma;
+    *ret = *this / *norma;
     return ret;
 }
 
 void Complex::string(QString str) {
-    str = str.simplified();
+    str = str.simplified().toLower();
+    str = str.replace( " ", "" );
+
+    // Inizializziamo un validator per verificare il pattern
+    QRegExpValidator validator;
+    QRegExp rexp(regExp);
+    validator.setRegExp(rexp);
+    int pos = 0;
+    if (validator.validate(str, pos) != QRegExpValidator::State::Acceptable) {
+        throw exce_kalk(str.prepend("Formato numero non corretto\n").toStdString());
+        return;
+    }
+
     // Controllo il formato "2,2"
     QStringList list = str.split(',');
     if (list.size() == 2) {
-        this->setR(list[0].toDouble());
-        this->setI(list[1].toDouble());
+        setR(list[0].toDouble());
+        list[1] = list[1].replace("i", "");
+        setI(list[1].toDouble());
     }else{
-        // Controllo il formato "2 + 2i"
-        list = str.split("+");
-        if (list.size() == 2 && list[1].indexOf("i") == list[1].length()-1 && list[1].count("i") == 1) {
-            this->setR(list[0].toDouble());
-            list[1] = list[1].replace("i", "");
-            this->setI(list[1].toDouble());
-        }else
-            throw exce_kalk(str.prepend("Formato numero(c) non corretto\n").toStdString());
+        throw exce_kalk(str.prepend("Qualcosa è andato storto con la conversione a complesso di:\n").toStdString());
     }
 }
 
-Complex Complex::operator+(const Complex& b) const {
-    Complex res;
-    res.setR(this->getR() + b.getR());
-    res.setI(this->getI() + b.getI());
-    return res;
+Complex& Complex::operator+(const Real& elem) const {
+    const Complex& b = static_cast<const Complex&>(elem);
+    Complex* res = new Complex();
+    res->setR(this->getR() + b.getR());
+    res->setI(this->getI() + b.getI());
+    return *res;
 }
-Complex Complex::operator-(const Complex& b) const {
-    Complex res;
-    res.setR(this->getR() - b.getR());
-    res.setI(this->getI() - b.getI());
-    return res;
+Complex& Complex::operator-(const Real& elem) const {
+    const Complex& b = static_cast<const Complex&>(elem);
+    Complex* res = new Complex();
+    res->setR(this->getR() - b.getR());
+    res->setI(this->getI() - b.getI());
+    return *res;
 }
-Complex Complex::operator*(const Complex& b) const {
-    Complex res;
-    res.setR((this->getR() * b.getR()) -
+Complex& Complex::operator*(const Real& elem) const {
+    const Complex& b = static_cast<const Complex&>(elem);
+    Complex* res = new Complex();
+    res->setR((this->getR() * b.getR()) -
                   (this->getI() * b.getI()));
-    res.setI((this->getR() * b.getI()) +
+    res->setI((this->getR() * b.getI()) +
                  (this->getI() * b.getR()));
-    return res;
+    return *res;
 }
-Complex Complex::operator/(const Complex& b) const {
+Complex& Complex::operator/(const Real& elem) const {
+    const Complex& b = static_cast<const Complex&>(elem);
     Complex inverse, denominatoreComplex;
     inverse = b;
     inverse.inverseI();
     denominatoreComplex = inverse * b;
-    float denominatore = denominatoreComplex.getR();
-    float rPart;
-    float iPart;
-    if (denominatore < 0)
+    double denominatore = denominatoreComplex.getR();
+    double rPart;
+    double iPart;
+    if (denominatore == 0)
         throw exce_kalk("Errore divisione per 0");
     inverse = *this * inverse;
     rPart = inverse.getR() / denominatore;
     iPart = inverse.getI() / denominatore;
-    Complex res(rPart, iPart);
-    return res;
+    Complex* res = new Complex(rPart, iPart);
+    return *res;
 }
 
 QString Complex::getString(unsigned int prec) {
-    return QString::number(this->getR(), 'f', prec) + " + " +
+    return QString::number(this->getR(), 'f', prec) + ", " +
             QString::number(this->getI(), 'f', prec) + "i";
 }

@@ -33,8 +33,8 @@ void ComplexView::initialize() {
     confFor = TastierinoView::configurabile::confForComplessi;
 
     // Validator setup for complex
-    QRegExp regExp("^([0-9]+[0-9]*)(\\+|,)([0-9]+[0-9]*)+i$");
-    validator.setRegExp(regExp);
+    QRegExp regx(Complex::regExp);
+    validator.setRegExp(regx);
 }
 
 void ComplexView::handle() {
@@ -74,26 +74,29 @@ void ComplexView::handle() {
 
 void ComplexView::errorManager(QString err) {
     // Something to do here
-    QMessageBox msgBox(this);
-    msgBox.setText(err);
-    QLabel* label = new QLabel(&msgBox);
-    label-> setWindowFlags(Qt::FramelessWindowHint);
-    label->setObjectName("imgGif");
-    QPixmap p(":/Resources/Resources/whatIcon.gif");
+    QMessageBox *msgBox = new QMessageBox(this);
+    msgBox->setStyleSheet("QPushButton{padding:5px 10px;}");
+    if (ui->lineEditCurrent->text() == "pulpfiction") {
+        QLabel* label = new QLabel(msgBox);
+        label-> setWindowFlags(Qt::FramelessWindowHint);
+        label->setObjectName("imgGif");
+        QPixmap p(":/Resources/Resources/whatIcon.gif");
 
-    msgBox.setStyleSheet("QLabel{min-height:50px;padding-left:70px} #imgGif{padding-left:0;}");
+        msgBox->setStyleSheet("QLabel{min-height:70px;padding-left:70px} #imgGif{padding-left:0;} QPushButton{padding:5px 10px;}");
 
-    label->setPixmap(p);
-    label->setFixedHeight(100);
-    label->setFixedWidth(100);
+        label->setPixmap(p);
+        label->setFixedHeight(100);
+        label->setFixedWidth(100);
 
-    QMovie *movie = new QMovie(":/Resources/Resources/whatIcon.gif");
-    label->setMovie(movie);
-    movie->start();
+        QMovie *movie = new QMovie(":/Resources/Resources/whatIcon.gif");
+        label->setMovie(movie);
+        movie->start();
 
-    label->show();
-    msgBox.exec();
-    // ------------------------
+        label->show();
+    }else{
+        msgBox->setText(err);
+    }
+    msgBox->exec();
 }
 
 void ComplexView::logAppend(QString str) {
@@ -138,16 +141,16 @@ void ComplexView::calcola() {
     try {
         switch (operation) {
         case tipiCalcolo::sum:
-            *op3 = *op1 + *op2;
+            op3 = &(*op1 + *op2);
             break;
         case tipiCalcolo::sub:
-            *op3 = *op1 - *op2;
+            op3 = &(*op1 - *op2);
             break;
         case tipiCalcolo::mult:
-            *op3 = *op1 * *op2;
+            op3 = &(*op1 * *op2);
             break;
         case tipiCalcolo::div:
-            *op3 = *op1 / *op2;
+            op3 = &(*op1 / *op2);
             break;
         }
         logAppend(op3->getString());
@@ -156,6 +159,8 @@ void ComplexView::calcola() {
         operationStep = 0;
     }catch (exce_kalk e) {
         // Errore
+        logReset();
+        operationStep = 0;
         errorManager(e.what());
     }
 }
@@ -163,9 +168,11 @@ void ComplexView::calcola() {
 void ComplexView::slotCalculate() {
     // TODO: controlli dei valori ??
     try {
-        QString curr = ui->lineEditCurrent->text();
+        QString str = ui->lineEditCurrent->text();
+        str = str.simplified().toLower();
+        str.replace( " ", "" );
         int pos = 0;
-        if (validator.validate(curr, pos) != QRegExpValidator::State::Acceptable) {
+        if (validator.validate(str, pos) != QRegExpValidator::State::Acceptable) {
             errorManager("Input non valido, controlla che il formato sia corretto");
             return;
         }
@@ -173,48 +180,48 @@ void ComplexView::slotCalculate() {
             logReset();
             if(sender() == ui->btnSomma) {
                 ++operationStep;
-                op1->string(ui->lineEditCurrent->text());
+                op1->string(str);
                 operation = tipiCalcolo::sum;
                 logAppend(op1->getString());
                 logAppend("+");
                 ui->lineEditCurrent->setText("");
             }else if(sender() == ui->btnSottrazione) {
                 ++operationStep;
-                op1->string(ui->lineEditCurrent->text());
+                op1->string(str);
                 operation = tipiCalcolo::sub;
                 logAppend(op1->getString());
                 logAppend("-");
                 ui->lineEditCurrent->setText("");
             }else if(sender() == ui->btnMoltiplicazione) {
                 ++operationStep;
-                op1->string(ui->lineEditCurrent->text());
+                op1->string(str);
                 operation = tipiCalcolo::mult;
                 logAppend(op1->getString());
                 logAppend("*");
                 ui->lineEditCurrent->setText("");
             }else if(sender() == ui->btnDivisione) {
                 ++operationStep;
-                op1->string(ui->lineEditCurrent->text());
+                op1->string(str);
                 operation = tipiCalcolo::div;
                 logAppend(op1->getString());
                 logAppend("/");
                 ui->lineEditCurrent->setText("");
             }else if(sender() == ui->btnInverso) {
-                op3->string(ui->lineEditCurrent->text());
+                op3->string(str);
                 logAppend(op3->getString());
-                *op3 = op3->inverse();
+                op3 = op3->inverse();
                 logAppend("Inverso:");
                 logAppend(op3->getString());
                 ui->lineEditCurrent->setText(op3->getString());
             }else if(sender() == ui->btnNorma) {
-                op3->string(ui->lineEditCurrent->text());
+                op3->string(str);
                 logAppend(op3->getString());
                 *op3 = op3->norm();
                 logAppend("Norma:");
                 logAppend(op3->getString());
                 ui->lineEditCurrent->setText(op3->getString());
             }else if(sender() == ui->btnConiugato) {
-                op3->string(ui->lineEditCurrent->text());
+                op3->string(str);
                 logAppend(op3->getString());
                 *op3 = op3->conjugate();
                 logAppend("Coniugato:");
@@ -223,7 +230,7 @@ void ComplexView::slotCalculate() {
             }
         }else if(operationStep == 1) {
             if(sender() == ui->btnCalcola) {
-                op2->string(ui->lineEditCurrent->text());
+                op2->string(str);
                 logAppend(op2->getString());
                 logAppend("=");
                 calcola();
@@ -231,6 +238,7 @@ void ComplexView::slotCalculate() {
         }
     }catch (exce_kalk e) {
         // Errore
+        logReset();
         operationStep = 0;
         errorManager(e.what());
     }

@@ -10,31 +10,32 @@
 class Quaternion : public Complex
 {
 private:
-    float jVal;
-    float kVal;
+    double jVal;
+    double kVal;
 
 public:
+    static const QString regExp;
     Quaternion(QString);
-    Quaternion(float = 0, float = 0, float = 0, float = 0);
+    Quaternion(double = 0, double = 0, double = 0, double = 0);
     ~Quaternion() = default;
 
-    void setJ(float);
-    float getJ() const;
-    void setK(float);
-    float getK() const;
+    void setJ(double);
+    double getJ() const;
+    void setK(double);
+    double getK() const;
     void inverseJ();
     void inverseK();
 
     Quaternion conjugate() const;
-    float norm() const;
+    double norm() const;
     Quaternion inverse() const;
 
     void string(QString);
 
-    Quaternion operator+(const Quaternion&) const;
-    Quaternion operator-(const Quaternion&) const;
-    Quaternion operator*(const Quaternion&) const;
-    Quaternion operator/(const Quaternion&) const;
+    Quaternion& operator+(const Real&) const override;
+    Quaternion& operator-(const Real&) const override;
+    Quaternion& operator*(const Real&) const override;
+    Quaternion& operator/(const Real&) const override;
 
     QString getString(unsigned int = 2) override;
 };

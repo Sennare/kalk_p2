@@ -23,9 +23,8 @@ public:
     virtual void initialize();
     void handle();
 
-    void errorManager(QString);
-
 protected:
+    void errorManager(QString);
     Complex* op1;
     Complex* op2;
     Complex* op3;
