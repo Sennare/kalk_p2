@@ -102,8 +102,12 @@ ColoredWave ColoredWave::operator/(const ColoredWave& x){
     Color res;
 
     for(int i=0; i<maxLenght; ++i) {
-        res = this->getColor(i) / x.getColor(i);
-        aux->pushPoint(this->getAmpVal(i) / x.getAmpVal(i), res);
+        if(x.getAmpVal(i) == 0){
+            throw exce_kalk("Impossibile dividere per 0.");
+        } else {
+            res = this->getColor(i) / x.getColor(i);
+            aux->pushPoint(this->getAmpVal(i) / x.getAmpVal(i), res);
+        }
     }
     return *aux;
 }

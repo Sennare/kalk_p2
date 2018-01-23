@@ -80,8 +80,6 @@ QPair<QString, QString> Audio::getBothWaves(){
 }
 
 Audio Audio::operator+ (const Audio& x) {
-    qDebug()<< "this->getAmpVal(i) / x.getAmpVal(i)";
-
     Audio* aux = new Audio();
     int maxLenght = qMax(this->waveLenght(), x.waveLenght());
 

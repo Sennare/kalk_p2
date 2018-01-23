@@ -187,32 +187,38 @@ void ColoredWaveView::slotOpOndaColorataUno(){
     int valGOndaUno = ui->lineEditGOndaUno->text().simplified().toLower().replace( " ", "").toInt();
     int valBOndaUno = ui->lineEditBOndaUno->text().simplified().toLower().replace( " ", "").toInt();
     Color colore(valROndaUno, valGOndaUno, valBOndaUno);
-
-    if (sender() == ui->btnInserisciOndaUno){
-        int indTarget = (indOndaUno<0 ? -1 : indOndaUno);
-        operatoreUno->pushPoint(ampOndaUno, colore, indTarget, true);
-        updateAllOp();
-    } else if(sender() == ui->btnSostituisciOndaUno) {
-        if (indOndaUno < 0) indOndaUno = 0;
-        int indTarget = (indOndaUno<0 ? 0 : indOndaUno);
-        operatoreUno->pushPoint(ampOndaUno, colore, indTarget, false);
-        updateAllOp();
-    } else if (sender() == ui->btnOttieniOndaUno) {
-        if (indOndaUno < 0 || indOndaUno >= operatoreUno->waveLenght()) {
-            throw exce_kalk("Indice Fuori dal range consentito. Controllare che sia positivo o che esista.");
-        } else {
-            ui->lineEditValoriOndaUno->setText(QString::number(operatoreUno->getAmpVal(indOndaUno)));
-            ui->lineEditROndaUno->setText(QString::number(operatoreUno->getColor(indOndaUno).getRdec()));
-            ui->lineEditGOndaUno->setText(QString::number(operatoreUno->getColor(indOndaUno).getGdec()));
-            ui->lineEditBOndaUno->setText(QString::number(operatoreUno->getColor(indOndaUno).getBdec()));
-        }
-    } else if (sender() == ui->btnEliminaOndaUno) {
-        if (indOndaUno < 0 || indOndaUno >= operatoreUno->waveLenght()) {
-            throw exce_kalk("Indice Fuori dal range consentito. Controllare che sia positivo o che esista.");
-        } else {
-            operatoreUno->removePoint(indOndaUno);
+    try {
+        if (sender() == ui->btnInserisciOndaUno){
+            int indTarget = (indOndaUno<0 ? -1 : indOndaUno);
+            operatoreUno->pushPoint(ampOndaUno, colore, indTarget, true);
             updateAllOp();
+        } else if(sender() == ui->btnSostituisciOndaUno) {
+            if (indOndaUno < 0) indOndaUno = 0;
+            int indTarget = (indOndaUno<0 ? 0 : indOndaUno);
+            operatoreUno->pushPoint(ampOndaUno, colore, indTarget, false);
+            updateAllOp();
+        } else if (sender() == ui->btnOttieniOndaUno) {
+            if (indOndaUno < 0 || indOndaUno >= operatoreUno->waveLenght()) {
+                throw exce_kalk("Indice Fuori dal range consentito. Controllare che sia positivo o che esista.");
+            } else {
+                ui->lineEditValoriOndaUno->setText(QString::number(operatoreUno->getAmpVal(indOndaUno)));
+                ui->lineEditROndaUno->setText(QString::number(operatoreUno->getColor(indOndaUno).getRdec()));
+                ui->lineEditGOndaUno->setText(QString::number(operatoreUno->getColor(indOndaUno).getGdec()));
+                ui->lineEditBOndaUno->setText(QString::number(operatoreUno->getColor(indOndaUno).getBdec()));
+            }
+        } else if (sender() == ui->btnEliminaOndaUno) {
+            if (indOndaUno < 0 || indOndaUno >= operatoreUno->waveLenght()) {
+                throw exce_kalk("Indice Fuori dal range consentito. Controllare che sia positivo o che esista.");
+            } else {
+                operatoreUno->removePoint(indOndaUno);
+                updateAllOp();
+            }
         }
+    } catch(exce_kalk e) {
+        // Errore
+        QMessageBox msgBox;
+        msgBox.setText(e.what());
+        msgBox.exec();
     }
 }
 
@@ -224,45 +230,57 @@ void ColoredWaveView::slotOpOndaColorataDue() {
     int valGOndaDue = ui->lineEditGOndaDue->text().simplified().toLower().replace( " ", "").toInt();
     int valBOndaDue = ui->lineEditBOndaDue->text().simplified().toLower().replace( " ", "").toInt();
     Color colore(valROndaDue, valGOndaDue, valBOndaDue);
-
-    if (sender() == ui->btnInserisciOndaDue){
-        int indTarget = (indOndaDue<0 ? -1 : indOndaDue);
-        operatoreDue->pushPoint(ampOndaDue, colore, indTarget, true);
-        updateAllOp();
-    } else if(sender() == ui->btnSostituisciOndaDue) {
-        if (indOndaDue < 0) indOndaDue = 0;
-        int indTarget = (indOndaDue<0 ? 0 : indOndaDue);
-        operatoreDue->pushPoint(ampOndaDue, colore, indTarget, false);
-        updateAllOp();
-    } else if (sender() == ui->btnOttieniOndaDue) {
-        if (indOndaDue < 0 || indOndaDue >= operatoreDue->waveLenght()) {
-            throw exce_kalk("Indice Fuori dal range consentito. Controllare che sia positivo o che esista.");
-        } else {
-            ui->lineEditValoriOndaDue->setText((QString::number(operatoreDue->getAmpVal(indOndaDue))));
-            ui->lineEditROndaDue->setText(QString::number(operatoreDue->getColor(indOndaDue).getRdec()));
-            ui->lineEditGOndaDue->setText(QString::number(operatoreDue->getColor(indOndaDue).getGdec()));
-            ui->lineEditBOndaDue->setText(QString::number(operatoreDue->getColor(indOndaDue).getBdec()));
-        }
-    } else if (sender() == ui->btnEliminaOndaDue) {
-        if (indOndaDue < 0 || indOndaDue >= operatoreDue->waveLenght()) {
-            throw exce_kalk("Indice Fuori dal range consentito. Controllare che sia positivo o che esista.");
-        } else {
-            operatoreDue->removePoint(indOndaDue);
+    try {
+        if (sender() == ui->btnInserisciOndaDue){
+            int indTarget = (indOndaDue<0 ? -1 : indOndaDue);
+            operatoreDue->pushPoint(ampOndaDue, colore, indTarget, true);
             updateAllOp();
+        } else if(sender() == ui->btnSostituisciOndaDue) {
+            if (indOndaDue < 0) indOndaDue = 0;
+            int indTarget = (indOndaDue<0 ? 0 : indOndaDue);
+            operatoreDue->pushPoint(ampOndaDue, colore, indTarget, false);
+            updateAllOp();
+        } else if (sender() == ui->btnOttieniOndaDue) {
+            if (indOndaDue < 0 || indOndaDue >= operatoreDue->waveLenght()) {
+                throw exce_kalk("Indice Fuori dal range consentito. Controllare che sia positivo o che esista.");
+            } else {
+                ui->lineEditValoriOndaDue->setText((QString::number(operatoreDue->getAmpVal(indOndaDue))));
+                ui->lineEditROndaDue->setText(QString::number(operatoreDue->getColor(indOndaDue).getRdec()));
+                ui->lineEditGOndaDue->setText(QString::number(operatoreDue->getColor(indOndaDue).getGdec()));
+                ui->lineEditBOndaDue->setText(QString::number(operatoreDue->getColor(indOndaDue).getBdec()));
+            }
+        } else if (sender() == ui->btnEliminaOndaDue) {
+            if (indOndaDue < 0 || indOndaDue >= operatoreDue->waveLenght()) {
+                throw exce_kalk("Indice Fuori dal range consentito. Controllare che sia positivo o che esista.");
+            } else {
+                operatoreDue->removePoint(indOndaDue);
+                updateAllOp();
+            }
         }
+    } catch(exce_kalk e) {
+        // Errore
+        QMessageBox msgBox;
+        msgBox.setText(e.what());
+        msgBox.exec();
     }
-
 }
 
 void ColoredWaveView::slotCalcolaOndaColorata(){
-    if (sender() == ui->btnSommaOndeColorate) {
-        *operatoreTre = *operatoreUno + *operatoreDue;
-    } else if (sender() == ui->btnSottrazioneOndeColorate){
-        *operatoreTre = *operatoreUno - *operatoreDue;
-    } else if (sender() == ui->btnDivisioneOndeColorate) {
-        *operatoreTre = *operatoreUno / *operatoreDue;
-    } else if (sender() == ui->btnMoltiplicazioneOndeColorate) {
-        *operatoreTre = *operatoreUno * *operatoreDue;
+    try {
+        if (sender() == ui->btnSommaOndeColorate) {
+            *operatoreTre = *operatoreUno + *operatoreDue;
+        } else if (sender() == ui->btnSottrazioneOndeColorate){
+            *operatoreTre = *operatoreUno - *operatoreDue;
+        } else if (sender() == ui->btnDivisioneOndeColorate) {
+            *operatoreTre = *operatoreUno / *operatoreDue;
+        } else if (sender() == ui->btnMoltiplicazioneOndeColorate) {
+            *operatoreTre = *operatoreUno * *operatoreDue;
+        }
+        updateOperatore(ui->widgetRisultato, ui->listWidgetColoriOndaTre, operatoreTre);
+    } catch(exce_kalk e) {
+        // Errore
+        QMessageBox msgBox;
+        msgBox.setText(e.what());
+        msgBox.exec();
     }
-    updateOperatore(ui->widgetRisultato, ui->listWidgetColoriOndaTre, operatoreTre);
 }
