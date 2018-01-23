@@ -104,8 +104,11 @@ Color Color::operator* (const Color& x) const{
                       (this->getBdec()*x.getBdec()));
 }
 Color Color::operator/ (const Color& x) const{
-    return new Color ((this->getRdec()/x.getRdec()),
+    if(x.getRdec() == 0 || x.getGdec() == 0 || x.getBdec() == 0){
+        throw exce_kalk("Impossibile dividere per 0.");
+    } else {
+        return new Color ((this->getRdec()/x.getRdec()),
                       (this->getGdec()/x.getGdec()),
                       (this->getBdec()/x.getBdec()));
-
+    }
 }

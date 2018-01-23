@@ -64,42 +64,45 @@ QString Wave::getString() {
     return ret;
 }
 Wave Wave::operator+ (const Wave& x) {
-   Wave* aux = new Wave();
-   int maxLenght = qMax(this->waveLenght(), x.waveLenght());
-   int i=0;
-   for( ; i<maxLenght; ++i) {
+    Wave* aux = new Wave();
+    int maxLenght = qMax(this->waveLenght(), x.waveLenght());
+    int i=0;
+    for( ; i<maxLenght; ++i) {
         aux->pushPoint(this->getAmpVal(i) + x.getAmpVal(i));
-   }
-   return *aux;
+    }
+    return *aux;
 }
 
 Wave Wave::operator- (const Wave& x) {
-   Wave* aux = new Wave();
-   int maxLenght = qMax(this->waveLenght(), x.waveLenght());
+    Wave* aux = new Wave();
+    int maxLenght = qMax(this->waveLenght(), x.waveLenght());
 
-   for(int i=0; i<maxLenght; ++i) {
-       aux->pushPoint(this->getAmpVal(i) - x.getAmpVal(i));
-   }
-   return *aux;
+    for(int i=0; i<maxLenght; ++i) {
+        aux->pushPoint(this->getAmpVal(i) - x.getAmpVal(i));
+    }
+    return *aux;
 }
 
 Wave Wave::operator/ (const Wave& x) {
-   Wave* aux = new Wave();
-   int maxLenght = qMax(this->waveLenght(), x.waveLenght());
+    Wave* aux = new Wave();
+    int maxLenght = qMax(this->waveLenght(), x.waveLenght());
 
-   for(int i=0; i<maxLenght; ++i) {
-        aux->pushPoint(this->getAmpVal(i) / x.getAmpVal(i));
-   }
-   // TODO: eccezzione div x 0
-   return *aux;
+    for(int i=0; i<maxLenght; ++i) {
+        if(x.getAmpVal(i)== 0){
+            throw exce_kalk("Impossibile dividere per 0.");
+        } else {
+            aux->pushPoint(this->getAmpVal(i) / x.getAmpVal(i));
+        }
+    }
+    return *aux;
 }
 
 Wave Wave::operator* (const Wave& x) {
-   Wave* aux = new Wave();
-   int maxLenght = qMax(this->waveLenght(), x.waveLenght());
+    Wave* aux = new Wave();
+    int maxLenght = qMax(this->waveLenght(), x.waveLenght());
 
-   for(int i=0; i<maxLenght; ++i) {
+    for(int i=0; i<maxLenght; ++i) {
        aux->pushPoint(this->getAmpVal(i) * x.getAmpVal(i));
-   }
+    }
     return *aux;
 }

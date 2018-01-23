@@ -19,6 +19,7 @@ SOURCES += main.cpp\
 	  helper.cpp \
     application.cpp \
     models/model.cpp \
+    exce_kalk.cpp\
     views/kalkselectorview.cpp \
     views/testview.cpp \
     logica/color.cpp \
@@ -34,6 +35,7 @@ HEADERS  += progetto.h\
 	helper.h \
     application.h \
     models/model.h \
+    exce_kalk.h\
     views/kalkselectorview.h \
     views/testview.h \
     logica/color.h \

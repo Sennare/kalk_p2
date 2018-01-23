@@ -5,6 +5,8 @@
 #include "views/view.h"
 #include "logica/coloredwave.h"
 #include "views/utils/qcustomplot.h"
+#include "exce_kalk.h"
+
 namespace Ui {
 class ColoredWaveView;
 }

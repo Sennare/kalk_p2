@@ -415,7 +415,7 @@ QLineEdit {
     </rect>
    </property>
    <property name="text">
-    <string>-12,3,-6,2,-8,4,-3</string>
+    <string>0,0,0,0,0,0,0</string>
    </property>
    <property name="placeholderText">
     <string>Formato: numero, numero</string>

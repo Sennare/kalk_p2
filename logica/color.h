@@ -6,6 +6,7 @@
 #include "QString"
 #include <iostream>
 
+#include"exce_kalk.h"
 #include "helper.h"
 
 using std::string;

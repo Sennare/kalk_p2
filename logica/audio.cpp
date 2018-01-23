@@ -1,4 +1,5 @@
 #include "audio.h"
+#include <QDebug>
 
 Audio::Audio(){}
 
@@ -79,6 +80,8 @@ QPair<QString, QString> Audio::getBothWaves(){
 }
 
 Audio Audio::operator+ (const Audio& x) {
+    qDebug()<< "this->getAmpVal(i) / x.getAmpVal(i)";
+
     Audio* aux = new Audio();
     int maxLenght = qMax(this->waveLenght(), x.waveLenght());
 
@@ -103,8 +106,14 @@ Audio Audio::operator/ (const Audio& x) {
     int maxLenght = qMax(this->waveLenght(), x.waveLenght());
 
     for(int i=0; i<maxLenght; ++i) {
-         aux->pushPoint(this->getAmpVal(i) / x.getAmpVal(i),
+        if(x.getAmpVal(i)==0 || x.getAmpVal(i, Audio::ondeDisponibili::ondaDx) == 0){
+            throw exce_kalk("Impossibile dividere per 0.");
+        } else {
+            aux->pushPoint(this->getAmpVal(i) / x.getAmpVal(i),
                          this->getAmpVal(i, Audio::ondeDisponibili::ondaDx) / x.getAmpVal(i, Audio::ondeDisponibili::ondaDx));
+            qDebug() << this->getAmpVal(i, Audio::ondeDisponibili::ondaDx) / x.getAmpVal(i, Audio::ondeDisponibili::ondaDx);
+
+        }
     }
     return *aux;
 }

@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>ColoredWaveView</class>
  <widget class="QWidget" name="ColoredWaveView">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -512,6 +515,9 @@
      <height>25</height>
     </rect>
    </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
   </widget>
   <widget class="QLabel" name="label_10">
    <property name="geometry">
@@ -606,6 +612,9 @@
      <height>25</height>
     </rect>
    </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
   </widget>
   <widget class="QLineEdit" name="lineEditGOndaDue">
    <property name="geometry">
@@ -617,7 +626,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>0</string>
+    <string>40</string>
    </property>
   </widget>
   <widget class="QSlider" name="horizontalSliderBOndaDue">
@@ -672,7 +681,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>0</string>
+    <string>50</string>
    </property>
   </widget>
   <widget class="QListWidget" name="listWidgetColoriOndaDue">

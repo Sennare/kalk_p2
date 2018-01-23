@@ -7,7 +7,7 @@
 #include "views/view.h"
 #include "logica/audio.h"
 #include "views/utils/qcustomplot.h"
-
+#include "exce_kalk.h"
 
 namespace Ui {
 class AudioView;

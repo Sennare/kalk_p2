@@ -4,6 +4,7 @@
 #include <QString>
 #include <QPair>
 #include "wave.h"
+#include "exce_kalk.h"
 
 class Audio : public Wave {
 protected:
