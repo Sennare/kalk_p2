@@ -21,7 +21,7 @@ public:
      * Costruttori per la classe Color
      * Si possono creare scrivendo il colore in caratteri esadecimali o inserendo i valori
      */
-    Color();;
+    Color();
     Color(int, int, int); //0<=r,g,b<=255
     Color(const Color&);
     Color(const Color*);

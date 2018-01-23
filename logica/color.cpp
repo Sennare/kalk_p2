@@ -1,6 +1,5 @@
 #include "color.h"
 
-
 /**
  * Costruttori per la classe colore
  * -costruttore per interi: imposta il colore predefinito di default
@@ -108,4 +107,5 @@ Color Color::operator/ (const Color& x) const{
     return new Color ((this->getRdec()/x.getRdec()),
                       (this->getGdec()/x.getGdec()),
                       (this->getBdec()/x.getBdec()));
+
 }
