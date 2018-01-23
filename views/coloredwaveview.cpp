@@ -7,6 +7,10 @@ ColoredWaveView::ColoredWaveView(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ColoredWaveView)
 {
+    QFile file (":/Resources/Resources/stylesheet.qss");
+    file.open(QFile::ReadOnly);
+    QString styleSheet = QLatin1String(file.readAll());
+    this->setStyleSheet(styleSheet);
     ui->setupUi(this);
     operatoreUno = new ColoredWave();
     operatoreDue = new ColoredWave();

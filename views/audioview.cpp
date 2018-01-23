@@ -7,6 +7,10 @@ AudioView::AudioView(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::AudioView)
 {
+    QFile file (":/Resources/Resources/stylesheet.qss");
+    file.open(QFile::ReadOnly);
+    QString styleSheet = QLatin1String(file.readAll());
+    this->setStyleSheet(styleSheet);
     operatoreUno = new Audio();
     operatoreDue = new Audio();
     operatoreTre = new Audio();
