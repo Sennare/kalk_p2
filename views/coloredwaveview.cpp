@@ -1,7 +1,7 @@
 #include "coloredwaveview.h"
 #include "ui_coloredwaveview.h"
 #include "helper.h"
-#include <QDebug>
+
 
 ColoredWaveView::ColoredWaveView(QWidget *parent) :
     QWidget(parent),

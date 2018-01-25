@@ -100,53 +100,60 @@ void AudioView::slotOpOndaUno() {
     QStringList listUnoSx = valOndaUnoSx.split(',');
     QStringList listUnoDx = valOndaUnoDx.split(',');
 
-    if (sender() == ui->btnInserisciOndaUno) {
-        if (listUnoSx.length() != listUnoDx.length() || indOndaUno > operatoreUno->waveLenght()) {
-            throw exce_kalk("Le onde audio sono caratterizzate da due onde, onda sinistra e onda destra di lunghezza uguale. ");
-        }else{
-            for (int i = 0; i < listUnoSx.length() ; ++i) {
-                int indTarget = (indOndaUno<0 ? -1 : indOndaUno+i);
-                operatoreUno->pushPoint(listUnoSx[i].toDouble() , listUnoDx[i].toDouble(), indTarget, true);
+    try {
+        if (sender() == ui->btnInserisciOndaUno) {
+            if (listUnoSx.length() != listUnoDx.length() || indOndaUno > operatoreUno->waveLenght()) {
+                throw exce_kalk("Le onde audio sono caratterizzate da due onde, onda sinistra e onda destra di lunghezza uguale. ");
+            }else{
+                for (int i = 0; i < listUnoSx.length() ; ++i) {
+                    int indTarget = (indOndaUno<0 ? -1 : indOndaUno+i);
+                    operatoreUno->pushPoint(listUnoSx[i].toDouble() , listUnoDx[i].toDouble(), indTarget, true);
+                }
+                updateAllOp();
+            }
+        } else if (sender() == ui->btnSostituisciOndaUno){
+            if (indOndaUno < 0) indOndaUno = 0;
+            if (listUnoSx.length() != listUnoDx.length() || indOndaUno <0 || indOndaUno+listUnoSx.length() > operatoreUno->waveLenght()) {
+                throw exce_kalk("Le onde audio sono caratterizzate da due onde, onda sinistra e onda destra di lunghezza uguale. ");
+            }else{
+                for (int i = 0; i < listUnoSx.length() ; ++i) {
+                    int indTarget = (indOndaUno<0 ? 0 : indOndaUno+i);
+                    operatoreUno->pushPoint(listUnoSx[i].toDouble() , listUnoDx[i].toDouble(), indTarget, false);
+                }
+                updateAllOp();
+            }
+        } else if (sender() == ui->btnOttieniOndaUno) {
+            if (indOndaUno <0 || indOndaUno+lungOndaUno > operatoreUno->waveLenght()) {
+                throw exce_kalk("Le onde audio sono caratterizzate da due onde, onda sinistra e onda destra di lunghezza uguale. ");
+            }else{
+                // ottengo i dati
+                QString ondaSx, ondaDx, comma;
+                for (int i = indOndaUno; i < indOndaUno+lungOndaUno ; ++i) {
+                    ondaSx.append(comma);
+                    ondaDx.append(comma);
+                    ondaSx.append( QString::number(operatoreUno->getAmpVal(i)) );
+                    ondaDx.append( QString::number(operatoreUno->getAmpVal(i, Audio::ondeDisponibili::ondaDx)) );
+                    comma = ", ";
+                }
+                ui->lineEditValoriOndaUnoOndaSx->setText(ondaSx);
+                ui->lineEditValoriOndaUnoOndaDx->setText(ondaDx);
+            }
+        } else if (sender() == ui->btnEliminaOndaUno) {
+            if (indOndaUno <0 || indOndaUno+lungOndaUno > operatoreUno->waveLenght()) {
+                throw exce_kalk("Le onde audio sono caratterizzate da due onde, onda sinistra e onda destra di lunghezza uguale. ");
+            }else{
+                // rimuovo i dati
+                for (int i = indOndaUno; i < indOndaUno+lungOndaUno ; ++i) {
+                    operatoreUno->removePoint(indOndaUno);
+                }
             }
             updateAllOp();
         }
-    } else if (sender() == ui->btnSostituisciOndaUno){
-        if (indOndaUno < 0) indOndaUno = 0;
-        if (listUnoSx.length() != listUnoDx.length() || indOndaUno <0 || indOndaUno+listUnoSx.length() > operatoreUno->waveLenght()) {
-            throw exce_kalk("Le onde audio sono caratterizzate da due onde, onda sinistra e onda destra di lunghezza uguale. ");
-        }else{
-            for (int i = 0; i < listUnoSx.length() ; ++i) {
-                int indTarget = (indOndaUno<0 ? 0 : indOndaUno+i);
-                operatoreUno->pushPoint(listUnoSx[i].toDouble() , listUnoDx[i].toDouble(), indTarget, false);
-            }
-            updateAllOp();
-        }
-    } else if (sender() == ui->btnOttieniOndaUno) {
-        if (indOndaUno <0 || indOndaUno+lungOndaUno > operatoreUno->waveLenght()) {
-            throw exce_kalk("Le onde audio sono caratterizzate da due onde, onda sinistra e onda destra di lunghezza uguale. ");
-        }else{
-            // ottengo i dati
-            QString ondaSx, ondaDx, comma;
-            for (int i = indOndaUno; i < indOndaUno+lungOndaUno ; ++i) {
-                ondaSx.append(comma);
-                ondaDx.append(comma);
-                ondaSx.append( QString::number(operatoreUno->getAmpVal(i)) );
-                ondaDx.append( QString::number(operatoreUno->getAmpVal(i, Audio::ondeDisponibili::ondaDx)) );
-                comma = ", ";
-            }
-            ui->lineEditValoriOndaUnoOndaSx->setText(ondaSx);
-            ui->lineEditValoriOndaUnoOndaDx->setText(ondaDx);
-        }
-    } else if (sender() == ui->btnEliminaOndaUno) {
-        if (indOndaUno <0 || indOndaUno+lungOndaUno > operatoreUno->waveLenght()) {
-            throw exce_kalk("Le onde audio sono caratterizzate da due onde, onda sinistra e onda destra di lunghezza uguale. ");
-        }else{
-            // rimuovo i dati
-            for (int i = indOndaUno; i < indOndaUno+lungOndaUno ; ++i) {
-                operatoreUno->removePoint(indOndaUno);
-            }
-        }
-        updateAllOp();
+    } catch(exce_kalk e) {
+        // Errore
+        QMessageBox msgBox;
+        msgBox.setText(e.what());
+        msgBox.exec();
     }
 }
 
@@ -163,66 +170,79 @@ void AudioView::slotOpOndaDue() {
     valOndaDueDx.replace( " ", "" );
     QStringList listDueSx = valOndaDueSx.split(',');
     QStringList listDueDx = valOndaDueDx.split(',');
-
-    if (sender() == ui->btnInserisciOndaDue) {
-        if (listDueSx.length() != listDueDx.length() || indOndaDue > operatoreDue->waveLenght()) {
-            throw exce_kalk("Le onde audio sono caratterizzate da due onde, onda sinistra e onda destra di lunghezza uguale. ");
-        }else{
-            for (int i = 0; i < listDueSx.length() ; ++i) {
-                int indTarget = (indOndaDue<0 ? -1 : indOndaDue+i);
-                operatoreDue->pushPoint(listDueSx[i].toDouble() , listDueDx[i].toDouble(), indTarget, true);
+    try {
+        if (sender() == ui->btnInserisciOndaDue) {
+            if (listDueSx.length() != listDueDx.length() || indOndaDue > operatoreDue->waveLenght()) {
+                throw exce_kalk("Le onde audio sono caratterizzate da due onde, onda sinistra e onda destra di lunghezza uguale. ");
+            }else{
+                for (int i = 0; i < listDueSx.length() ; ++i) {
+                    int indTarget = (indOndaDue<0 ? -1 : indOndaDue+i);
+                    operatoreDue->pushPoint(listDueSx[i].toDouble() , listDueDx[i].toDouble(), indTarget, true);
+                }
+                updateAllOp();
+            }
+        } else if (sender() == ui->btnSostituisciOndaDue){
+            if (indOndaDue < 0) indOndaDue = 0;
+            if (listDueSx.length() != listDueDx.length() || indOndaDue <0 || indOndaDue+listDueSx.length() > operatoreDue->waveLenght()) {
+                throw exce_kalk("Le onde audio sono caratterizzate da due onde, onda sinistra e onda destra di lunghezza uguale. ");
+            }else{
+                for (int i = 0; i < listDueSx.length() ; ++i) {
+                    int indTarget = (indOndaDue<0 ? 0 : indOndaDue+i);
+                    operatoreDue->pushPoint(listDueSx[i].toDouble() , listDueDx[i].toDouble(), indTarget, false);
+                }
+                updateAllOp();
+            }
+        } else if (sender() == ui->btnOttieniOndaDue) {
+            if (indOndaDue <0 || indOndaDue+lungOndaDue > operatoreDue->waveLenght()) {
+                throw exce_kalk("Le onde audio sono caratterizzate da due onde, onda sinistra e onda destra di lunghezza uguale. ");
+            }else{
+                // ottengo i dati
+                QString ondaSx, ondaDx, comma;
+                for (int i = indOndaDue; i < indOndaDue+lungOndaDue ; ++i) {
+                    ondaSx.append(comma);
+                    ondaDx.append(comma);
+                    ondaSx.append( QString::number(operatoreDue->getAmpVal(i)) );
+                    ondaDx.append( QString::number(operatoreDue->getAmpVal(i, Audio::ondeDisponibili::ondaDx)) );
+                    comma = ", ";
+                }
+                ui->lineEditValoriOndaDueOndaSx->setText(ondaSx);
+                ui->lineEditValoriOndaDueOndaDx->setText(ondaDx);
+            }
+        } else if (sender() == ui->btnEliminaOndaDue) {
+            if (indOndaDue <0 || indOndaDue+lungOndaDue > operatoreDue->waveLenght()) {
+                throw exce_kalk("Le onde audio sono caratterizzate da due onde, onda sinistra e onda destra di lunghezza uguale. ");
+            }else{
+                // rimuovo i dati
+                for (int i = indOndaDue; i < indOndaDue+lungOndaDue ; ++i) {
+                    operatoreDue->removePoint(indOndaDue);
+                }
             }
             updateAllOp();
         }
-    } else if (sender() == ui->btnSostituisciOndaDue){
-        if (indOndaDue < 0) indOndaDue = 0;
-        if (listDueSx.length() != listDueDx.length() || indOndaDue <0 || indOndaDue+listDueSx.length() > operatoreDue->waveLenght()) {
-            throw exce_kalk("Le onde audio sono caratterizzate da due onde, onda sinistra e onda destra di lunghezza uguale. ");
-        }else{
-            for (int i = 0; i < listDueSx.length() ; ++i) {
-                int indTarget = (indOndaDue<0 ? 0 : indOndaDue+i);
-                operatoreDue->pushPoint(listDueSx[i].toDouble() , listDueDx[i].toDouble(), indTarget, false);
-            }
-            updateAllOp();
-        }
-    } else if (sender() == ui->btnOttieniOndaDue) {
-        if (indOndaDue <0 || indOndaDue+lungOndaDue > operatoreDue->waveLenght()) {
-            throw exce_kalk("Le onde audio sono caratterizzate da due onde, onda sinistra e onda destra di lunghezza uguale. ");
-        }else{
-            // ottengo i dati
-            QString ondaSx, ondaDx, comma;
-            for (int i = indOndaDue; i < indOndaDue+lungOndaDue ; ++i) {
-                ondaSx.append(comma);
-                ondaDx.append(comma);
-                ondaSx.append( QString::number(operatoreDue->getAmpVal(i)) );
-                ondaDx.append( QString::number(operatoreDue->getAmpVal(i, Audio::ondeDisponibili::ondaDx)) );
-                comma = ", ";
-            }
-            ui->lineEditValoriOndaDueOndaSx->setText(ondaSx);
-            ui->lineEditValoriOndaDueOndaDx->setText(ondaDx);
-        }
-    } else if (sender() == ui->btnEliminaOndaDue) {
-        if (indOndaDue <0 || indOndaDue+lungOndaDue > operatoreDue->waveLenght()) {
-            throw exce_kalk("Le onde audio sono caratterizzate da due onde, onda sinistra e onda destra di lunghezza uguale. ");
-        }else{
-            // rimuovo i dati
-            for (int i = indOndaDue; i < indOndaDue+lungOndaDue ; ++i) {
-                operatoreDue->removePoint(indOndaDue);
-            }
-        }
-        updateAllOp();
+    } catch(exce_kalk e) {
+        // Errore
+        QMessageBox msgBox;
+        msgBox.setText(e.what());
+        msgBox.exec();
     }
 }
 
 void AudioView::slotCalcola() {
-    if (sender() == ui->btnSommaOndeAudio) {
-        *operatoreTre = *operatoreUno + *operatoreDue;
-    } else if (sender() == ui->btnSottrazioneOndeAudio){
-        *operatoreTre = *operatoreUno - *operatoreDue;
-    } else if (sender() == ui->btnDivisioneOndeAudio) {
-        *operatoreTre = *operatoreUno / *operatoreDue;
-    } else if (sender() == ui->btnMoltiplicazioneOndeAudio) {
-        *operatoreTre = *operatoreUno * *operatoreDue;
+    try {
+        if (sender() == ui->btnSommaOndeAudio) {
+            *operatoreTre = *operatoreUno + *operatoreDue;
+        } else if (sender() == ui->btnSottrazioneOndeAudio){
+            *operatoreTre = *operatoreUno - *operatoreDue;
+        } else if (sender() == ui->btnDivisioneOndeAudio) {
+            *operatoreTre = *operatoreUno / *operatoreDue;
+        } else if (sender() == ui->btnMoltiplicazioneOndeAudio) {
+            *operatoreTre = *operatoreUno * *operatoreDue;
+        }
+        updateOperatore(ui->widgetRisultato, operatoreTre);
+    } catch(exce_kalk e) {
+        // Errore
+        QMessageBox msgBox;
+        msgBox.setText(e.what());
+        msgBox.exec();
     }
-    updateOperatore(ui->widgetRisultato, operatoreTre);
 }

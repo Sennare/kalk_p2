@@ -1,5 +1,5 @@
 #include "audio.h"
-#include <QDebug>
+
 
 Audio::Audio(){}
 
@@ -109,8 +109,6 @@ Audio Audio::operator/ (const Audio& x) {
         } else {
             aux->pushPoint(this->getAmpVal(i) / x.getAmpVal(i),
                          this->getAmpVal(i, Audio::ondeDisponibili::ondaDx) / x.getAmpVal(i, Audio::ondeDisponibili::ondaDx));
-            qDebug() << this->getAmpVal(i, Audio::ondeDisponibili::ondaDx) / x.getAmpVal(i, Audio::ondeDisponibili::ondaDx);
-
         }
     }
     return *aux;
