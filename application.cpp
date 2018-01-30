@@ -6,22 +6,12 @@
 #include "views/complexview.h"
 #include "views/quaternionview.h"
 
-Application* Application::istanza = 0;
-
 Application::Application(int* argc, char** argv[]) :
     qAppl(*argc, *argv)
 {
-    istanza = this;
 }
 
 Application::~Application() {
-    if (istanza == this) {
-        istanza = 0;
-    }
-}
-
-Application *Application::getIstanza() {
-    return istanza;
 }
 
 void Application::initialize() {
@@ -41,7 +31,8 @@ void Application::initializeKalk(View* subC) {
 }
 
 void Application::destroyView() {
-    delete currentView;
+    if (currentView)
+        delete currentView;
 }
 
 void Application::exitKalk() {
@@ -50,7 +41,6 @@ void Application::exitKalk() {
 }
 
 int Application::exec() {
-    // Leave app ????
     return qAppl.exec();
 }
 
