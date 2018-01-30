@@ -1,4 +1,4 @@
-package com.kalk.numeri;
+package kalk.numeri;
 
 public class test {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.kalk.numeri;
+package kalk.numeri;
 
 public class Real {
     private Double rVal = 0.0;
