@@ -1,4 +1,4 @@
-package com.kalk.numeri;
+package kalk.numeri;
 
 public class Quaternion extends Complex {
 	private Double jVal =  0.0;

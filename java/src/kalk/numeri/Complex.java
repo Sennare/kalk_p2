@@ -1,4 +1,4 @@
-package com.kalk.numeri;
+package kalk.numeri;
 
 public class Complex extends Real {
 	private Double iVal = 0.0;
