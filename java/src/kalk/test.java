@@ -1,7 +1,18 @@
-package kalk.numeri;
+package kalk;
+import kalk.numeri.*;
 
 public class test {
     public static void main(String[] args) {
+        // testNumeri();
+        testOnde();
+    }
+
+    public static void testOnde() {
+        // Lavora qui
+
+    }
+
+    public static void testNumeri() {
         // Complessi esempi di utilizzo
         System.out.println("--------- Test numeri complessi ---------");
         Complex c1 = new Complex(3.0, 6.0);
