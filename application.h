@@ -10,7 +10,6 @@ class Application : public QObject
 {
     Q_OBJECT
 private:
-    static Application* istanza;
     QApplication qAppl;
     View* currentView;
 public:
@@ -24,7 +23,6 @@ public:
         OndeColorate
     };
 
-    static Application* getIstanza();
     void initialize();
     void initializeKalk(View*);
     void destroyView();
