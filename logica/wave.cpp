@@ -2,13 +2,6 @@
 
 Wave::Wave(){}
 
-Wave::Wave(QString x) {
-    QStringList aux = x.split(",");
-    for(int i=0; i < aux.size(); ++i) {
-        this->pushPoint(aux[i].toDouble());
-    }
-}
-
 double Wave::getVAmp(int index) const {
     if (index < v.size()){
         return v[index];
@@ -39,7 +32,6 @@ void Wave::pushPoint(double x, int index, bool insert) {
 }
 
 void Wave::removePoint(const int index){
-    //TODO: eccezione da aggiungere
     removeVAmp(index);
 }
 
@@ -52,17 +44,6 @@ double Wave::getAmpVal(const int x) const{
     return getVAmp(x);
 }
 
-QString Wave::getString() {
-    QString ret("("), comma;
-    QVector<double>::const_iterator end=v.end();
-    for(QVector<double>::const_iterator now = v.begin(); now != end; ++now){
-        ret.append(comma);
-        ret.append(QString::number(*now));
-        comma=",";
-    }
-    ret.append(")");
-    return ret;
-}
 Wave Wave::operator+ (const Wave& x) {
     Wave* aux = new Wave();
     int maxLenght = qMax(this->waveLenght(), x.waveLenght());

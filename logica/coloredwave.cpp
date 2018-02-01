@@ -14,7 +14,7 @@ void ColoredWave::setColor(Color color, int index, bool insert) {
     Color* aux = new Color(color);
     if(index < 0) {
         colori.push_back(aux);
-    } else if (insert < waveLenght()){
+    } else if (index < waveLenght()){
         if(insert){
             colori.insert(index, aux);
         } else {
@@ -45,18 +45,6 @@ double ColoredWave::getAmpVal(const int index) const {
 
 Color ColoredWave::getAmpColor(const int index) const {
     return getColor(index);
-}
-
-QString ColoredWave::getString(){
-    QString ret("("), comma;
-    QMutableVectorIterator<Color*> i(colori);
-    while (i.hasNext()) {
-        ret.append(comma);
-        ret.append(Color::ConvertRGBtoHex(i.next()));
-        comma = ",";
-    }
-    ret.append(")");
-    return ret;
 }
 
 ColoredWave ColoredWave::operator+(const ColoredWave& x){

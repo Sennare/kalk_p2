@@ -22,22 +22,12 @@ public:
         ondaSx,
         ondaDx
     };
-    enum operazioniDisponibili {
-        opPush,
-        opGet,
-        opRemove,
-        opSostituzione
-    };
 
     void pushPoint(double, double, int=-1, bool=false);  //aggiunge un valore all'onda
     void removePoint(const int);  //rimuove valore che corrisponde a una determinata posizione
     int waveLenght() const;    //ritorna la lunghezza della lista dei valori
 
     double getAmpVal(const int, int=Audio::ondeDisponibili::ondaSx) const;     //ritorna il valore destro o sinistro di un determinato punto della lista
-
-    QPair<double, double> getBothAmpVal(const int);    //ritorna valore destro e sinistro in un determinato punto
-    QPair<QString, QString> getBothWaves();
-    QString getString(int=Audio::ondeDisponibili::ondaSx);  //ritorna la successione di punti in formato stringa
 
     Audio operator+(const Audio&);
     Audio operator-(const Audio&);

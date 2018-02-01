@@ -47,38 +47,6 @@ double Audio::getAmpVal(const int index, int ondaRichiesta) const{
     }
 }
 
-QPair<double,double> Audio::getBothAmpVal(const int index) {
-    QPair<double, double> values;
-    values.first = getVAmp(index);
-    values.second = getWAmp(index);
-    return values;
-}
-
-QString Audio::getString(int ondaRichiesta) {
-    QVector<double> aux;
-    if (ondaRichiesta == Audio::ondeDisponibili::ondaSx) {
-        aux=v;
-    } else {
-        aux=w;
-    }
-    QString ret("("), comma;
-    QVector<double>::const_iterator end=aux.end();
-    for(QVector<double>::const_iterator now = aux.begin(); now != end; ++now){
-        ret.append(comma);
-        ret.append(QString::number(*now));
-        comma=",";
-    }
-    ret.append(")");
-    return ret;
-}
-
-QPair<QString, QString> Audio::getBothWaves(){
-    QPair<QString, QString> waves;
-    waves.first = getString(ondaSx);
-    waves.second = getString(ondaDx);
-    return waves;
-}
-
 Audio Audio::operator+ (const Audio& x) {
     Audio* aux = new Audio();
     int maxLenght = qMax(this->waveLenght(), x.waveLenght());
