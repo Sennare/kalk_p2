@@ -185,13 +185,19 @@ void ColoredWaveView::slotSliderOndaDue() {
 
 void ColoredWaveView::slotOpOndaColorataUno(){
     double ampOndaUno = ui->lineEditValoriOndaUno->text().simplified().toLower().replace(" ", "").toDouble();
-    int indOndaUno = ui->lineEditIndiceOndaUno->text().simplified().toLower().replace( " ", "" ). toInt();
+    int indOndaUno = ui->lineEditIndiceOndaUno->text().simplified().toLower().replace( " ", "" ).toInt();
 
     int valROndaUno = ui->lineEditROndaUno->text().simplified().toLower().replace( " ", "").toInt();
     int valGOndaUno = ui->lineEditGOndaUno->text().simplified().toLower().replace( " ", "").toInt();
     int valBOndaUno = ui->lineEditBOndaUno->text().simplified().toLower().replace( " ", "").toInt();
     Color colore(valROndaUno, valGOndaUno, valBOndaUno);
     try {
+        if (ui->lineEditValoriOndaUno->text().simplified().toLower().replace(" ", "") == ""){
+            throw exce_kalk("Non sono stati inseriti valori");
+        }
+        if (ui->lineEditIndiceOndaUno->text().simplified().toLower().replace( " ", "" ) == ""){
+            throw exce_kalk("Inserire indice -1 per cominciare ad inserire.");
+        }
         if (sender() == ui->btnInserisciOndaUno){
             int indTarget = (indOndaUno<0 ? -1 : indOndaUno);
             operatoreUno->pushPoint(ampOndaUno, colore, indTarget, true);
@@ -235,6 +241,12 @@ void ColoredWaveView::slotOpOndaColorataDue() {
     int valBOndaDue = ui->lineEditBOndaDue->text().simplified().toLower().replace( " ", "").toInt();
     Color colore(valROndaDue, valGOndaDue, valBOndaDue);
     try {
+        if (ui->lineEditValoriOndaDue->text().simplified().toLower().replace(" ", "") == ""){
+            throw exce_kalk("Non sono stati inseriti valori");
+        }
+        if (ui->lineEditIndiceOndaDue->text().simplified().toLower().replace( " ", "" ) == ""){
+            throw exce_kalk("Inserire indice -1 per cominciare ad inserire.");
+        }
         if (sender() == ui->btnInserisciOndaDue){
             int indTarget = (indOndaDue<0 ? -1 : indOndaDue);
             operatoreDue->pushPoint(ampOndaDue, colore, indTarget, true);

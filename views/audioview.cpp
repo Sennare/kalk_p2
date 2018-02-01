@@ -101,6 +101,12 @@ void AudioView::slotOpOndaUno() {
     QStringList listUnoDx = valOndaUnoDx.split(',');
 
     try {
+        if (ui->lineEditValoriOndaUnoOndaSx->text()  == "" || ui->lineEditValoriOndaUnoOndaDx->text() ==""){
+            throw exce_kalk("Non sono stati inseriti valori");
+        }
+        if (ui->lineEditIndiceOndaUno->text().simplified().toLower().replace( " ", "" ) == ""){
+            throw exce_kalk("Inserire indice -1 per cominciare ad inserire.");
+        }
         if (sender() == ui->btnInserisciOndaUno) {
             if (listUnoSx.length() != listUnoDx.length() || indOndaUno > operatoreUno->waveLenght()) {
                 throw exce_kalk("Le onde audio sono caratterizzate da due onde, onda sinistra e onda destra di lunghezza uguale. ");
@@ -171,6 +177,12 @@ void AudioView::slotOpOndaDue() {
     QStringList listDueSx = valOndaDueSx.split(',');
     QStringList listDueDx = valOndaDueDx.split(',');
     try {
+        if (ui->lineEditValoriOndaDueOndaSx->text()  == "" || ui->lineEditValoriOndaDueOndaDx->text() ==""){
+            throw exce_kalk("Non sono stati inseriti valori");
+        }
+        if (ui->lineEditIndiceOndaDue->text().simplified().toLower().replace( " ", "" ) == ""){
+            throw exce_kalk("Inserire indice -1 per cominciare ad inserire.");
+        }
         if (sender() == ui->btnInserisciOndaDue) {
             if (listDueSx.length() != listDueDx.length() || indOndaDue > operatoreDue->waveLenght()) {
                 throw exce_kalk("Le onde audio sono caratterizzate da due onde, onda sinistra e onda destra di lunghezza uguale. ");
