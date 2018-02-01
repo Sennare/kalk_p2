@@ -37,7 +37,7 @@ Makefile*
 # QtCtreator CMake
 CMakeLists.txt.user*
 
-
 # User-specific stuff:
 /.idea/*
 java/.idea/*
+java/out/*
