@@ -231,7 +231,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>3</string>
+    <string/>
    </property>
    <property name="placeholderText">
     <string>Formato: numero, numero</string>
@@ -247,7 +247,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>2</string>
+    <string/>
    </property>
    <property name="placeholderText">
     <string>Formato: numero, numero</string>
@@ -274,19 +274,6 @@
    </property>
    <property name="text">
     <string>x</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnBack">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>51</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>back</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btnSottrazioneOndeColorate">
@@ -369,16 +356,6 @@
    <property name="flow">
     <enum>QListView::LeftToRight</enum>
    </property>
-   <item>
-    <property name="text">
-     <string>sdfsdfdsf</string>
-    </property>
-   </item>
-   <item>
-    <property name="text">
-     <string>sdeeeeee</string>
-    </property>
-   </item>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
@@ -429,7 +406,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>22</string>
+    <string>0</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEditGOndaUno">
@@ -442,7 +419,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>33</string>
+    <string>0</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEditBOndaUno">
@@ -455,7 +432,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>44</string>
+    <string>0</string>
    </property>
   </widget>
   <widget class="QSlider" name="horizontalSliderROndaUno">
@@ -626,7 +603,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>40</string>
+    <string>0</string>
    </property>
   </widget>
   <widget class="QSlider" name="horizontalSliderBOndaDue">
@@ -668,7 +645,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>255</string>
+    <string>0</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEditBOndaDue">
@@ -681,7 +658,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>50</string>
+    <string>0</string>
    </property>
   </widget>
   <widget class="QListWidget" name="listWidgetColoriOndaDue">
@@ -708,6 +685,24 @@
    </property>
    <property name="flow">
     <enum>QListView::LeftToRight</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnBack">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>0</y>
+     <width>101</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>7</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Back</string>
    </property>
   </widget>
  </widget>

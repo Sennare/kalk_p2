@@ -67,7 +67,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>2,-8,4,-6,12,-3,6</string>
+    <string/>
    </property>
    <property name="placeholderText">
     <string>Formato: numero, numero</string>
@@ -125,7 +125,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>-12,3,-6,2,-8,4,-3</string>
+    <string/>
    </property>
    <property name="placeholderText">
     <string>Formato: numero, numero</string>
@@ -367,7 +367,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>2,-8,4,-6,12,-3,6</string>
+    <string/>
    </property>
    <property name="placeholderText">
     <string>Formato: numero, numero</string>
@@ -383,7 +383,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>0,0,0,0,0,0,0</string>
+    <string/>
    </property>
    <property name="placeholderText">
     <string>Formato: numero, numero</string>

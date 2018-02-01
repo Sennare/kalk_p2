@@ -2,6 +2,8 @@
 #define COLOREDWAVEVIEW_H
 
 #include <QWidget>
+#include <QListWidget>
+#include <QMessageBox>
 #include "views/view.h"
 #include "logica/coloredwave.h"
 #include "views/utils/qcustomplot.h"

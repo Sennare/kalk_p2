@@ -48,22 +48,22 @@ void Application::slotOpenKalkType(int tipo) {
     switch (tipo) {
     case Application::KalkType::Complessi:
         {ComplexView* aux = new ComplexView();
-        connect(aux, &ComplexView::signalBack, this, &Application::slotBack);
+        connect(aux, SIGNAL(signalBack()), this, SLOT(slotBack()));
         initializeKalk(aux);}
         break;
     case Application::KalkType::Quaternioni:
         {ComplexView* aux = new QuaternionView();
-        connect(aux, &ComplexView::signalBack, this, &Application::slotBack);
+        connect(aux, SIGNAL(signalBack()), this, SLOT(slotBack()));
         initializeKalk(aux);}
         break;
     case Application::KalkType::OndeAudio:{
         AudioView* aux = new AudioView();
-        connect(aux, &AudioView::signalBack, this, &Application::slotBack);
+        connect(aux, SIGNAL(signalBack()), this, SLOT(slotBack()));
         initializeKalk(aux);}
         break;
     case Application::KalkType::OndeColorate:{
         ColoredWaveView* aux = new ColoredWaveView();
-        connect(aux, &ColoredWaveView::signalBack, this, &Application::slotBack);
+        connect(aux, SIGNAL(signalBack()), this, SLOT(slotBack()));
         initializeKalk(aux);}
     }
 

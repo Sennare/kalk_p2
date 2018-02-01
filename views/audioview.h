@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QVector>
 #include <QPair>
+#include <QMessageBox>
 #include "views/view.h"
 #include "logica/audio.h"
 #include "views/utils/qcustomplot.h"
