@@ -34,7 +34,7 @@ public:
     Complex& operator*(const Real&) const;
     Complex& operator/(const Real&) const;
 
-    QString getString(unsigned int = 2) override;
+    QString getString(unsigned int = 2) const override;
 };
 
 #endif // COMPLEX_H

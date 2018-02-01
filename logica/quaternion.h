@@ -37,7 +37,7 @@ public:
     Quaternion& operator*(const Real&) const override;
     Quaternion& operator/(const Real&) const override;
 
-    QString getString(unsigned int = 2) override;
+    QString getString(unsigned int = 2) const override;
 };
 
 #endif // QUATERNION_H

@@ -55,6 +55,6 @@ Real& Real::operator/(const Real& b) const {
     return *res;
 }
 
-QString Real::getString(unsigned int precision) {
+QString Real::getString(unsigned int precision) const {
     return QString::number(this->rVal, 'f', precision);
 }

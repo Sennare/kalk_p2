@@ -179,7 +179,7 @@ Quaternion& Quaternion::operator/(const Real& elem) const {
     return *ret;
 }
 
-QString Quaternion::getString(unsigned int prec) {
+QString Quaternion::getString(unsigned int prec) const {
     return QString::number(getR(), 'f', prec) + ", " +
             QString::number(getI(), 'f', prec) + "i, " +
             QString::number(getJ(), 'f', prec) + "j, " +
