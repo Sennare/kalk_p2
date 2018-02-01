@@ -10,6 +10,7 @@ private:
     double rVal;
 
 public:
+    static const QString regExp;
     Real(double = 0);
     virtual ~Real() = default;
 

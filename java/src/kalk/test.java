@@ -3,7 +3,7 @@ import kalk.numeri.*;
 
 public class test {
     public static void main(String[] args) {
-        // testNumeri();
+        testNumeri();
         testOnde();
     }
 
@@ -19,6 +19,9 @@ public class test {
         Complex c2 = new Complex(5.0, 3.0);
         Complex c3 = new Complex();
         System.out.println("Complesso A: " + c1.getString());
+        System.out.println("Complesso B: " + c2.getString());
+        System.out.println("Cambio il complesso B");
+        c2.string(("6.3,-2.3i"));
         System.out.println("Complesso B: " + c2.getString());
         c3 = c2.somma(c1);
         System.out.println("Somma: " + c3.getString());
@@ -41,6 +44,9 @@ public class test {
         Quaternion n3 = new Quaternion();
         System.out.println("Quaternione A: " + n1.getString());
         System.out.println("Quaternione B: " + n2.getString());
+        System.out.println("Cambio il quaternione B");
+        n2.string(("6.3,-2.3i,4.6j,-3k"));
+        System.out.println("Complesso B: " + n2.getString());
         n3 = n2.somma(n1);
         System.out.println("Somma: " + n3.getString());
         n3 = n2.sottrai(n1);

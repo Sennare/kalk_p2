@@ -1,8 +1,6 @@
 #include <QRegExpValidator>
 #include "complex.h"
 
-#include <QDebug>
-
 const QString Complex::regExp = "^(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*),(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*)i$";
 
 Complex::Complex(QString str)
@@ -47,7 +45,6 @@ Complex& Complex::inverse() const {
     const Complex* norma = new Complex(pow(this->norm(),2));
     Complex* ret;
     ret = &(*this / *norma);
-    qDebug() << "non entra :(";
     return *ret;
 }
 
