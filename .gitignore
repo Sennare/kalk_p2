@@ -38,5 +38,5 @@ Makefile*
 CMakeLists.txt.user*
 
 # User-specific stuff:
-.idea/*
+/.idea/*
 java/.idea/*
