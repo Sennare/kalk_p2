@@ -11,4 +11,7 @@ void QuaternionView::initialize() {
     // Validator setup for quaternion
     QRegExp regx(Quaternion::regExp);
     validator.setRegExp(regx);
+
+    // Set placeholder
+    placeholder = "Formato: 0 , 0i, 0j, 0k";
 }

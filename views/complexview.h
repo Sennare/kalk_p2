@@ -30,6 +30,7 @@ protected:
     Complex* op3;
     TastierinoView::configurabile confFor;
     QRegExpValidator validator;
+    QString placeholder;
 
 private:
     Ui::ComplexView *ui;

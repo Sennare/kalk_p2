@@ -35,6 +35,9 @@ void ComplexView::initialize() {
     // Validator setup for complex
     QRegExp regx(Complex::regExp);
     validator.setRegExp(regx);
+
+    // Set placeholder
+    placeholder = "Formato: 0 , 0i";
 }
 
 void ComplexView::handle() {
@@ -46,6 +49,7 @@ void ComplexView::handle() {
     // Sistemiamo un po' la grafica
     ui->labelLog->setAlignment(Qt::AlignRight | Qt::AlignBottom);
     ui->lineEditCurrent->setAlignment(Qt::AlignRight);
+    ui->lineEditCurrent->setPlaceholderText(placeholder);
     manageKeys();
 
     show(); // Mostriamo il tutto altrimenti abbiamo fatto questo per niente
