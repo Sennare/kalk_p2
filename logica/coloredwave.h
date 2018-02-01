@@ -25,7 +25,6 @@ public:
     double getAmpVal(const int) const;
     Color getAmpColor(const int) const;
 
-    QString getString();
 
     ColoredWave operator+(const ColoredWave&);
     ColoredWave operator-(const ColoredWave&);

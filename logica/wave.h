@@ -19,7 +19,6 @@ protected:
 
 public:
     Wave();
-    Wave(QString);
 
     virtual ~Wave() = default;
 
@@ -28,8 +27,6 @@ public:
     virtual int waveLenght() const;    //ritorna la lunghezza della lista dei valori
 
     virtual double getAmpVal(const int) const;     //ritorna il valore di un determinato punto della lista
-
-    virtual QString getString();    //ritorna la successione di punti in formato stringa
 
     Wave operator+(const Wave&);
     Wave operator-(const Wave&);

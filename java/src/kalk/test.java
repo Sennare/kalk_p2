@@ -1,5 +1,10 @@
 package kalk;
 import kalk.numeri.*;
+import kalk.wave.Audio;
+import kalk.wave.Color;
+import kalk.wave.Wave;
+
+import javax.sound.midi.SysexMessage;
 
 public class test {
     public static void main(String[] args) {
@@ -9,6 +14,46 @@ public class test {
 
     public static void testOnde() {
         // Lavora qui
+        System.out.println("----wave-----");
+        Wave o1 = new Wave();
+        Wave o2 = new Wave();
+        o1.pushPoint(3.0);
+        o1.pushPoint(2.0);
+        o1.pushPoint(-7.0);
+        o1.removePoint(1);
+        System.out.println(o1.waveLenght());
+        System.out.println(o1.getAmpVal(1));
+        o2.pushPoint(2.5);
+        o2.pushPoint(1.5);
+        System.out.println(o1.somma(o2));
+
+        System.out.println("----Audio-----");
+        Audio a1 = new Audio();
+        Audio a2 = new Audio();
+        a1.pushPoint(2.3, 2.5);
+        a1.pushPoint(3.0, 2.4);
+        System.out.println(a1.waveLenght());
+        System.out.println(a1.getAmpVal(1));
+        a2.pushPoint(2.0, 1.1);
+        a2.pushPoint(2.0, 1.1);
+        a2.pushPoint(2.0, 1.1);
+        System.out.println(a2.moltiplicazione(a1));
+
+        System.out.println("----Colori-----");
+        Color c1 = new Color();
+        c1.setRdec(200);
+        c1.setGdec(125);
+        c1.setBdec(25);
+        System.out.println(c1.convertRGBtoHex());
+        Color c2 = new Color();
+        c2.setRdec(20);
+        c2.setGdec(15);
+        c2.setBdec(25);
+        Color c3 = new Color();
+        System.out.println(c3.somma(c1, c2));
+        System.out.println(c3.sottrazione(c1, c2));
+        System.out.println(c3.moltiplicazione(c1, c2));
+        System.out.println(c3.divisione(c1, c2));
 
     }
 
