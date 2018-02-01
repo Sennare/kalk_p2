@@ -22,6 +22,7 @@ TastierinoView::TastierinoView(QWidget *parent) :
     connect(ui->btnI, SIGNAL(clicked(bool)), this, SLOT(slotKeyPressed()));
     connect(ui->btnJ, SIGNAL(clicked(bool)), this, SLOT(slotKeyPressed()));
     connect(ui->btnK, SIGNAL(clicked(bool)), this, SLOT(slotKeyPressed()));
+    connect(ui->btnMinus, SIGNAL(clicked(bool)), this, SLOT(slotKeyPressed()));
 }
 
 TastierinoView::~TastierinoView()
@@ -81,5 +82,7 @@ void TastierinoView::slotKeyPressed() {
         emit signalKeyPressed("j");
     }else if (sender() == ui->btnK) {
         emit signalKeyPressed("k");
+    }else if (sender() == ui->btnMinus) {
+        emit signalKeyPressed("-");
     }
 }

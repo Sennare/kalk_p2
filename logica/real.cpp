@@ -1,4 +1,7 @@
+#include <QRegExpValidator>
 #include "real.h"
+
+const QString Real::regExp = "^(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*)$";
 
 Real::Real(double initVal) {
     this->setR(initVal);
@@ -13,7 +16,19 @@ double Real::getR() const {
 }
 
 void Real::string(QString str) {
-    str = str.simplified();
+    str = str.simplified().toLower();
+    str = str.replace( " ", "" );
+
+    // Inizializziamo un validator per verificare il pattern
+    QRegExpValidator validator;
+    QRegExp rexp(regExp);
+    validator.setRegExp(rexp);
+    int pos = 0;
+    if (validator.validate(str, pos) != QRegExpValidator::State::Acceptable) {
+        throw exce_kalk(str.prepend("Formato numero non corretto\n").toStdString());
+        return;
+    }
+
     setR(str.toDouble());
 }
 

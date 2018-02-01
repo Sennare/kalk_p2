@@ -1,6 +1,8 @@
 package kalk.numeri;
+import java.util.regex.Pattern;
 
 public class Complex extends Real {
+    final Pattern regExp = Pattern.compile("^(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*),(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*)i$");
 	private Double iVal = 0.0;
 
 	public Complex() {
@@ -50,24 +52,17 @@ public class Complex extends Real {
 	}
 
 	public void string (String str) {
-		str = str.replaceAll("\\s+","");
-		String[] splitted = str.split(",");
-		// Controllo il formato "2,2"
-		String[] list = str.split(",");
-		if (list.length == 2) {
-			setR(Double.valueOf(list[0]));
-			setI(Double.valueOf(list[1]));
-		}else{
-			// Controllo il formato "2 + 2i"
-			list = str.split("/+");
-			if (list.length == 2 && list[1].indexOf("i") == (list[1].length()-1) && list[1].lastIndexOf("i") == list[1].indexOf("i")) {
-				setR(Double.valueOf(list[0]));
-				list[1] = list[1].replace("i", "");
-				setI(Double.valueOf(list[1]));
-			}else
-				throw new RuntimeException("Formato numero(c) non corretto\n" + str);
-		}
-	}
+        str = str.replaceAll("\\s+", "");
+
+        if (regExp.matcher(str).matches()) {
+            String[] splitted = str.split(",");
+            setR(Double.valueOf(splitted[0]));
+            splitted[1] = splitted[1].replace("i", "");
+            setI(Double.valueOf(splitted[1]));
+            return;
+        }
+        throw new RuntimeException("Errore nella lettura del complesso " + str);
+    }
 
 	public Complex somma(Complex b) {
 		Complex res = new Complex();

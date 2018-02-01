@@ -1,6 +1,9 @@
 package kalk.numeri;
 
+import java.util.regex.Pattern;
+
 public class Quaternion extends Complex {
+    final Pattern regExp = Pattern.compile("^(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*),(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*)i,(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*)j,(\\+|-)?([0-9]+(\\.[0-9])?[0-9]*)k$");
 	private Double jVal =  0.0;
 	private Double kVal =  0.0;
 
@@ -69,7 +72,20 @@ public class Quaternion extends Complex {
 	}
 
 	public void string (String str) {
-		// TODO
+        str = str.replaceAll("\\s+", "");
+
+        if (regExp.matcher(str).matches()) {
+            String[] splitted = str.split(",");
+            setR(Double.valueOf(splitted[0]));
+            splitted[1] = splitted[1].replace("i", "");
+            setI(Double.valueOf(splitted[1]));
+            splitted[2] = splitted[2].replace("j", "");
+            setJ(Double.valueOf(splitted[2]));
+            splitted[3] = splitted[3].replace("k", "");
+            setK(Double.valueOf(splitted[3]));
+            return;
+        }
+        throw new RuntimeException("Errore nella lettura del quaternione " + str);
 	}
 
 	public Quaternion somma(Quaternion b) {
