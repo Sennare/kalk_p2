@@ -28,7 +28,6 @@ SOURCES += main.cpp\
     views/complexview.cpp \
     views/quaternionview.cpp \
     views/kalkselectorview.cpp \
-    views/testview.cpp \
     views/audioview.cpp \
     views/utils/qcustomplot.cpp \
     views/coloredwaveview.cpp \
@@ -48,7 +47,6 @@ HEADERS  += helper.h \
     views/complexview.h \
     views/quaternionview.h \
     views/kalkselectorview.h \
-    views/testview.h \
     views/audioview.h \
     views/utils/qcustomplot.h \
     views/coloredwaveview.h \
@@ -56,7 +54,6 @@ HEADERS  += helper.h \
     views/utils/tastierinoview.h
 
 FORMS    += views/kalkselectorview.ui \
-    views/testview.ui \
     views/audioview.ui \
     views/coloredwaveview.ui \
     views/complexview.ui \
