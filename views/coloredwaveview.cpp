@@ -12,6 +12,7 @@ ColoredWaveView::ColoredWaveView(QWidget *parent) :
     QString styleSheet = QLatin1String(file.readAll());
     this->setStyleSheet(styleSheet);
     ui->setupUi(this);
+    setWindowTitle("Kalk - Colored wave");
     operatoreUno = new ColoredWave();
     operatoreDue = new ColoredWave();
     operatoreTre = new ColoredWave();
