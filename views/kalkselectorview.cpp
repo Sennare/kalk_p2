@@ -16,6 +16,7 @@ KalkSelectorView::~KalkSelectorView()
 void KalkSelectorView::handle() {
     // Something to do here
     ui->setupUi(this);
+    setWindowTitle("Kalk");
     show();
     connect(ui->openComplex, SIGNAL(clicked(bool)), this, SLOT(slotOpenComplex()));
     connect(ui->openQuaternion, SIGNAL(clicked(bool)), this, SLOT(slotOpenQuaternion()));

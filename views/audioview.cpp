@@ -27,6 +27,7 @@ AudioView::~AudioView()
 void AudioView::handle() {
     // Something to do here
     ui->setupUi(this);
+    setWindowTitle("Kalk - Audio wave");
     show();
 
     connect(ui->btnBack, SIGNAL(clicked(bool)), this, SIGNAL(signalBack()));

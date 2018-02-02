@@ -38,6 +38,8 @@ void ComplexView::initialize() {
 
     // Set placeholder
     placeholder = "Formato: 0 , 0i";
+
+    setWindowTitle("Kalk - Complessi");
 }
 
 void ComplexView::handle() {

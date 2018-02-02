@@ -14,4 +14,6 @@ void QuaternionView::initialize() {
 
     // Set placeholder
     placeholder = "Formato: 0 , 0i, 0j, 0k";
+
+    setWindowTitle("Kalk - Quaternioni");
 }
