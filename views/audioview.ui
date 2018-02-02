@@ -285,7 +285,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>indice</string>
+    <string>Indice</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
@@ -311,7 +311,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>indice</string>
+    <string>Indice</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btnSostituisciOndaDue">

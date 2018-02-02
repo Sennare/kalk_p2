@@ -67,7 +67,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>indice</string>
+    <string>Indice</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btnInserisciOndaDue">
@@ -129,7 +129,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>indice</string>
+    <string>Indice</string>
    </property>
   </widget>
   <widget class="QCustomPlot" name="widgetOndaDue" native="true">
