@@ -1,7 +1,6 @@
 #include "application.h"
 #include "views/kalkselectorview.h"
 #include "views/audioview.h"
-#include "views/testview.h"
 #include "views/coloredwaveview.h"
 #include "views/complexview.h"
 #include "views/quaternionview.h"
