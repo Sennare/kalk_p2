@@ -24,7 +24,7 @@ public:
     virtual Real& operator*(const Real&) const;
     virtual Real& operator/(const Real&) const;
 
-    virtual QString getString(unsigned int = 2);
+    virtual QString getString(unsigned int = 2) const;
 };
 
 #endif // REAL_H

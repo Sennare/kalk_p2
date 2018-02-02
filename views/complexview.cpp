@@ -35,6 +35,9 @@ void ComplexView::initialize() {
     // Validator setup for complex
     QRegExp regx(Complex::regExp);
     validator.setRegExp(regx);
+
+    // Set placeholder
+    placeholder = "Formato: 0 , 0i";
 }
 
 void ComplexView::handle() {
@@ -46,6 +49,7 @@ void ComplexView::handle() {
     // Sistemiamo un po' la grafica
     ui->labelLog->setAlignment(Qt::AlignRight | Qt::AlignBottom);
     ui->lineEditCurrent->setAlignment(Qt::AlignRight);
+    ui->lineEditCurrent->setPlaceholderText(placeholder);
     manageKeys();
 
     show(); // Mostriamo il tutto altrimenti abbiamo fatto questo per niente
@@ -110,31 +114,20 @@ void ComplexView::logReset() {
 
 void ComplexView::manageKeys() {
     bool isZero = (operationStep == 0 ? true : false );
-    ui->btnSomma->setEnabled(isZero);
-    ui->btnSottrazione->setEnabled(isZero);
-    ui->btnMoltiplicazione->setEnabled(isZero);
-    ui->btnDivisione->setEnabled(isZero);
-    ui->btnCalcola->setEnabled(!isZero); // Sarà attivo solo in fase 1 a differenza degli altri
-    ui->btnInverso->setEnabled(isZero);
-    ui->btnNorma->setEnabled(isZero);
-    ui->btnConiugato->setEnabled(isZero);
+    setEnabledKey(ui->btnSomma, isZero);
+    setEnabledKey(ui->btnSottrazione, isZero);
+    setEnabledKey(ui->btnMoltiplicazione, isZero);
+    setEnabledKey(ui->btnDivisione, isZero);
+    setEnabledKey(ui->btnCalcola, !isZero);   // Sarà attivo solo in fase 1 a differenza degli altri
+    setEnabledKey(ui->btnInverso, isZero);
+    setEnabledKey(ui->btnNorma, isZero);
+    setEnabledKey(ui->btnConiugato, isZero);
+}
 
-    style()->unpolish(ui->btnSomma);
-    style()->polish(ui->btnSomma);
-    style()->unpolish(ui->btnSottrazione);
-    style()->polish(ui->btnSottrazione);
-    style()->unpolish(ui->btnMoltiplicazione);
-    style()->polish(ui->btnMoltiplicazione);
-    style()->unpolish(ui->btnDivisione);
-    style()->polish(ui->btnDivisione);
-    style()->unpolish(ui->btnCalcola);
-    style()->polish(ui->btnCalcola);
-    style()->unpolish(ui->btnInverso);
-    style()->polish(ui->btnInverso);
-    style()->unpolish(ui->btnNorma);
-    style()->polish(ui->btnNorma);
-    style()->unpolish(ui->btnConiugato);
-    style()->polish(ui->btnConiugato);
+void ComplexView::setEnabledKey(QWidget* widget, bool enabled) {
+    widget->setEnabled(enabled);
+    style()->unpolish(widget);
+    style()->polish(widget);
 }
 
 void ComplexView::calcola() {

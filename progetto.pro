@@ -17,7 +17,6 @@ QMAKE_CXXFLAGS += -std=c++11
 SOURCES += main.cpp\
           helper.cpp \
     application.cpp \
-    models/model.cpp \
     exce_kalk.cpp \
     logica/real.cpp \
     logica/complex.cpp \
@@ -38,7 +37,6 @@ SOURCES += main.cpp\
 
 HEADERS  += helper.h \
     application.h \
-    models/model.h \
     exce_kalk.h \
     logica/real.h \
     logica/complex.h \

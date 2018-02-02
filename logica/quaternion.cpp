@@ -41,8 +41,6 @@ void Quaternion::inverseK() {
     kVal *= -1;
 }
 
-
-// TODO -> Da testare in GUI
 Quaternion& Quaternion::conjugate() const {
     Quaternion* res = new Quaternion();
     *res = *this;
@@ -52,7 +50,6 @@ Quaternion& Quaternion::conjugate() const {
     return *res;
 }
 
-// TODO -> Da testare in GUI
 double Quaternion::norm() const {
     if (pow(getR(),2) +
             pow(getI(),2) +
@@ -179,7 +176,7 @@ Quaternion& Quaternion::operator/(const Real& elem) const {
     return *ret;
 }
 
-QString Quaternion::getString(unsigned int prec) {
+QString Quaternion::getString(unsigned int prec) const {
     return QString::number(getR(), 'f', prec) + ", " +
             QString::number(getI(), 'f', prec) + "i, " +
             QString::number(getJ(), 'f', prec) + "j, " +

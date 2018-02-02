@@ -114,7 +114,7 @@ Complex& Complex::operator/(const Real& elem) const {
     return *res;
 }
 
-QString Complex::getString(unsigned int prec) {
+QString Complex::getString(unsigned int prec) const {
     return QString::number(this->getR(), 'f', prec) + ", " +
             QString::number(this->getI(), 'f', prec) + "i";
 }
