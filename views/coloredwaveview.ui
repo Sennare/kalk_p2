@@ -246,7 +246,7 @@
     <string/>
    </property>
    <property name="placeholderText">
-    <string>Formato: numero, numero</string>
+    <string>Formato: numero</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEditValoriOndaUno">
@@ -262,7 +262,7 @@
     <string/>
    </property>
    <property name="placeholderText">
-    <string>Formato: numero, numero</string>
+    <string>Formato: numero</string>
    </property>
   </widget>
   <widget class="QCustomPlot" name="widgetOndaUno" native="true">
