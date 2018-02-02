@@ -45,6 +45,7 @@ private:
     void logReset();
 
     void manageKeys();
+    void setEnabledKey(QWidget*, bool);
 
     void calcola();
 
